@@ -10,7 +10,7 @@ import {
   ModalHeader,
 } from "reactstrap";
 import axios from "axios";
-import { api } from "../api/api";
+import { api, byId } from "../api/api";
 import { toast } from "react-toastify";
 
 function Itemspage() {
