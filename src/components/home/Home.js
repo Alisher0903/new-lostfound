@@ -1,12 +1,12 @@
 import React from "react";
-import "style.scss";
+import "./style.scss";
 
 function HomeDefault() {
     return (
         <>
-            <p className="p">
-                HomeDefault
-            </p>
+            <section id="home-section" className="home_main">
+                dewtyvgfk
+            </section>
         </>
     );
 }
