@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { DefouldNav } from "../navbars/DefouldNav";
 import "./login.scss";
 import { api, byId } from "../api/api";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { LoginNav } from "../navbars/LoginNav";
 
 export const Login = () => {
 
@@ -93,7 +93,7 @@ export const Login = () => {
     return (
         <div className="login_section">
             <Link id="goHomePage" to="/Lost and Found"></Link>
-            <DefouldNav />
+            <LoginNav />
             <section className="login_section-box">
                 <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
                 <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
@@ -136,7 +136,7 @@ export const Login = () => {
 
                 <div className="login_box">
                     <div className="login_content">
-                        <h2>Log In</h2>
+                        <h2>Sign In</h2>
                         <div className="login_form">
                             <div className="login_inputBox" id="phoneNumber">
                                 <input id="phone_number" required /> <i>+998 99 999 99 99</i>
@@ -163,7 +163,7 @@ export const Login = () => {
                                 <input type="password" id="verification_code" required /> <i>verification code</i>
                             </div>
                             <div className="login_links">
-                                <Link>Create new account</Link>
+                                <Link to="/register">Create new account</Link>
                                 <Link onClick={forgotPassword}>Forgot password?</Link>
                             </div>
                             <div className="login_inputBox">

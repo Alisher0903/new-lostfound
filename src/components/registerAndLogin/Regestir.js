@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { DefouldNav } from "../navbars/DefouldNav";
 import "./login.scss";
 import { api, byId } from "../api/api";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { RegisterNav } from "../navbars/RegisterNav";
 
 export const Register = () => {
 
@@ -29,7 +29,7 @@ export const Register = () => {
     return (
         <div className="login_section">
             <Link id="goLogin" to="/login"></Link>
-            <DefouldNav />
+            <RegisterNav />
             <section className="login_section-box">
                 <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
                 <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
