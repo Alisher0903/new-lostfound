@@ -37,7 +37,7 @@
     background: linear-gradient(
       0deg,
       rgba(255, 255, 255, 1) 0%,
-      rgba(34, 129, 195, 1) 85%
+      rgb(0, 0, 0) 85%
     );
   }
   .items-top {
@@ -48,10 +48,23 @@
         width: 30%;
       }
     }
-    div:nth-child(2) {
+    div:nth-child(2) {  
       display: flex;
       justify-content: center;
       gap: 20px;
     }
+  }
+
+  .item-table {
+    td {
+       vertical-align: middle;
+    }
+  }
+  .table-img {
+    width: 20%;
+    border-radius: 5rem;
+  }
+  .table-row {
+    width: 20%;
   }
 }
