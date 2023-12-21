@@ -5,7 +5,7 @@ function HomeDefault() {
     return (
         <>
             <section id="home-section" className="home_main">
-                dewtyvgfk
+                
             </section>
         </>
     );
