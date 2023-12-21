@@ -1,32 +1,33 @@
-import React, {useState} from 'react';
-import "./defouldNav.scss"
+import React, { useState } from 'react';
+import "./defouldNav.scss";
 import { Link } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 
 export const DefouldNav = () => {
-    const [isNavOpen, setIsNavOpen] = useState(false);
-
-    const toggleNav = () => {
-        setIsNavOpen(!isNavOpen);
-    };
 
     return (
-        <section className="navigation">
-            <div className="nav-container">
-                <div className="brand">
-                    <Link to="/">Lost and Found</Link>
-                </div>
-                <nav>
-                    <div className="nav-mobile">
-                        <Link id="nav-toggle" href="#!" onClick={toggleNav}><span></span></Link>
+        <>
+            <header>
+                <nav className='fixed-top'>
+                    <div className='mobile_nav'></div>
+                    <div className='destop_nav'>
+                        <div className='container'>
+                            <div className='nav_brand'>
+                                <Link to="/">
+                                    <span>Lost</span>
+                                    <span>and</span>
+                                    <span>Found</span>
+                                </Link>
+                            </div>
+                            <div className='nav_search'>
+                                <Icon icon="ri:search-line" width="30" />
+                                <h4>Sign in</h4>
+                                <h4>Sign up</h4>
+                            </div>
+                        </div>
                     </div>
-                    <ul className={`nav-list ${isNavOpen ? 'active' : ''}`}>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/">Shop</Link></li>
-                        <li><Link to="/">About Us</Link></li>
-                        <li><Link to="/">Contact</Link></li>
-                    </ul>
                 </nav>
-            </div>
-        </section>
+            </header>
+        </>
     );
 };
