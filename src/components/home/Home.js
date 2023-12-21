@@ -1,11 +1,15 @@
 import React from "react";
 import "./style.scss";
+import {DefouldNav} from "../navbars/DefouldNav";
 
 function HomeDefault() {
     return (
         <>
-            <section id="home-section" className="home_main">
-                dewtyvgfk
+            <DefouldNav />
+            <section style={{
+                height: "5000px"
+            }}>
+
             </section>
         </>
     );
