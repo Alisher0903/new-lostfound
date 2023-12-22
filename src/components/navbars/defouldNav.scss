@@ -74,7 +74,7 @@ header {
 
             &:hover {
                 cursor: pointer;
-                color: #8a8c21;
+                color: #dadd34;
             }
         }
     }
@@ -151,4 +151,20 @@ header {
 .burger-menu {
     font-size: 1.5em;
     cursor: pointer;
+}
+
+// login nav style bir qismi
+@media (max-width: 460px) {
+    .login_nav {
+        a {
+            font-size: 1.5rem;
+            letter-spacing: 0;
+        }
+
+        .nav_search {
+            h4 {
+                font-size: 1.5rem;
+            }
+        }
+    }
 }
