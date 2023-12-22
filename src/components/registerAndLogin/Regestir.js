@@ -16,14 +16,38 @@ export const Register = () => {
         }
         axios.post(api + "register/", addData)
             .then(() => {
-                toast.success("Registratsiyadan muvaffaqiyatli o'tdingiz✔");
+                toast.success("Tasdiqlash kodi yuborildi. Kodni kiriting!");
+                enterCode();
+            })
+            .catch(() => {
+                toast.warning("Xatolik yuz berdi ma'lumotlarni tekshirib qaytadan urinib ko'ring❓")
+            })
+    }
+
+    // confirmCode
+    const confirmCode = () => {
+        let addData = {
+            phone_number: byId("phone_number").value,
+            verification_code: byId("verification_code").value
+        }
+
+        axios.post(`${api}register-verify/`, addData)
+            .then(res => {
+                toast.success(res.data.message);
                 byId("goLogin").click();
             })
-            .catch((error) => {
-                toast.error("Xatolik yuz berdi ma'lumotlarni tekshirib qaytadan urinib ko'ring❓")
-                console.log(error);
-                console.log(addData);
+            .catch(err => {
+                toast.error(err.data.message);
             })
+    }
+
+    // entercode
+    const enterCode = () => {
+        byId("userName").style.display = "none";
+        byId("oldPassword").style.display = "none";
+        byId("signUp").style.display = "none";
+        byId("virificationCode").style.display = "inline";
+        byId("confirmCode").style.display = "inline";
     }
 
     return (
@@ -74,14 +98,20 @@ export const Register = () => {
                     <div className="login_content">
                         <h2>Sign up</h2>
                         <div className="login_form">
-                            <div className="login_inputBox">
+                            <div className="login_inputBox" id="userName">
                                 <input id="username" required /> <i>Username</i>
                             </div>
-                            <div className="login_inputBox">
+                            <div className="login_inputBox" id="phoneNumber">
                                 <input id="phone_number" required /> <i>+998 99 999 99 99</i>
                             </div>
-                            <div className="login_inputBox">
+                            <div className="login_inputBox" id="oldPassword">
                                 <input type="password" id="password" required /> <i>Password</i>
+                            </div>
+                            <div
+                                id="virificationCode"
+                                className="login_inputBox"
+                                style={{ display: "none" }}>
+                                <input id="verification_code" required /> <i>Verification Code</i>
                             </div>
                             <div className="login_links">
                                 <Link></Link>
@@ -89,8 +119,14 @@ export const Register = () => {
                             </div>
                             <div className="login_inputBox">
                                 <button
+                                    id="signUp"
                                     onClick={addRegister}
                                     className="glow-on-hover">Sign up</button>
+                                <button
+                                    onClick={confirmCode}
+                                    id="confirmCode"
+                                    style={{ display: "none" }}
+                                    className="glow-on-hover">Confirm Code</button>
                             </div>
                         </div>
                     </div>
