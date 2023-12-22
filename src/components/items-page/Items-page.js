@@ -3,7 +3,9 @@ import "./item-page.scss";
 import {
   Button,
   Container,
+  FormGroup,
   Input,
+  Label,
   Modal,
   ModalBody,
   ModalFooter,
@@ -17,9 +19,12 @@ function Itemspage() {
   const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
-  const [found, setFound] = useState([]);
+  const [item, setItem] = useState([]);
   const [category, setCategory] = useState([]);
-  const [foundId, setFoundId] = useState([]);
+  const [found, setFound] = useState([]);
+  const [lost, setLost] = useState([]);
+  const [subCategory, setSubCategory] = useState([]);
+
 
   const openAddModal = () => setAddModal(!addModal);
 
@@ -27,9 +32,10 @@ function Itemspage() {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
 
-    getAll()
+    getAll();
     getFound();
     getCategory();
+    getSubCategory();
     getLost();
   }, []);
 
@@ -39,7 +45,7 @@ function Itemspage() {
         headers: { Authorization: sessionStorage.getItem("jwtToken") },
       })
       .then((res) => {
-        setFound(res.data)
+        setItem(res.data);
         console.log(res.data);
       })
       .catch(() => console.log("items kelmadi!!!"));
@@ -52,7 +58,11 @@ function Itemspage() {
           Authorization: sessionStorage.getItem("jwtToken"),
         },
       })
-      .then((res) => setFound(res.data.filter((t) => t.type == "FOUND")))
+      .then((res) => {
+        setFound(res.data.filter((t) => t.type == "FOUND"))
+        console.log(res.data.filter((t) => t.type == "Lost"));
+
+      })
       .catch(() => console.log("Found kelmadi!!!"));
   };
 
@@ -63,8 +73,11 @@ function Itemspage() {
           Authorization: sessionStorage.getItem("jwtToken"),
         },
       })
-      .then((res) => setFound(res.data.filter((t) => t.type == "Lost")))
-      .catch(() => console.log("Found kelmadi!!!"));
+      .then((res) => {
+        setLost(res.data.filter((t) => t.type == "Lost"))
+        console.log(res.data.filter((t) => t.type == "Lost"));
+      })
+      .catch(() => console.log("lost kelmadi!!!"));
   };
 
   const getCategory = () => {
@@ -72,44 +85,69 @@ function Itemspage() {
       .get(api + "category/", {
         headers: { Authorization: sessionStorage.getItem("jwtToken") },
       })
-      .then((res) => setCategory(res.data))
+      .then((res) => {
+        setCategory(res.data)
+        console.log(res.data);
+      })
       .catch(() => console.log("category kelmadi!!!"));
   };
 
-  const addItem = () => {
-    const editData = new FormData();
-    editData.append("image", byId("file").files[0]);
-    editData.append("name", byId("name").value);
-    editData.append("description", byId("description").value);
-    editData.append("contact_info", byId("contact_info").value);
-    editData.append("type", "FOUND");
-    editData.append("latitude", 0);
-    editData.append("longitude", 0);
-    editData.append("category ", byId("category").value);
-    editData.append("id", foundId.id);
+  const getSubCategory = () => {
+    axios
+      .get(api + "sub_category/", {
+        headers: { Authorization: sessionStorage.getItem("jwtToken") },
+      })
+      .then((res) => {
+        setSubCategory(res.data)
+        console.log(res.data);
+      })
+      .catch(() => console.log("Subcategory kelmadi!!!"));
+  };
 
-    axios.put(api + "item" + foundId.id + "/", editData, {
+
+
+  const addItem = () => {
+    const addData = new FormData();
+    addData.append("type", byId("type").value);
+    addData.append("name", byId("name").value);
+    addData.append("date", byId("date").value);
+    addData.append("image", byId("file").files[0]);
+    addData.append("brand", byId("brand").value);
+    addData.append("primary_color", byId("color").value);
+    addData.append("secondary_color", byId("secondary").value);
+    addData.append("specific_description", byId("description").value);
+    addData.append("specific_location", byId("location").value);
+    addData.append("country", byId("region").value);
+    addData.append("city", byId("city").value);
+    addData.append("street", byId("street").value);
+    addData.append("contact_info", byId("contact_info").value);
+    addData.append("latitude", 0);
+    addData.append("longitude", 0);
+    addData.append("category ", byId("category").value);
+    addData.append("sub_category  ", byId("subcategory").id);
+    // addData.append("id", foundId.id);
+
+    axios
+    .post(api + "item/", addData, {
       headers: {
-        Authorization: sessionStorage.getItem('jwtToken'),
+        Authorization: sessionStorage.getItem("jwtToken"),
       },
     })
-      .then(() => {
-        openAddModal();
-        getFound();
-        toast.success("Found item muvaffaqiyatli taxrirlandi✔")
-      })
-      .catch(() => {
-        toast.error("Found item taxrirlashda xatolik yuz berdi!!!")
-      })
-  }
+    .then(() => {
+      openAddModal();
+      getAll();
+      toast.success("Item muvaffaqiyatli qo'shildi✔");
+    })
+    .catch(() => toast.error("Item qo'shishda xatolik yuz berdi!!!"));
+  };
 
   const searchFound = () => {
     let searchItem = byId("search").value;
     if (!!searchItem)
       axios
         .get(api + "item/?search=" + searchItem)
-        .then((res) => setFound(res.data.filter((t) => t.type == "FOUND")));
-    else getFound();
+        .then((res) => setItem(res.data.filter((t) => t.type == "FOUND")));
+    else getAll();
   };
 
   const categoryFIlter = () => {
@@ -118,11 +156,9 @@ function Itemspage() {
       .get(api + "item/category/" + categoryId + "/", {
         headers: { Authorization: sessionStorage.getItem("jwtToken") },
       })
-      .then((res) => setFound(res.data.filter((c) => c.type == "FOUND")))
+      .then((res) => setItem(res.data.filter((c) => c.type == "FOUND")))
       .catch(() => console.log("category filter ishlamadi!!!"));
   };
-
- 
 
   const goFoundInfo = () => byId("goFoundInfo").click();
 
@@ -222,36 +258,164 @@ function Itemspage() {
         </div>
       </Container>
 
-      <Modal isOpen={addModal} centered size="lg">
-        <ModalHeader toggle={openAddModal} className="text-dark fs-4 fw-bolder">
-          Add Found
+      {/* add modal */}
+      <Modal isOpen={addModal} centered fullscreen scrollable>
+        <ModalHeader
+          toggle={openAddModal}
+          className="text-light fs-4 fw-bolder"
+        >
+          Add Item
         </ModalHeader>
-        <ModalBody className="techer__modal-body">
-          <Input type="file" className="form-control mb-3" id="file" />
-          <Input id="name" className="mb-3" placeholder="Name" />
-          <Input
-            id="contact_info"
-            className="mb-3"
-            placeholder="Contact info"
-          />
-          <textarea
-            id="description"
-            className="form-control"
-            placeholder="Description"
-          />
-          <select id="category" className="form-control mt-3">
-            <option selected disabled>
-              Category
-            </option>
-            {/* {category &&
-              category.map((item, i) => (
-                <option key={i} value={item.id}>
-                  {item.name}
+        <ModalBody className="modal-body p-4 ">
+          <div className="items-add">
+            <div className="booot2">
+              <Input type="file" className="form-control " id="file" />
+            </div>
+            <div>
+              <select class="form-control" id="type">
+                <option selected disabled>
+                  TYPE
                 </option>
-              ))} */}
-          </select>
+                <option value="LOST">LOST</option>
+                <option value="FOUND">FOUND</option>
+              </select>
+            </div>
+            <FormGroup floating>
+              <Input
+                id="name"
+                name="email"
+                placeholder="Email"
+                type="email"
+              />
+              <Label for="name">Name</Label>
+            </FormGroup>
+            <FormGroup floating>
+              <Input
+                id="brand"
+                name="Brand"
+                placeholder="Brand"
+                type="name"
+              />
+              <Label for="brand">Brand</Label>
+            </FormGroup>
+            <FormGroup floating>
+              <Input
+                id="date"
+                name="Date"
+                placeholder="Date"
+                type="Date"
+              />
+              <Label for="date">Date</Label>
+            </FormGroup>
+            <FormGroup floating>
+              <Input
+                id="color"
+                name="Color"
+                placeholder="Color"
+                type="text"
+              />
+              <Label for="color">Color</Label>
+            </FormGroup>
+            <FormGroup floating>
+              <Input
+                id="secondary"
+                name="Secondarycolor"
+                placeholder="Secondary color"
+                type="text"
+                className="
+                "
+              />
+              <Label for="secondary" className="me-4">
+                Secondary color
+              </Label>
+            </FormGroup>
+            <FormGroup floating>
+              <Input
+                id="region"
+                name="Region"
+                placeholder="Region"
+                type="text"
+              />
+              <Label for="region">Region</Label>
+            </FormGroup>
+            <FormGroup floating>
+              <Input
+                id="city"
+                name="City"
+                placeholder="City"
+                type="text"
+              />
+              <Label for="city">City</Label>
+            </FormGroup>
+
+            <FormGroup floating>
+              <Input
+                id="street"
+                name="street"
+                placeholder="Street"
+                type="text"
+              />
+              <Label for="street">Street</Label>
+            </FormGroup>
+            <FormGroup floating>
+              <Input
+                id="description"
+                name="des"
+                placeholder="Specific description "
+                type="text"
+              />
+              <Label for="description">Specific description </Label>
+            </FormGroup>
+            <FormGroup floating>
+              <Input
+                id="location"
+                name="des2"
+                placeholder="Specific location"
+                type="text"
+              />
+              <Label for="location">Specific location</Label>
+            </FormGroup>
+
+            <div>
+              <select class="form-control" id="category">
+                <option selected disabled>
+                  Category
+                </option>
+                {category &&
+                  category.map((item, i) => (
+                    <option key={i} id={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+            <div>
+              <select class="form-control " id="subcategory">
+                <option selected disabled>
+                  SubCategory
+                </option>
+                {subCategory &&
+                  subCategory.map((item, i) => (
+                    <option key={i} id={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+            <textarea
+              id="contact"
+              className="form-control booot3"
+              placeholder="Contact info"
+            />
+
+            {/* <textarea
+              id="description"
+              className="form-control booot"
+              placeholder="Description"
+            /> */}
+          </div>
         </ModalBody>
-        <ModalFooter>
+        <ModalFooter className="modalFooter">
           <Button
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
             className="bg-danger"

@@ -1,8 +1,3 @@
-
-
-
-
-
 import React, { useEffect, useState } from "react";
 import {
   Button,
@@ -47,23 +42,25 @@ const Found = () => {
 
   // getFound
   const getFound = () => {
-    axios.get(api + "item/", {
-      headers: {
-        Authorization: sessionStorage.getItem("jwtToken"),
-      },
-    })
-      .then(res => setFound(res.data.filter(t => t.type == "FOUND")))
-      .catch(() => console.log("Found kelmadi!!!"))
-  }
+    axios
+      .get(api + "item/", {
+        headers: {
+          Authorization: sessionStorage.getItem("jwtToken"),
+        },
+      })
+      .then((res) => setFound(res.data.filter((t) => t.type == "FOUND")))
+      .catch(() => console.log("Found kelmadi!!!"));
+  };
 
   // getCategory
   const getCategory = () => {
-    axios.get(api + "category/", {
-      headers: { Authorization: sessionStorage.getItem('jwtToken') }
-    })
-      .then(res => setCategory(res.data))
-      .catch(() => console.log("category kelmadi!!!"))
-  }
+    axios
+      .get(api + "category/", {
+        headers: { Authorization: sessionStorage.getItem("jwtToken") },
+      })
+      .then((res) => setCategory(res.data))
+      .catch(() => console.log("category kelmadi!!!"));
+  };
 
   // addFoundItem
   const addFoundItem = () => {
@@ -77,18 +74,19 @@ const Found = () => {
     addData.append("longitude", 0);
     addData.append("category ", byId("category").value);
 
-    axios.post(api + "item/", addData, {
-      headers: {
-        Authorization: sessionStorage.getItem('jwtToken'),
-      },
-    })
+    axios
+      .post(api + "item/", addData, {
+        headers: {
+          Authorization: sessionStorage.getItem("jwtToken"),
+        },
+      })
       .then(() => {
         openAddModal();
         getFound();
-        toast.success("Found item muvaffaqiyatli qo'shildi✔")
+        toast.success("Found item muvaffaqiyatli qo'shildi✔");
       })
-      .catch(() => toast.error("Found item qo'shishda xatolik yuz berdi!!!"))
-  }
+      .catch(() => toast.error("Found item qo'shishda xatolik yuz berdi!!!"));
+  };
 
   // editFoundItem
   const editFoundItem = () => {
@@ -103,61 +101,68 @@ const Found = () => {
     editData.append("category ", byId("category").value);
     editData.append("id", foundId.id);
 
-    axios.put(api + "item" + foundId.id + "/", editData, {
-      headers: {
-        Authorization: sessionStorage.getItem('jwtToken'),
-      },
-    })
+    axios
+      .put(api + "item" + foundId.id + "/", editData, {
+        headers: {
+          Authorization: sessionStorage.getItem("jwtToken"),
+        },
+      })
       .then(() => {
         openEditModal();
         getFound();
-        toast.success("Found item muvaffaqiyatli taxrirlandi✔")
+        toast.success("Found item muvaffaqiyatli taxrirlandi✔");
       })
       .catch(() => {
-        toast.error("Found item taxrirlashda xatolik yuz berdi!!!")
-      })
-  }
+        toast.error("Found item taxrirlashda xatolik yuz berdi!!!");
+      });
+  };
 
   // deleteFoundItem
   const deleteFoundItem = () => {
-    axios.delete(api + "item" + foundId.id + "/", {
-      headers: {
-        Authorization: sessionStorage.getItem("jwtToken"),
-      },
-    })
+    axios
+      .delete(api + "item" + foundId.id + "/", {
+        headers: {
+          Authorization: sessionStorage.getItem("jwtToken"),
+        },
+      })
       .then(() => {
         toast.success("Found item o'chirildi!!!");
         openDeleteModal();
         getFound();
       })
-      .catch(() => toast.error("Found item o'chirishda xatolik yuz berdi!!!"))
-  }
+      .catch(() => toast.error("Found item o'chirishda xatolik yuz berdi!!!"));
+  };
 
   // search
   const searchFound = () => {
-    let searchItem = byId("search").value
-    if (!!searchItem) axios.get(api + "item/?search=" + searchItem).then(res => setFound(res.data.filter(t => t.type == "FOUND")))
+    let searchItem = byId("search").value;
+    if (!!searchItem)
+      axios
+        .get(api + "item/?search=" + searchItem)
+        .then((res) => setFound(res.data.filter((t) => t.type == "FOUND")));
     else getFound();
-  }
+  };
 
   // category filter
   const categoryFIlter = () => {
-    let categoryId = byId("categoryFilter").value
-    axios.get(api + "item/category/" + categoryId + "/", {
-      headers: { Authorization: sessionStorage.getItem("jwtToken") }
-    })
-      .then(res => setFound(res.data.filter(c => c.type == "FOUND")))
-      .catch(() => console.log("category filter ishlamadi!!!"))
-  }
+    let categoryId = byId("categoryFilter").value;
+    axios
+      .get(api + "item/category/" + categoryId + "/", {
+        headers: { Authorization: sessionStorage.getItem("jwtToken") },
+      })
+      .then((res) => setFound(res.data.filter((c) => c.type == "FOUND")))
+      .catch(() => console.log("category filter ishlamadi!!!"));
+  };
 
   // my lost filter
   const myFoundFilter = () => {
-    axios.get(api + "items/", {
-      headers: { Authorization: sessionStorage.getItem("jwtToken") }
-    })
-      .then(res => setFound(res.data.filter(i => i.type == "FOUND")))
-      .catch(() => console.log("my items kelamdi!!!"))
-  }
+    axios
+      .get(api + "items/", {
+        headers: { Authorization: sessionStorage.getItem("jwtToken") },
+      })
+      .then((res) => setFound(res.data.filter((i) => i.type == "FOUND")))
+      .catch(() => console.log("my items kelamdi!!!"));
+  };
 
   // goFoundInfo
   const goFoundInfo = () => byId("goFoundInfo").click();
@@ -190,17 +195,22 @@ const Found = () => {
                       <span>completed with examples</span>
                     </h1>
                     <p className="lead text-white">
-                      The design system comes with four pre-built pages to
-                      help you get started faster. You can change the text and
-                      images and you're good to go.
+                      The design system comes with four pre-built pages to help
+                      you get started faster. You can change the text and images
+                      and you're good to go.
                     </p>
                     <div
-                      style={{ display: "flex", justifyContent: "space-between" }}
-                      className="btn-wrapper">
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                      className="btn-wrapper"
+                    >
                       <Button
                         onClick={openAddModal}
                         className="btn-icon mb-3 mb-sm-0"
-                        color="info">
+                        color="info"
+                      >
                         <span className="btn-inner--icon mr-1">
                           <i className="fa fa-plus" />
                         </span>
@@ -210,11 +220,17 @@ const Found = () => {
                         id="search"
                         onChange={searchFound}
                         style={{ width: "50%" }}
-                        placeholder="🔍 search" />
+                        placeholder="🔍 search"
+                      />
                     </div>
                   </Col>
                   <Col className="text-center d-none d-lg-block" lg="6">
-                    <img className="pb-4" style={{ objectFit: "cover", height: "400px" }} src={require("assets/img/theme/profile.png")} alt="" />
+                    <img
+                      className="pb-4"
+                      style={{ objectFit: "cover", height: "400px" }}
+                      src={require("assets/img/theme/profile.png")}
+                      alt=""
+                    />
                   </Col>
                 </Row>
               </div>
@@ -226,10 +242,12 @@ const Found = () => {
                 version="1.1"
                 viewBox="0 0 2560 100"
                 x="0"
-                y="0">
+                y="0"
+              >
                 <polygon
                   className="fill-white"
-                  points="2560 0 2560 100 0 100" />
+                  points="2560 0 2560 100 0 100"
+                />
               </svg>
             </div>
           </section>
@@ -243,69 +261,84 @@ const Found = () => {
                     display: "flex",
                     alignItems: "center",
                     marginTop: "3rem",
-                    marginBottom: "3rem"
-                  }}>
+                    marginBottom: "3rem",
+                  }}
+                >
                   <Button
                     onClick={() => {
                       getFound();
-                      byId("categoryFilter").value = "Category filter"
+                      byId("categoryFilter").value = "Category filter";
                     }}
                     className="btn-neutral btn-icon py-1"
                     color="default"
-                    size="sm">
+                    size="sm"
+                  >
                     All
                   </Button>
                   <Button
                     onClick={() => {
                       myFoundFilter();
-                      byId("categoryFilter").value = "Category filter"
+                      byId("categoryFilter").value = "Category filter";
                     }}
                     className="btn-neutral btn-icon py-1"
                     color="default"
-                    size="sm">
+                    size="sm"
+                  >
                     My Found
                   </Button>
                   <select
                     id="categoryFilter"
                     onChange={categoryFIlter}
-                    className="w-25 form-control form-control-sm">
-                    <option selected disabled>Category filter</option>
-                    {category && category.map((item, i) =>
-                      <option key={i} value={item.id}>{item.name}</option>
-                    )}
+                    className="w-25 form-control form-control-sm"
+                  >
+                    <option selected disabled>
+                      Category filter
+                    </option>
+                    {category &&
+                      category.map((item, i) => (
+                        <option key={i} value={item.id}>
+                          {item.name}
+                        </option>
+                      ))}
                   </select>
                 </div>
                 <Row className="row-grid">
-                  {found && found.map((item, i) =>
-                    <Col lg="4" className="mb-5" key={i}>
-                      <Card className="card-lift--hover shadow border-0">
-                        <CardBody className="pb-5">
-                          <img
-                            src={item.image}
-                            alt="..."
-                            className="img-fluid "
-                            style={{ width: "100%", height: "230px", objectFit: "cover" }} />
-                          <h6 className="text-primary mt-4 text-uppercase">
-                            {item.name}
-                          </h6>
-                          <Row>
-                            {/* <Col className="col-8"> */}
+                  {found &&
+                    found.map((item, i) => (
+                      <Col lg="4" className="mb-5" key={i}>
+                        <Card className="card-lift--hover shadow border-0">
+                          <CardBody className="pb-5">
+                            <img
+                              src={item.image}
+                              alt="..."
+                              className="img-fluid "
+                              style={{
+                                width: "100%",
+                                height: "230px",
+                                objectFit: "cover",
+                              }}
+                            />
+                            <h6 className="text-primary mt-4 text-uppercase">
+                              {item.name}
+                            </h6>
+                            <Row>
+                              {/* <Col className="col-8"> */}
                               <Button
                                 onClick={() => {
                                   goFoundInfo();
                                   sessionStorage.setItem("foundAbout", item.id);
                                 }}
                                 className="mt-4"
-                                color="primary">
+                                color="primary"
+                              >
                                 Learn more
                               </Button>
-                            {/* </Col> */}
-                            
-                          </Row>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                  )}
+                              {/* </Col> */}
+                            </Row>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    ))}
                 </Row>
               </Col>
             </Row>
@@ -316,41 +349,49 @@ const Found = () => {
 
       {/* addModal */}
       <Modal isOpen={addModal} centered size="lg">
-        <ModalHeader
-          toggle={openAddModal}
-          className="text-dark fs-4 fw-bolder">Add Found</ModalHeader>
+        <ModalHeader toggle={openAddModal} className="text-dark fs-4 fw-bolder">
+          Add Found
+        </ModalHeader>
         <ModalBody className="techer__modal-body">
           <Input type="file" className="form-control mb-3" id="file" />
-          <Input
-            id="name"
-            className="mb-3"
-            placeholder="Name" />
+          <Input id="name" className="mb-3" placeholder="Name" />
           <Input
             id="contact_info"
             className="mb-3"
-            placeholder="Contact info" />
+            placeholder="Contact info"
+          />
           <textarea
             id="description"
             className="form-control"
-            placeholder="Description" />
-          <select
-            id="category"
-            className="form-control mt-3">
-            <option selected disabled>Category</option>
-            {category && category.map((item, i) =>
-              <option key={i} value={item.id}>{item.name}</option>
-            )}
+            placeholder="Description"
+          />
+          <select id="category" className="form-control mt-3">
+            <option selected disabled>
+              Category
+            </option>
+            {category &&
+              category.map((item, i) => (
+                <option key={i} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
           </select>
         </ModalBody>
         <ModalFooter>
           <Button
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
             className="bg-danger"
-            onClick={openAddModal}>Close</Button>
+            onClick={openAddModal}
+          >
+            Close
+          </Button>
           <Button
             className="bg-success"
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={addFoundItem}>Save</Button>
+            onClick={addFoundItem}
+          >
+            Save
+          </Button>
         </ModalFooter>
       </Modal>
 
@@ -358,40 +399,57 @@ const Found = () => {
       <Modal isOpen={editModal} centered size="lg">
         <ModalHeader
           toggle={openEditModal}
-          className="text-dark fs-4 fw-bolder">Edit Found</ModalHeader>
+          className="text-dark fs-4 fw-bolder"
+        >
+          Edit Found
+        </ModalHeader>
         <ModalBody className="techer__modal-body">
           <Input type="file" className="form-control mb-3" id="file" />
           <Input
             id="name"
             className="mb-3"
             placeholder="Name"
-            defaultValue={foundId && foundId.name} />
+            defaultValue={foundId && foundId.name}
+          />
           <Input
             id="contact_info"
             className="mb-3"
             placeholder="Contact info"
-            defaultValue={foundId && foundId.contact_info} />
+            defaultValue={foundId && foundId.contact_info}
+          />
           <textarea
             id="description"
             className="form-control"
             placeholder="Description"
-            defaultValue={foundId && foundId.description} />
+            defaultValue={foundId && foundId.description}
+          />
           <select class="form-control mt-3" id="category">
-            <option selected disabled>Category</option>
-            {category && category.map((item, i) =>
-              <option key={i} value={item.id}>{item.name}</option>
-            )}
+            <option selected disabled>
+              Category
+            </option>
+            {category &&
+              category.map((item, i) => (
+                <option key={i} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
           </select>
         </ModalBody>
         <ModalFooter>
           <Button
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
             className="bg-danger"
-            onClick={openEditModal}>Close</Button>
+            onClick={openEditModal}
+          >
+            Close
+          </Button>
           <Button
             className="bg-success"
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={editFoundItem}>Save</Button>
+            onClick={editFoundItem}
+          >
+            Save
+          </Button>
         </ModalFooter>
       </Modal>
 
@@ -399,7 +457,10 @@ const Found = () => {
       <Modal isOpen={deleteModal} centered size="lg">
         <ModalHeader
           toggle={openDeleteModal}
-          className="text-dark fs-4 fw-bolder">Delete Found</ModalHeader>
+          className="text-dark fs-4 fw-bolder"
+        >
+          Delete Found
+        </ModalHeader>
         <ModalBody className="techer__modal-body">
           {foundId.name} ni o'chirishga ishonchingiz komilmi?
         </ModalBody>
@@ -407,11 +468,17 @@ const Found = () => {
           <Button
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
             className="bg-danger"
-            onClick={openDeleteModal}>Close</Button>
+            onClick={openDeleteModal}
+          >
+            Close
+          </Button>
           <Button
             className="bg-success"
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={deleteFoundItem}>Yes</Button>
+            onClick={deleteFoundItem}
+          >
+            Yes
+          </Button>
         </ModalFooter>
       </Modal>
     </>
