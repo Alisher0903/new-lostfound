@@ -96,3 +96,39 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .page_one-main {
+    padding-top: 6rem;
+  }
+
+  .one__img {
+    height: 250px;
+  }
+
+  .two__img {
+    height: 250px;
+    margin-top: 5.5rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .one__img {
+    height: 180px;
+    border-radius: 40px;
+
+    img {
+      transform: scale(1.1);
+    }
+  }
+
+  .two__img {
+    height: 180px;
+    border-radius: 40px;
+    margin-top: 0;
+
+    img {
+      transform: scale(1.1);
+    }
+  }
+}

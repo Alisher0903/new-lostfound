@@ -57,3 +57,28 @@ $font-f: 'Inika', serif;
     background: linear-gradient(0deg, rgba(104, 255, 124, 0.6027661064425771) 0%, rgba(0, 255, 59, 1) 50%, rgba(104, 255, 124, 0.5999649859943977) 100%);
   }
 }
+
+@media (max-width: 543px) {
+  .category__filter-btn {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 3rem;
+
+    button {
+      padding: 1rem 1.5rem;
+      font-size: 1.4rem;
+    }
+
+    button:nth-child(2) {
+      margin-right: 0;
+      margin-left: 0;
+      margin-top: 1.2rem;
+    }
+
+    button:nth-child(3) {
+      display: block;
+      margin-top: 1.2rem;
+    }
+  }
+}
