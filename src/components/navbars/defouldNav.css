@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  width: 100%;
+}
+header nav {
+  width: 100%;
+  background: rgb(225, 225, 225);
+  background: linear-gradient(0deg, rgba(225, 225, 225, 0) 0%, rgb(39, 36, 250) 100%);
+}
+
+.destop_nav {
+  width: 100%;
+}
+.destop_nav div:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.destop_nav .nav_brand {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.destop_nav .nav_brand a {
+  text-decoration: none;
+}
+.destop_nav .nav_brand a span {
+  margin-left: 0.5rem;
+}
+.destop_nav .nav_brand a span:nth-child(1) {
+  color: #CF1010;
+}
+.destop_nav .nav_brand a span:nth-child(2) {
+  color: #000000;
+}
+.destop_nav .nav_brand a span:nth-child(3) {
+  color: #04d300;
+}
+.destop_nav .nav_search {
+  display: flex;
+  flex-direction: row;
+}
+.destop_nav .nav_search svg {
+  transition: all 0.3s;
+}
+.destop_nav .nav_search svg:hover {
+  cursor: pointer;
+  color: #8a8c21;
+}
+.destop_nav .nav_search h4 {
+  color: #000000;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+  margin-left: 1.5rem;
+  margin-bottom: 0;
+  transition: all 0.3s;
+}
+.destop_nav .nav_search h4:hover {
+  cursor: pointer;
+  color: #dadd34;
+}
+
+.mobilenav_box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.mobilenav_box a {
+  text-decoration: none;
+}
+.mobilenav_box a span {
+  margin-left: 0.5rem;
+}
+.mobilenav_box a span:nth-child(1) {
+  color: #CF1010;
+}
+.mobilenav_box a span:nth-child(2) {
+  color: #000000;
+}
+.mobilenav_box a span:nth-child(3) {
+  color: #04d300;
+}
+
+.nav-links-mobile {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease-in-out;
+}
+
+.nav-links-mobile.show_mobile {
+  max-height: 300px;
+}
+
+.mobilenav_heddin {
+  width: 100%;
+}
+.mobilenav_heddin ul {
+  text-align: center;
+  padding-left: 0;
+  padding-bottom: 1rem;
+}
+.mobilenav_heddin ul li {
+  line-height: 70px;
+}
+.mobilenav_heddin ul h4 {
+  color: #000000;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s;
+}
+.mobilenav_heddin ul h4:hover {
+  cursor: pointer;
+  color: #8a8c21;
+}
+
+.burger-menu {
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+@media (max-width: 460px) {
+  .login_nav a {
+    font-size: 1.5rem;
+    letter-spacing: 0;
+  }
+  .login_nav .nav_search h4 {
+    font-size: 1.5rem;
+  }
+}
+
+/*# sourceMappingURL=defouldNav.css.map */
