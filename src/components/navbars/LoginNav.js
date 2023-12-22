@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
-import "./defouldNav.scss";
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Icon } from '@iconify/react';
 import { byId } from '../api/api';
 
-export const DefouldNav = () => {
+export const LoginNav = () => {
 
-    const goLoginPage = () => byId("login").click();
+    // const goLoginPage = () => byId("login").click();
     const goRegisterPage = () => byId("register").click();
 
     return (
         <>
-            <Link id='login' to="/login"></Link>
+            {/* <Link id='login' to="/login"></Link> */}
             <Link id='register' to="/register"></Link>
             <header>
                 <nav className='fixed-top'>
@@ -26,8 +24,8 @@ export const DefouldNav = () => {
                                 </Link>
                             </div>
                             <div className='nav_search'>
-                                <Icon icon="ri:search-line" width="30" />
-                                <h4 onClick={goLoginPage}>Sign in</h4>
+                                {/* <Icon icon="ri:search-line" width="30" />
+                                <h4 onClick={goLoginPage}>Sign in</h4> */}
                                 <h4 onClick={goRegisterPage}>Sign up</h4>
                             </div>
                         </div>

@@ -1,14 +1,14 @@
 import React from "react";
 import "./style.scss";
-import {DefouldNav} from "../navbars/DefouldNav";
+import { DefouldNav } from "../navbars/DefouldNav";
+import PageOne from "./components/Page_one";
 
 function HomeDefault() {
     return (
         <>
-            <DefouldNav />
-            <section style={{
-                height: "5000px"
-            }}>
+            <section className="home_main">
+                <DefouldNav />
+                <PageOne />
 
             </section>
         </>
