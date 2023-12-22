@@ -33,6 +33,18 @@ function Itemspage() {
     getLost();
   }, []);
 
+  const getAll = () => {
+    axios
+      .get(api + "item/", {
+        headers: { Authorization: sessionStorage.getItem("jwtToken") },
+      })
+      .then((res) => {
+        setFound(res.data)
+        console.log(res.data);
+      })
+      .catch(() => console.log("items kelmadi!!!"));
+  };
+
   const getFound = () => {
     axios
       .get(api + "item/", {
@@ -110,14 +122,7 @@ function Itemspage() {
       .catch(() => console.log("category filter ishlamadi!!!"));
   };
 
-  const getAll = () => {
-    axios
-      .get(api + "items/", {
-        headers: { Authorization: sessionStorage.getItem("jwtToken") },
-      })
-      .then((res) => setFound(res.data.filter((i) => i.type == "FOUND")))
-      .catch(() => console.log("my items kelamdi!!!"));
-  };
+ 
 
   const goFoundInfo = () => byId("goFoundInfo").click();
 
