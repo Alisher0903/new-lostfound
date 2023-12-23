@@ -18,7 +18,6 @@ export const Category = () => {
             .then(res => setCategoryItem(res.data))
             .catch(() => console.log("category kelmadi!!!"))
     }
-    console.log(categoryItem);
 
     const responsive = {
         0: { items: 1 },

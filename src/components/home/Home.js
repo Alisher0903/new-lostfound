@@ -1,17 +1,18 @@
 import React from "react";
 import "./style.scss";
-import {DefouldNav} from "../navbars/DefouldNav";
+import { DefouldNav } from "../navbars/DefouldNav";
 import PageOne from "./components/Page_one";
-import {Category} from "./components/Category";
+import { Category } from "./components/Category";
+import LostItems from "./components/LostItems";
 
 function HomeDefault() {
     return (
         <>
             <section className="home_main">
                 {/*navbar*/}
-                <DefouldNav/>
+                <DefouldNav />
                 {/*page one carousel*/}
-                <PageOne/>
+                <PageOne />
 
                 {/*button section*/}
                 <div className="text-center category__filter-btn">
@@ -22,6 +23,8 @@ function HomeDefault() {
 
                 {/* categores */}
                 <Category />
+                {/* lost items */}
+                <LostItems />
             </section>
         </>
     );
