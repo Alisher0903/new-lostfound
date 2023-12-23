@@ -19,7 +19,7 @@ function LostItems() {
             })
             .catch(() => console.log("lost klemadi!!!"))
     }
-    console.log(lostInfo);
+    // console.log(lostInfo);
 
     const responsive = {
         0: { items: 1.8 },
@@ -42,7 +42,7 @@ function LostItems() {
                     items={lost.map((item, i) =>
                         <div key={i} className="p-4 lost_items">
                             <img src={item.image} alt="img" />
-                            <p>{item.name}</p>
+                            <h4>{item.name}</h4>
                             <p>Location: {item.city}</p>
                             <button onClick={() => {
                                 setLostInfo(item);

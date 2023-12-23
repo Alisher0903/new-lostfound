@@ -1,18 +1,20 @@
 import React from "react";
 import "./style.scss";
-import { DefouldNav } from "../navbars/DefouldNav";
+import {DefouldNav} from "../navbars/DefouldNav";
 import PageOne from "./components/Page_one";
-import { Category } from "./components/Category";
+import {Category} from "./components/Category";
 import LostItems from "./components/LostItems";
+import {AboutHome} from "./components/About";
+import FooTer from "../footer/FooTer";
 
 function HomeDefault() {
     return (
         <>
             <section className="home_main">
                 {/*navbar*/}
-                <DefouldNav />
+                <DefouldNav/>
                 {/*page one carousel*/}
-                <PageOne />
+                <PageOne/>
 
                 {/*button section*/}
                 <div className="text-center category__filter-btn">
@@ -22,9 +24,15 @@ function HomeDefault() {
                 </div>
 
                 {/* categores */}
-                <Category />
+                <Category/>
                 {/* lost items */}
-                <LostItems />
+                <LostItems/>
+                {/*about*/}
+                <AboutHome/>
+
+
+                {/* Footer */}
+                <FooTer />
             </section>
         </>
     );
