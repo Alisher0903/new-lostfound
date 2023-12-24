@@ -18,7 +18,7 @@ function FooTer() {
                     <Col className="ps-0 ps-lg-4 col-12 col-md-6 col-lg-4">
                         <h5>Quick Links</h5>
                         <ul>
-                            <li><Link>About</Link></li>
+                            <li><Link to="/about">About</Link></li>
                             <li><Link>Contacat</Link></li>
                             <li><Link>Device</Link></li>
                             <li><Link>Dress</Link></li>
