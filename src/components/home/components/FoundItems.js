@@ -3,23 +3,22 @@ import AliceCarousel from "react-alice-carousel";
 import axios from "axios";
 import { api } from "../../api/api";
 
-function LostItems() {
-    const [lost, setLost] = useState([]);
-    const [lostInfo, setLostInfo] = useState([]);
+function FoundItems() {
+    const [found, setFound] = useState([]);
+    const [foundInfo, setFoundInfo] = useState([]);
 
     useEffect(() => {
-        getLost();
+        getFound();
     }, [])
 
-    // getLost
-    const getLost = () => {
+    // getFound
+    const getFound = () => {
         axios.get(`${api}item/`)
             .then(res => {
-                setLost(res.data.filter(t => t.type == "LOST"))
+                setFound(res.data.filter(t => t.type == "FOUND"))
             })
-            .catch(() => console.log("lost klemadi!!!"))
+            .catch(() => console.log("found klemadi!!!"))
     }
-    // console.log(lostInfo);
 
     const responsive = {
         0: { items: 1 },
@@ -33,19 +32,19 @@ function LostItems() {
             marginTop: "5rem",
         }}>
             <h1 className="text-center fs-1 mb-5 fw-bolder">
-                <span style={{ color: "#CF1010" }}>Lost </span>
+                <span style={{ color: "#21C11E" }}>Found </span>
                 product
             </h1>
 
             <div className="text-center">
                 <AliceCarousel
-                    items={lost.map((item, i) =>
+                    items={found.map((item, i) =>
                         <div key={i} className="p-4 lost_items">
                             <img src={item.image} alt="img" />
                             <h4>{item.name}</h4>
                             <p>Location: {item.city}</p>
                             <button onClick={() => {
-                                setLostInfo(item);
+                                setFoundInfo(item);
                             }}>Info</button>
                         </div>
                     )}
@@ -61,4 +60,4 @@ function LostItems() {
     );
 }
 
-export default LostItems;
+export default FoundItems;

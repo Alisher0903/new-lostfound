@@ -1,6 +1,6 @@
 .about__img {
   width: 100%;
-  height: 100%;
+  height: 550px;
   overflow: hidden;
   transition: all .3s;
   border-radius: 10px;
@@ -13,6 +13,7 @@
   img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
     transition: all .3s;
 
     &:hover {
@@ -41,5 +42,50 @@
     color: black;
     font-weight: 500;
     margin-top: 2rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .about__img {
+    height: 400px;
+  }
+
+  .about__text {
+    padding-top: 0;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      line-height: 24px;
+      letter-spacing: 0;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .about__img {
+    height: 500px;
+  }
+
+  .about__text {
+    h2 {
+      margin-top: 2rem;
+    }
+
+    p {
+      margin-top: 1rem;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .aboutMe-container {
+    padding-right: 0 !important;
+
+    .aboutMe-box {
+      padding-right: 0 !important;
+    }
   }
 }
