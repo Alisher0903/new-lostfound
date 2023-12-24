@@ -6,6 +6,7 @@ import {Category} from "./components/Category";
 import LostItems from "./components/LostItems";
 import {AboutHome} from "./components/About";
 import FooTer from "../footer/FooTer";
+import Customers from "./components/Customers";
 
 function HomeDefault() {
     return (
@@ -29,6 +30,8 @@ function HomeDefault() {
                 <LostItems/>
                 {/*about*/}
                 <AboutHome/>
+                {/* Customers */}
+                <Customers />
 
 
                 {/* Footer */}
