@@ -9,10 +9,13 @@ export const ItemNavs = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNavbar = () => setIsOpen(!isOpen);
+  const goSearch = () => byId("search").click();
 
   return (
     <>
       <header>
+        <Link id="search" to="/search"></Link>
+
         <nav className="fixed-top">
           <div className="mobile_nav p-3 d-md-none">
             <div className="mobilenav_box">
@@ -36,13 +39,8 @@ export const ItemNavs = () => {
                 <ul>
                   <li>
                     <form class="d-flex justify-content-center" role="search">
-                      <div className="w-75 d-flex">
-                        <input
-                          class="form-control me-2"
-                          type="search"
-                          placeholder="Search"
-                          aria-label="Search"
-                        />
+                      <div className="w-75 d-flex justify-content-center">
+                        {/* {(a=b) ? "uechdh" : "wutfdu"} */}
                         <button class="btn btn-success" type="submit">
                           Search
                         </button>
@@ -69,10 +67,15 @@ export const ItemNavs = () => {
                 </Link>
               </div>
               <div className="nav_search">
-                <div>
-                  <Icon icon="ri:user-line" width="30" color="#fff" />
+                  <div className="">
+                    <button class="btn btn-success" onClick={goSearch}>
+                      Search
+                    </button>
+                  </div>
+                {/* <div className="ms-5"> */}
+                  <Icon className="ms-4" icon="ri:user-line" width="30" color="#fff" />
                   <h5>Profile</h5>
-                </div>
+                {/* </div> */}
               </div>
             </div>
           </div>

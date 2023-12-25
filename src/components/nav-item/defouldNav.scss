@@ -52,6 +52,7 @@ header {
 
     .nav_search {
         display: flex;
+        flex-wrap: wrap;
         flex-direction: row;
 
         svg {
