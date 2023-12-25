@@ -296,7 +296,7 @@ function Itemspage() {
             </div>
           </div>
           <div className="items-bottom mb-5">
-            <Table responsiveTag striped hover>
+            <Table striped hover responsive>
               <thead>
                 <tr className="text-center">
                   <th scope="col">#</th>
