@@ -15,6 +15,7 @@ import {
 import axios from "axios";
 import { api, byId } from "../api/api";
 import { toast } from "react-toastify";
+import { ItemNavs } from "../nav-item/DefouldNav";
 
 function Itemspage() {
   const [addModal, setAddModal] = useState(false);
@@ -56,7 +57,7 @@ function Itemspage() {
 
   const getFound = () => {
     axios
-      .get(api + "item/", {
+      .get(api + "itemss/", {
         headers: {
           Authorization: sessionStorage.getItem("jwtToken"),
         },
@@ -70,7 +71,7 @@ function Itemspage() {
 
   const getLost = () => {
     axios
-      .get(api + "item/", {
+      .get(api + "itemss/", {
         headers: {
           Authorization: sessionStorage.getItem("jwtToken"),
         },
@@ -235,6 +236,7 @@ function Itemspage() {
   return (
     <div className="items-main">
       <Container>
+        <ItemNavs />
         <div className="items-body">
           <h1>
             <b>

@@ -1,10 +1,11 @@
 .items-main {
   width: 100%;
+  padding-top: 2rem;
   background: rgb(255, 255, 255);
   background: linear-gradient(
     0deg,
     rgba(255, 255, 255, 1) 0%,
-    rgba(34, 129, 195, 1) 85%
+    rgb(15, 73, 114) 85%
   );
 
   .items-body {
@@ -255,6 +256,9 @@
   }
 }
 @media (max-width: "795px") {
+  .items-main {
+    padding-top: 7%;
+  }
  
   .category_filter-btn {
     display: flex;
@@ -279,6 +283,7 @@
     }
   }
   .items-main {
+    padding-top: 6rem;
     .items-body {
       h1 {
         font-size: 2rem;
