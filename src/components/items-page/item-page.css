@@ -56,4 +56,35 @@
   width: 20%;
 }
 
+.items-add {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 20px;
+}
+.items-add .booot {
+  grid-area: 6/1/7/4 !important;
+}
+.items-add .booot2 {
+  grid-area: 1/1/2/4;
+}
+.items-add .booot3 {
+  grid-area: 7/1/8/4;
+}
+
+.modal-header {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(0deg, rgb(139, 190, 227) 0%, rgb(67, 152, 212) 60%);
+}
+
+.modal-body {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(0deg, rgb(139, 190, 227) 0%, rgb(17, 74, 115) 60%);
+}
+
+.modal-footer {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(0deg, rgb(139, 190, 227) 0%, rgb(67, 152, 212) 60%);
+}
+
 /*# sourceMappingURL=item-page.css.map */

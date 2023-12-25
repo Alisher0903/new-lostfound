@@ -1,0 +1,57 @@
+.lost_items {
+    height: 500px;
+    
+    img {
+        width: 100%;
+        height: 50%;
+        object-fit: cover;
+        transition: all .3s;
+
+        &:hover {
+            cursor: pointer;
+            filter: brightness(.7);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+    }
+
+    h4 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-top: 1rem;
+    }
+
+    p {
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: .5px;
+    }
+
+    button {
+        border: none;
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding: .5rem 1.5rem;
+        border-radius: 20px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        background: rgb(255, 90, 90);
+        background: linear-gradient(0deg, rgba(255, 90, 90, 0.6027661064425771) 0%, rgba(255, 0, 0, 1) 50%, rgba(255, 90, 90, 0.5971638655462185) 100%);
+        transition: all .2s;
+
+        &:active {
+            transform: scale(.9);
+        }
+    }
+}
+
+@media (max-width: 1140px) {
+    .lost_items {
+        height: 400px;
+    }
+}
+
+@media (max-width: 500px) {
+    .lost_items {
+        height: 500px;
+    }
+}
