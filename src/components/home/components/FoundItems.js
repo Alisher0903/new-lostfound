@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import axios from "axios";
 import { api } from "../../api/api";
+import { Button, Col, Modal, ModalBody, Row } from "reactstrap";
 
 function FoundItems() {
     const [found, setFound] = useState([]);
     const [foundInfo, setFoundInfo] = useState([]);
+    const [modal, setModal] = useState(false);
 
     useEffect(() => {
         getFound();
-    }, [])
+    }, []);
+
+    const openModal = () => setModal(!modal);
 
     // getFound
     const getFound = () => {
@@ -45,6 +49,7 @@ function FoundItems() {
                             <p>Location: {item.city}</p>
                             <button onClick={() => {
                                 setFoundInfo(item);
+                                openModal();
                             }}>Info</button>
                         </div>
                     )}
@@ -56,6 +61,93 @@ function FoundItems() {
                     disableButtonsControls
                 />
             </div>
+
+            {/* info modal */}
+            <Modal isOpen={modal} centered scrollable size="lg">
+                <ModalBody
+                    style={{
+                        boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+                    }}>
+                    <div className="text-end">
+                        <Button
+                            onClick={openModal}
+                            color="danger"
+                            className="fw-bold fs-6 rounded-5"
+                            style={{
+                                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+                            }}>✕</Button>
+                    </div>
+
+                    <div className="text-center pe-5 ps-5 lost__modal">
+                        <img src={foundInfo.image} alt="img" />
+                        <h2>
+                            <span>{foundInfo.name}</span>
+                            <span style={{color:"#21C11E"}}>{foundInfo.type}</span>
+                        </h2>
+                        <Row className="lost_main-info1">
+                            <Col className="col-12 col-sm-6 col-md-4">category</Col>
+                            <Col className="col-12 col-sm-6 col-md-4">sub category</Col>
+                            <Col className="col-12 col-sm-6 col-md-4">{foundInfo.brand}</Col>
+                        </Row>
+                        <Row className="text-start lost_main-info2">
+                            <Col className="col-12 col-sm-6">
+                                <span className="me-3">Color_1:</span>
+                                {foundInfo.primary_color}</Col>
+                            <Col className="col-12 col-sm-6">
+                                <span className="me-3">Color_2:</span>
+                                {foundInfo.secondary_color}</Col>
+                        </Row>
+                        <Row className="text-start lost_main-info3">
+                            <Col className="col-12 col-md-6">
+                                <span className="me-3">PhoneNumber:</span>
+                                {foundInfo.contact_info}
+                            </Col>
+                            <Col className="col-12 col-md-6">
+                                <span className="me-3">Date:</span>
+                                {foundInfo.date}
+                            </Col>
+                        </Row>
+                        <p className="text-start">
+                            <span className="me-3">Description:</span>
+                            {foundInfo.specific_description}
+                        </p>
+                        {/* <div>
+                            <iframe
+                                src={`https://www.google.com/maps/dir///@${foundInfo.latitude},${foundInfo.longitude},12z?hl=UZ&entry=ttu`}
+                                style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
+                                className="rounded-5"
+                                width="100%"
+                                height="200"
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div> */}
+                    </div>
+
+                    <div
+                        className="ps-5 lost_countriy"
+                        style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                            marginTop: "2rem",
+                            marginBottom: ".5rem"
+                        }}>
+                        <p>
+                            <span>{foundInfo.country}</span>
+                            <span>{foundInfo.city}</span>
+                            <span>{foundInfo.street}</span>
+                        </p>
+                        <Button
+                            onClick={openModal}
+                            color="danger"
+                            className="fw-bold fs-6 rounded-4"
+                            style={{
+                                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+                            }}>Close</Button>
+                    </div>
+                </ModalBody>
+            </Modal>
         </div>
     );
 }

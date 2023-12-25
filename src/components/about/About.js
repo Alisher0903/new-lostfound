@@ -54,9 +54,9 @@ function AboutLostFound() {
             <a href="#goParol" id="parol"></a>
 
             <DefouldNav />
-            <PageOne />
+            {/* <PageOne /> */}
 
-            <Container>
+            <Container style={{marginTop: "10rem"}}>
                 <div className="category-btn text-center">
                     {aboutCategory.map((item, i) =>
                         <button onClick={() => {
@@ -113,10 +113,6 @@ function AboutLostFound() {
                     )}
                 </div>
             </Container>
-
-
-
-
 
             <FooTer />
         </>

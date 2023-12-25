@@ -121,7 +121,7 @@ export const Login = () => {
                                 id="verificationCode"
                                 style={{ display: "none" }}
                                 className="login_inputBox">
-                                <input type="password" id="verification_code" required /> <i>verification code</i>
+                                <input id="verification_code" required /> <i>verification code</i>
                             </div>
                             <div className="login_links">
                                 <Link to="/register">Create new account</Link>

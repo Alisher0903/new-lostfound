@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import axios from "axios";
 import { api } from "../../api/api";
+import { Button, Col, Modal, ModalBody, Row } from "reactstrap";
 
 function LostItems() {
     const [lost, setLost] = useState([]);
     const [lostInfo, setLostInfo] = useState([]);
+    const [modal, setModal] = useState(false);
 
     useEffect(() => {
         getLost();
-    }, [])
+    }, []);
+
+    const openModal = () => setModal(!modal);
 
     // getLost
     const getLost = () => {
@@ -19,7 +23,6 @@ function LostItems() {
             })
             .catch(() => console.log("lost klemadi!!!"))
     }
-    // console.log(lostInfo);
 
     const responsive = {
         0: { items: 1 },
@@ -27,6 +30,7 @@ function LostItems() {
         700: { items: 3 },
         1000: { items: 4 },
     }
+    console.log(lostInfo);
 
     return (
         <div style={{
@@ -46,6 +50,7 @@ function LostItems() {
                             <p>Location: {item.city}</p>
                             <button onClick={() => {
                                 setLostInfo(item);
+                                openModal();
                             }}>Info</button>
                         </div>
                     )}
@@ -57,6 +62,93 @@ function LostItems() {
                     disableButtonsControls
                 />
             </div>
+
+            {/* info modal */}
+            <Modal isOpen={modal} centered scrollable size="lg">
+                <ModalBody
+                    style={{
+                        boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+                    }}>
+                    <div className="text-end">
+                        <Button
+                            onClick={openModal}
+                            color="danger"
+                            className="fw-bold fs-6 rounded-5"
+                            style={{
+                                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+                            }}>✕</Button>
+                    </div>
+
+                    <div className="text-center pe-5 ps-5 lost__modal">
+                        <img src={lostInfo.image} alt="img" />
+                        <h2>
+                            <span>{lostInfo.name}</span>
+                            <span>{lostInfo.type}</span>
+                        </h2>
+                        <Row className="lost_main-info1">
+                            <Col className="col-12 col-sm-6 col-md-4">category</Col>
+                            <Col className="col-12 col-sm-6 col-md-4">sub category</Col>
+                            <Col className="col-12 col-sm-6 col-md-4">{lostInfo.brand}</Col>
+                        </Row>
+                        <Row className="text-start lost_main-info2">
+                            <Col className="col-12 col-sm-6">
+                                <span className="me-3">Color_1:</span>
+                                {lostInfo.primary_color}</Col>
+                            <Col className="col-12 col-sm-6">
+                                <span className="me-3">Color_2:</span>
+                                {lostInfo.secondary_color}</Col>
+                        </Row>
+                        <Row className="text-start lost_main-info3">
+                            <Col className="col-12 col-md-6">
+                                <span className="me-3">PhoneNumber:</span>
+                                {lostInfo.contact_info}
+                            </Col>
+                            <Col className="col-12 col-md-6">
+                                <span className="me-3">Date:</span>
+                                {lostInfo.date}
+                            </Col>
+                        </Row>
+                        <p className="text-start">
+                            <span className="me-3">Description:</span>
+                            {lostInfo.specific_description}
+                        </p>
+                        {/* <div>
+                            <iframe
+                                src={`https://www.google.com/maps/dir///@${lostInfo.latitude},${lostInfo.longitude},12z?hl=UZ&entry=ttu`}
+                                style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
+                                className="rounded-5"
+                                width="100%"
+                                height="200"
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div> */}
+                    </div>
+
+                    <div
+                        className="ps-5 lost_countriy"
+                        style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                            marginTop: "2rem",
+                            marginBottom: ".5rem"
+                        }}>
+                        <p>
+                            <span>{lostInfo.country}</span>
+                            <span>{lostInfo.city}</span>
+                            <span>{lostInfo.street}</span>
+                        </p>
+                        <Button
+                            onClick={openModal}
+                            color="danger"
+                            className="fw-bold fs-6 rounded-4"
+                            style={{
+                                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+                            }}>Close</Button>
+                    </div>
+                </ModalBody>
+            </Modal>
         </div>
     );
 }
