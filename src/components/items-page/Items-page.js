@@ -19,36 +19,38 @@ function Itemspage() {
   const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
+  const [infoModal, setInfoModal] = useState(false);
   const [item, setItem] = useState([]);
   const [category, setCategory] = useState([]);
-  const [found, setFound] = useState([]);
-  const [lost, setLost] = useState([]);
+  const [infoID, setInfoId] = useState([]);
+  const [error, setError] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
 
-
   const openAddModal = () => setAddModal(!addModal);
+  const openEditModal = () => setEditModal(!editModal);
+  const openDeleteModal = () => setDeleteModal(!deleteModal);
+  const openInfoModal = () => setInfoModal(!infoModal);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
 
     getAll();
-    getFound();
     getCategory();
     getSubCategory();
-    getLost();
+    // getAbout()
   }, []);
 
   const getAll = () => {
     axios
-      .get(api + "item/", {
+      .get(api + "itemss/", {
         headers: { Authorization: sessionStorage.getItem("jwtToken") },
       })
       .then((res) => {
         setItem(res.data);
         console.log(res.data);
       })
-      .catch(() => console.log("items kelmadi!!!"));
+      .catch((err) => setError(err));
   };
 
   const getFound = () => {
@@ -59,9 +61,8 @@ function Itemspage() {
         },
       })
       .then((res) => {
-        setFound(res.data.filter((t) => t.type == "FOUND"))
-        console.log(res.data.filter((t) => t.type == "Lost"));
-
+        setItem(res.data.filter((t) => t.type == "FOUND"));
+        // console.log(res.data.filter((t) => t.type == "Lost"));
       })
       .catch(() => console.log("Found kelmadi!!!"));
   };
@@ -74,8 +75,8 @@ function Itemspage() {
         },
       })
       .then((res) => {
-        setLost(res.data.filter((t) => t.type == "Lost"))
-        console.log(res.data.filter((t) => t.type == "Lost"));
+        setItem(res.data.filter((t) => t.type == "LOST"));
+        // console.log(res.data.filter((t) => t.type == "Lost"));
       })
       .catch(() => console.log("lost kelmadi!!!"));
   };
@@ -86,8 +87,7 @@ function Itemspage() {
         headers: { Authorization: sessionStorage.getItem("jwtToken") },
       })
       .then((res) => {
-        setCategory(res.data)
-        console.log(res.data);
+        setCategory(res.data);
       })
       .catch(() => console.log("category kelmadi!!!"));
   };
@@ -98,13 +98,25 @@ function Itemspage() {
         headers: { Authorization: sessionStorage.getItem("jwtToken") },
       })
       .then((res) => {
-        setSubCategory(res.data)
-        console.log(res.data);
+        setSubCategory(res.data);
       })
       .catch(() => console.log("Subcategory kelmadi!!!"));
   };
 
-
+  const deleteItem = () => {
+    axios
+      .delete(api + "item" + infoID.id + "/", {
+        headers: {
+          Authorization: sessionStorage.getItem("jwtToken"),
+        },
+      })
+      .then(() => {
+        toast.success("Item o'chirildi!!!");
+        openDeleteModal();
+        getAll();
+      })
+      .catch(() => toast.error("Item o'chirishda xatolik yuz berdi!!!"));
+  };
 
   const addItem = () => {
     const addData = new FormData();
@@ -120,25 +132,25 @@ function Itemspage() {
     addData.append("country", byId("region").value);
     addData.append("city", byId("city").value);
     addData.append("street", byId("street").value);
-    addData.append("contact_info", byId("contact_info").value);
+    addData.append("contact_info", byId("contact").value);
     addData.append("latitude", 0);
     addData.append("longitude", 0);
     addData.append("category ", byId("category").value);
-    addData.append("sub_category  ", byId("subcategory").id);
+    addData.append("sub_category  ", byId("subcategory").value);
     // addData.append("id", foundId.id);
 
     axios
-    .post(api + "item/", addData, {
-      headers: {
-        Authorization: sessionStorage.getItem("jwtToken"),
-      },
-    })
-    .then(() => {
-      openAddModal();
-      getAll();
-      toast.success("Item muvaffaqiyatli qo'shildi✔");
-    })
-    .catch(() => toast.error("Item qo'shishda xatolik yuz berdi!!!"));
+      .post(api + "item/", addData, {
+        headers: {
+          Authorization: sessionStorage.getItem("jwtToken"),
+        },
+      })
+      .then(() => {
+        openAddModal();
+        getAll();
+        toast.success("Item muvaffaqiyatli qo'shildi✔");
+      })
+      .catch(() => toast.error("Item qo'shishda xatolik yuz berdi!!!"));
   };
 
   const searchFound = () => {
@@ -150,6 +162,19 @@ function Itemspage() {
     else getAll();
   };
 
+  //   const getAbout = () => {
+  //     let infoId = sessionStorage.getItem("infoId");
+  //     axios.get(api + "item/", {
+  //         headers: { Authorization: sessionStorage.getItem('jwtToken') }
+  //     })
+  //         .then(res => {
+  //             setInfoId(res.data.find(i => i.id == infoId))
+  //         })
+  //         .catch(() => {
+
+  //         })
+  // }
+
   const categoryFIlter = () => {
     let categoryId = byId("categoryFilter").value;
     axios
@@ -159,8 +184,6 @@ function Itemspage() {
       .then((res) => setItem(res.data.filter((c) => c.type == "FOUND")))
       .catch(() => console.log("category filter ishlamadi!!!"));
   };
-
-  const goFoundInfo = () => byId("goFoundInfo").click();
 
   return (
     <div className="items-main">
@@ -185,34 +208,31 @@ function Itemspage() {
         <div className="items-tables">
           <div className="items-top row">
             <div className="col-3">
-              <button className="btn btn-primary" onClick={openAddModal}>
+              <button className="category_filter-btn2" onClick={openAddModal}>
                 +Add
               </button>
             </div>
-            <div className="col-9">
+            <div className="col-9 category_filter-btn">
               <button
-                className="btn btn-warning"
                 onClick={() => {
                   getAll();
-                  byId("categoryFilter").value = "Category filter";
+                  // byId("categoryFilter").value = "Category filter";
                 }}
               >
                 All items
               </button>
               <button
-                className="btn btn-success"
                 onClick={() => {
                   getFound();
-                  byId("categoryFilter").value = "Category filter";
+                  // byId("categoryFilter").value = "Category filter";
                 }}
               >
                 Found items
               </button>
               <button
-                className="btn btn-danger"
                 onClick={() => {
                   getLost();
-                  byId("categoryFilter").value = "Category filter";
+                  // byId("categoryFilter").value = "Category filter";
                 }}
               >
                 Lost items
@@ -228,30 +248,65 @@ function Itemspage() {
                   <th scope="col">Name</th>
                   <th scope="col">Date</th>
                   <th scope="col">Phone number</th>
-                  <th scope="col">Address</th>
+                  <th scope="col">Type</th>
                   <th scope="col">Info</th>
+                  <th scope="col" colSpan="2">
+                    Action
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="text-center">
-                  <td scope="row">1</td>
-                  <td className="table-row">
-                    <img
-                      src="https://cdn-imgix-open.headout.com/MB/UGC/CbMoQb1AKj2.jpg?auto=format&q=90&crop=faces"
-                      className="table-img"
-                      alt="..."
-                    />
-                  </td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>
-                    <button className="btn btn-outline-primary w-50">
-                      Info
-                    </button>
-                  </td>
-                </tr>
+                {
+                  error ? (
+                    <h4 className="text-center text-light">You have not item</h4>
+                  ) : (
+                    item.length && item.map((item, i) => (
+                      <tr className="text-center" key={i}>
+                        <td scope="row">{i + 1}</td>
+                        <td className="table-row">
+                          <img src={item.image} className="table-img" alt="..." />
+                        </td>
+                        <td>{item.name}</td>
+                        <td>{item.date}</td>
+                        <td>{item.contact_info}</td>
+                        <td>{item.type}</td>
+                        <td>
+                          <button
+                            className="btn btn-primary w-75"
+                            onClick={() => {
+                              openInfoModal();
+                              setInfoId(item);
+                            }}
+                          >
+                            Info
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            className="btn btn-warning w-75"
+                            onClick={() => {
+                              openEditModal();
+                              setInfoId(item);
+                            }}
+                          >
+                            Edit
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            className="btn btn-danger w-75"
+                            onClick={() => {
+                              openDeleteModal();
+                              setInfoId(item);
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  )
+                }
               </tbody>
             </table>
           </div>
@@ -267,11 +322,9 @@ function Itemspage() {
           Add Item
         </ModalHeader>
         <ModalBody className="modal-body p-4 ">
+          <div className="addInfo">Item information</div>
           <div className="items-add">
-            <div className="booot2">
-              <Input type="file" className="form-control " id="file" />
-            </div>
-            <div>
+            <div className="booot">
               <select class="form-control" id="type">
                 <option selected disabled>
                   TYPE
@@ -280,103 +333,23 @@ function Itemspage() {
                 <option value="FOUND">FOUND</option>
               </select>
             </div>
-            <FormGroup floating>
-              <Input
-                id="name"
-                name="email"
-                placeholder="Email"
-                type="email"
-              />
-              <Label for="name">Name</Label>
-            </FormGroup>
-            <FormGroup floating>
-              <Input
-                id="brand"
-                name="Brand"
-                placeholder="Brand"
-                type="name"
-              />
-              <Label for="brand">Brand</Label>
-            </FormGroup>
-            <FormGroup floating>
-              <Input
-                id="date"
-                name="Date"
-                placeholder="Date"
-                type="Date"
-              />
+
+            <FormGroup floating className="booot2">
+              <Input id="date" name="Date" placeholder="Date" type="Date" />
               <Label for="date">Date</Label>
             </FormGroup>
-            <FormGroup floating>
+
+            <FormGroup floating className="">
               <Input
-                id="color"
-                name="Color"
-                placeholder="Color"
+                id="contact"
+                name="number"
+                placeholder="PhoneNumber"
                 type="text"
               />
-              <Label for="color">Color</Label>
-            </FormGroup>
-            <FormGroup floating>
-              <Input
-                id="secondary"
-                name="Secondarycolor"
-                placeholder="Secondary color"
-                type="text"
-                className="
-                "
-              />
-              <Label for="secondary" className="me-4">
-                Secondary color
-              </Label>
-            </FormGroup>
-            <FormGroup floating>
-              <Input
-                id="region"
-                name="Region"
-                placeholder="Region"
-                type="text"
-              />
-              <Label for="region">Region</Label>
-            </FormGroup>
-            <FormGroup floating>
-              <Input
-                id="city"
-                name="City"
-                placeholder="City"
-                type="text"
-              />
-              <Label for="city">City</Label>
+              <Label for="contact">Phone number</Label>
             </FormGroup>
 
-            <FormGroup floating>
-              <Input
-                id="street"
-                name="street"
-                placeholder="Street"
-                type="text"
-              />
-              <Label for="street">Street</Label>
-            </FormGroup>
-            <FormGroup floating>
-              <Input
-                id="description"
-                name="des"
-                placeholder="Specific description "
-                type="text"
-              />
-              <Label for="description">Specific description </Label>
-            </FormGroup>
-            <FormGroup floating>
-              <Input
-                id="location"
-                name="des2"
-                placeholder="Specific location"
-                type="text"
-              />
-              <Label for="location">Specific location</Label>
-            </FormGroup>
-
-            <div>
+            <div className="booot3">
               <select class="form-control" id="category">
                 <option selected disabled>
                   Category
@@ -389,7 +362,7 @@ function Itemspage() {
                   ))}
               </select>
             </div>
-            <div>
+            <div className="booot4">
               <select class="form-control " id="subcategory">
                 <option selected disabled>
                   SubCategory
@@ -402,10 +375,48 @@ function Itemspage() {
                   ))}
               </select>
             </div>
+
+            <div className="booot5">
+              <Input type="file" className="form-control " id="file" />
+            </div>
+            <FormGroup floating className="booot6">
+              <Input id="name" name="Name" placeholder="Name" type="text" />
+              <Label for="name">Name</Label>
+            </FormGroup>
+            <FormGroup floating className="booot7">
+              <Input id="brand" name="Brand" placeholder="Brand" type="text" />
+              <Label for="brand">Brand</Label>
+            </FormGroup>
+
+            <FormGroup floating className="booot10">
+              <Input id="color" name="Color" placeholder="Color" type="text" />
+              <Label for="color">Color</Label>
+            </FormGroup>
+            <FormGroup floating className="booot11">
+              <Input
+                id="secondary"
+                name="Secondarycolor"
+                placeholder="Secondary color"
+                type="text"
+              />
+              <Label for="secondary" className="me-4">
+                Secondary color
+              </Label>
+            </FormGroup>
+
             <textarea
-              id="contact"
-              className="form-control booot3"
-              placeholder="Contact info"
+              id="description"
+              className="form-control booot8"
+              name="des"
+              placeholder="Specific description "
+              type="text"
+            />
+            <textarea
+              className="form-control booot9"
+              id="location"
+              name="des2"
+              placeholder="Specific location"
+              type="text"
             />
 
             {/* <textarea
@@ -413,6 +424,32 @@ function Itemspage() {
               className="form-control booot"
               placeholder="Description"
             /> */}
+          </div>
+          <div className="addInfo">Address information</div>
+          <div className="items-add2">
+            <FormGroup floating>
+              <Input
+                id="region"
+                name="Region"
+                placeholder="Region"
+                type="text"
+              />
+              <Label for="region">Region</Label>
+            </FormGroup>
+            <FormGroup floating>
+              <Input id="city" name="City" placeholder="City" type="text" />
+              <Label for="city">City</Label>
+            </FormGroup>
+
+            <FormGroup floating className="buuut">
+              <Input
+                id="street"
+                name="street"
+                placeholder="Street"
+                type="text"
+              />
+              <Label for="street">Street</Label>
+            </FormGroup>
           </div>
         </ModalBody>
         <ModalFooter className="modalFooter">
@@ -427,6 +464,286 @@ function Itemspage() {
             className="bg-success"
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
             onClick={addItem}
+          >
+            Save
+          </Button>
+        </ModalFooter>
+      </Modal>
+
+      {/* Edit modal */}
+      <Modal isOpen={editModal} centered fullscreen scrollable>
+        <ModalHeader
+          toggle={openEditModal}
+          className="text-light fs-4 fw-bolder"
+        >
+          Edit item
+        </ModalHeader>
+        <ModalBody className="modal-body p-4 ">
+          <div className="addInfo">Item information</div>
+          <div className="items-add">
+            <div className="booot">
+              <Label for="type" className="text-light">
+                Type
+              </Label>
+              <select class="form-control" id="type">
+                <option selected disabled>
+                  {infoID.type}
+                </option>
+                <option value="LOST">LOST</option>
+                <option value="FOUND">FOUND</option>
+              </select>
+            </div>
+
+            <div className="booot2">
+              <Label for="date" className="text-light">
+                Date
+              </Label>
+              <Input
+                id="date"
+                name="Date"
+                defaultValue={infoID.date}
+                type="Date"
+              />
+            </div>
+
+            <div>
+              <Label for="contact" className="text-light">
+                Phone number
+              </Label>
+              <Input
+                id="contact"
+                name="number"
+                placeholder="PhoneNumber"
+                defaultValue={infoID.contact_info}
+                type="text"
+              />
+            </div>
+
+            <div className="booot3">
+              <Label for="category" className="text-light">
+                Category
+              </Label>
+              <select class="form-control" id="category">
+                <option selected disabled>
+                  Category
+                </option>
+                {category &&
+                  category.map((item, i) => (
+                    <option key={i} id={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+            <div className="booot4">
+              <Label for="category" className="text-light">
+                Sub Category
+              </Label>
+              <select class="form-control " id="subcategory">
+                <option selected disabled>
+                  SubCategory
+                </option>
+                {subCategory &&
+                  subCategory.map((item, i) => (
+                    <option key={i} id={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+
+            <div className="booot5">
+              <Label for="file" className="text-light">
+                Image
+              </Label>
+              <Input type="file" className="form-control " id="file" />
+            </div>
+            <div className="booot6">
+              <Label for="name" className="text-light">
+                Name
+              </Label>
+              <Input
+                id="name"
+                name="Name"
+                placeholder="Name"
+                type="text"
+                defaultValue={infoID.name}
+              />
+            </div>
+            <div className="booot7">
+              <Label for="brand" className="text-light">
+                Brand
+              </Label>
+              <Input
+                id="brand"
+                name="Brand"
+                placeholder="Brand"
+                type="text"
+                defaultValue={infoID.brand}
+              />
+            </div>
+
+            <div className="booot10 mb-4">
+              <Label for="color" className="text-light">
+                Color
+              </Label>
+              <Input
+                id="color"
+                name="Color"
+                placeholder="Color"
+                type="text"
+                defaultValue={infoID.primary_color}
+              />
+            </div>
+            <div className="booot11 mb-4">
+              <Label for="secondary" className="me-4 text-light">
+                Secondary color
+              </Label>
+              <Input
+                id="secondary"
+                name="Secondarycolor"
+                placeholder="Secondary color"
+                type="text"
+                defaultValue={infoID.secondary_color}
+              />
+            </div>
+
+            <textarea
+              id="description"
+              className="form-control booot8"
+              name="des"
+              placeholder="Specific description "
+              type="text"
+              defaultValue={infoID.specific_description}
+            />
+            <textarea
+              className="form-control booot9"
+              id="location"
+              name="des2"
+              placeholder="Specific location"
+              type="text"
+              defaultValue={infoID.specific_location}
+            />
+
+            {/* <textarea
+              id="description"
+              className="form-control booot"
+              placeholder="Description"
+            /> */}
+          </div>
+          <div className="addInfo">Address information</div>
+          <div className="items-add2">
+            <div>
+              <Label for="region" className="text-light">
+                Region
+              </Label>
+              <Input
+                id="region"
+                name="Region"
+                placeholder="Region"
+                type="text"
+                defaultValue={infoID.country}
+              />
+            </div>
+            <div>
+              <Label for="city" className="text-light">
+                City
+              </Label>
+              <Input
+                id="city"
+                name="City"
+                placeholder="City"
+                type="text"
+                defaultValue={infoID.city}
+              />
+            </div>
+
+            <div className="buuut">
+              <Label for="street" className="text-light">
+                Street
+              </Label>
+              <Input
+                id="street"
+                name="street"
+                placeholder="Street"
+                type="text"
+                defaultValue={infoID.street}
+              />
+            </div>
+          </div>
+        </ModalBody>
+        <ModalFooter className="modalFooter">
+          <Button
+            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+            className="bg-danger"
+            onClick={openEditModal}
+          >
+            Close
+          </Button>
+          <Button
+            className="bg-success"
+            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+            onClick={addItem}
+          >
+            Save
+          </Button>
+        </ModalFooter>
+      </Modal>
+
+      {/* Delete modal */}
+      <Modal isOpen={deleteModal} centered size="md" scrollable>
+        <ModalHeader
+          toggle={openDeleteModal}
+          className="text-light fs-4 fw-bolder"
+        >
+          Delete item
+        </ModalHeader>
+        <ModalBody className="modal-body p-4 text-light">
+          Are you sure you want to delete this item?
+        </ModalBody>
+        <ModalFooter className="modalFooter">
+          <Button
+            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+            className="bg-danger"
+            onClick={openDeleteModal}
+          >
+            Close
+          </Button>
+          <Button
+            className="bg-success"
+            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+            onClick={deleteItem}
+          >
+            Save
+          </Button>
+        </ModalFooter>
+      </Modal>
+
+      {/* info modal */}
+
+      {/* Delete modal */}
+      <Modal isOpen={infoModal} centered size="md" scrollable>
+        <ModalHeader
+          toggle={openInfoModal}
+          className="text-light fs-4 fw-bolder"
+        >
+          Delete item
+        </ModalHeader>
+        <ModalBody className="modal-body p-4 text-light">
+          Are you sure you want to delete this item?
+        </ModalBody>
+        <ModalFooter className="modalFooter">
+          <Button
+            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+            className="bg-danger"
+            onClick={openInfoModal}
+          >
+            Close
+          </Button>
+          <Button
+            className="bg-success"
+            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+            onClick={deleteItem}
           >
             Save
           </Button>
