@@ -3,8 +3,23 @@ import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { Icon } from "@iconify/react";
 import { Col, Row } from 'reactstrap';
+import axios from 'axios';
+import { api, byId } from '../../api/api';
+import { toast } from 'react-toastify';
 
 const Customers = () => {
+
+    // addMessage
+    const addMessage = () => {
+        let addData = {message: byId("newsletterInfo").value}
+        axios.post(`${api}news-letter/`, addData)
+            .then(() => {
+                toast.success("Fikr bildirganingiz uchun rahmat. Fikringiz albatta inobatga olinadi!")
+                byId("newsletterInfo").value = "";
+            }).catch(() => {
+                toast.warning("Serverda muammo kuzatilmoqda, buning uchun sizdan uzr suraymiz!!!")
+            })
+    }
 
     const handlePrevButtonClick = (e) => {
         e.preventDefault();
@@ -227,7 +242,7 @@ const Customers = () => {
                         className='form-control p-4'
                         placeholder='Write me....'
                         rows="6"></textarea>
-                    <button>Submit</button>
+                    <button onClick={addMessage}>Submit</button>
                 </div>
             </div>
         </>
