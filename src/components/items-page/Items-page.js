@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./item-page.scss";
 import {
   Button,
+  Col,
   Container,
   FormGroup,
   Input,
@@ -10,17 +11,20 @@ import {
   ModalBody,
   ModalFooter,
   ModalHeader,
+  Row,
   Table,
 } from "reactstrap";
 import axios from "axios";
 import { api, byId } from "../api/api";
 import { toast } from "react-toastify";
+import { ItemNavs } from "../nav-item/DefouldNav";
 
 function Itemspage() {
   const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [infoModal, setInfoModal] = useState(false);
+  const [currentModal, setCurrentModal] = useState(false);
   const [item, setItem] = useState([]);
   const [category, setCategory] = useState([]);
   const [infoID, setInfoId] = useState([]);
@@ -31,6 +35,7 @@ function Itemspage() {
   const openEditModal = () => setEditModal(!editModal);
   const openDeleteModal = () => setDeleteModal(!deleteModal);
   const openInfoModal = () => setInfoModal(!infoModal);
+  const openCurrentModal = () => setCurrentModal(!currentModal);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -56,7 +61,7 @@ function Itemspage() {
 
   const getFound = () => {
     axios
-      .get(api + "item/", {
+      .get(api + "itemss/", {
         headers: {
           Authorization: sessionStorage.getItem("jwtToken"),
         },
@@ -70,7 +75,7 @@ function Itemspage() {
 
   const getLost = () => {
     axios
-      .get(api + "item/", {
+      .get(api + "itemss/", {
         headers: {
           Authorization: sessionStorage.getItem("jwtToken"),
         },
@@ -154,8 +159,9 @@ function Itemspage() {
       .catch(() => toast.error("Item qo'shishda xatolik yuz berdi!!!"));
   };
 
+
   const searchFound = () => {
-    let searchItem = byId("search").value;
+    let searchItem = byId("searchid").value;
     if (!!searchItem)
       axios
         .get(api + "item/?search=" + searchItem)
@@ -235,6 +241,7 @@ function Itemspage() {
   return (
     <div className="items-main">
       <Container>
+        <ItemNavs id="searchid"/>
         <div className="items-body">
           <h1>
             <b>
@@ -524,7 +531,6 @@ function Itemspage() {
             </Button>
           </div>
         </ModalBody>
-        
       </Modal>
 
       {/* Edit modal */}
@@ -778,28 +784,122 @@ function Itemspage() {
 
       {/* info modal */}
 
-      <Modal isOpen={infoModal} centered size="md" scrollable>
-        <ModalHeader
-          toggle={openInfoModal}
-          className="text-light fs-4 fw-bolder"
+      <Modal isOpen={infoModal} centered size="lg" scrollable>
+        <ModalHeader></ModalHeader>
+        <ModalBody
+          className="modal-body p-4 text-light"
+          style={{
+            boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+          }}
         >
-          Info item
-        </ModalHeader>
-        <ModalBody className="modal-body p-4 text-light">
-          Are you sure you want to delete this item?
-        </ModalBody>
-        <ModalFooter className="modalFooter">
-          <Button
-            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            className="bg-danger"
-            onClick={openInfoModal}
+          <div className="text-end">
+            <Button
+              onClick={openInfoModal}
+              color="danger"
+              className="fw-bold fs-6 rounded-5"
+              style={{
+                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+              }}
+            >
+              ✕
+            </Button>
+          </div>
+
+          <div className="text-center pe-5 ps-5 lost__modal">
+            <img src={infoID.image} alt="img" />
+            <h2>
+              <span>{infoID.name}</span>
+              <span>{infoID.type}</span>
+            </h2>
+            <Row className="lost_main-info1">
+              <Col className="col-12 col-sm-6 col-md-4">category</Col>
+              <Col className="col-12 col-sm-6 col-md-4">sub category</Col>
+              <Col className="col-12 col-sm-6 col-md-4">{infoID.brand}</Col>
+            </Row>
+            <Row className="text-start lost_main-info2">
+              <Col className="col-12 col-sm-6">
+                <span className="me-3">Color_1:</span>
+                {infoID.primary_color}
+              </Col>
+              <Col className="col-12 col-sm-6">
+                <span className="me-3">Color_2:</span>
+                {infoID.secondary_color}
+              </Col>
+            </Row>
+            <Row className="text-start lost_main-info3">
+              <Col className="col-12 col-md-6">
+                <span className="me-3">PhoneNumber:</span>
+                {infoID.contact_info}
+              </Col>
+              <Col className="col-12 col-md-6">
+                <span className="me-3">Date:</span>
+                {infoID.date}
+              </Col>
+            </Row>
+            <p className="text-start " >
+              <span className="me-3">Description:</span>
+              <span className="w-50">{infoID.specific_description}</span>
+              
+            </p>
+          </div>
+
+          <div
+            className="ps-5 lost_countriy"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginTop: "2rem",
+              marginBottom: ".5rem",
+            }}
           >
-            Close
-          </Button>
-        </ModalFooter>
+            <p>
+              <span>{infoID.country}</span>
+              <span>{infoID.city}</span>
+              <span>{infoID.street}</span>
+            </p>
+            <Button
+              onClick={openInfoModal}
+              color="danger"
+              className="fw-bold fs-6 rounded-4"
+              style={{
+                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+              }}
+            >
+              Close
+            </Button>
+          </div>
+        </ModalBody>
+        <ModalFooter className="modalFooter"></ModalFooter>
       </Modal>
+
+
+      
+<Modal isOpen={currentModal} centered size="md" scrollable>
+<ModalHeader
+  toggle={openCurrentModal}
+  className="text-light fs-4 fw-bolder"
+>
+  Delete item
+</ModalHeader>
+<ModalBody className="modal-body p-4 text-light">
+  Are you sure you want to delete this item?
+</ModalBody>
+<ModalFooter className="modalFooter">
+  <Button
+    boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+    className="bg-danger"
+    onClick={openCurrentModal}
+  >
+    Close
+  </Button>
+  
+</ModalFooter>
+</Modal>
     </div>
   );
 }
 
 export default Itemspage;
+
+
