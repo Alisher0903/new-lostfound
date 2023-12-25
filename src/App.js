@@ -4,6 +4,7 @@ import ItemsPage from "./components/items-page/Items-page";
 import { Login } from "./components/registerAndLogin/Login";
 import { Register } from "./components/registerAndLogin/Regestir";
 import AboutLostFound from "./components/about/About";
+import SearchHome from "./components/home/components/Search";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<AboutLostFound />} />
+        <Route path="/search" element={<SearchHome />} />
       </Routes>
     </>
   );

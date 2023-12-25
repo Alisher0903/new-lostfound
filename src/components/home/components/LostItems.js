@@ -112,7 +112,7 @@ function LostItems() {
                             <span className="me-3">Description:</span>
                             {lostInfo.specific_description}
                         </p>
-                        <div>
+                        {/* <div>
                             <iframe
                                 src={`https://www.google.com/maps/dir///@${lostInfo.latitude},${lostInfo.longitude},12z?hl=UZ&entry=ttu`}
                                 style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
@@ -122,7 +122,7 @@ function LostItems() {
                                 loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade">
                             </iframe>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div
