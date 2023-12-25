@@ -1,27 +1,118 @@
 import { Col, Container, Row } from "reactstrap";
 import { DefouldNav } from "../../navbars/DefouldNav";
-import { Icon } from "@iconify/react";
+import "../scss/search.scss";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { api, byId } from "../../api/api";
+import FooTer from "../../footer/FooTer";
 
 function SearchHome() {
+
+    const [item, setItem] = useState([]);
+    const [category, setCategory] = useState([]);
+    const [search, setSearch] = useState([]);
+
+    useEffect(() => {
+        getItem();
+        getCategory();
+    }, []);
+
+    // get item
+    const getItem = () => {
+        axios.get(`${api}item/`)
+            .then(res => setItem(res.data.reverse()))
+            .catch(() => console.log("item kelmadi!!!"))
+    }
+
+    // getCategory
+    function getCategory() {
+        axios.get(`${api}category/`)
+            .then(res => setCategory(res.data.reverse()))
+    }
+
+    // getTypeFilter
+    function getType() {
+        let types = byId("type").value
+        axios.get(`${api}item/category/${types}/`)
+            .then(res => setItem(res.data.reverse()))
+            .catch(() => console.log("type yuq!!!"))
+    }
+
+    // categoryFilter
+    const categoryFIlter = () => {
+        let categoryId = byId("category").value
+        axios.get(`${api}item/category/${categoryId}/`)
+            .then(res => setItem(res.data.reverse()))
+            .catch(() => console.log("category filter ishlamadi!!!"))
+    }
+
+    const searchLost = () => {
+        let searchItem = byId("searchInput").value
+        if (!!searchItem)
+            axios.get(`${api}item/?search=${searchItem}`)
+                .then(res => setItem(res.data.reverse()))
+        else getItem();
+    }
+
     return (
         <>
             <DefouldNav />
-            <Container style={{marginTop: "15rem"}}>
+            <Container className="remove_container" style={{ marginTop: "15rem", marginBottom: "5rem" }}>
+                <div className="row search-filters">
+                    <div className="col-12 col-lg-7">
+                        <button className="rounded-2" onClick={() => {
+                            getItem();
+                            byId("type").value = "Type Filter"
+                            byId("category").value = "Categoty Filter"
+                        }}>All</button>
+
+                        <select className="form-select" id="category" onChange={() => {
+                            categoryFIlter();
+                            byId("type").value = "Type Filter"
+                        }}>
+                            <option selected disabled>Categoty Filter</option>
+                            {category.map((item, i) =>
+                                <option value={item.id} key={i}>{item.name}</option>
+                            )}
+                        </select>
+
+                        <select className="form-select" id="type" onChange={() => {
+                            getType();
+                            byId("category").value = "Categoty Filter"
+                        }}>
+                            <option selected disabled>Type Filter</option>
+                            <option value="LOST">Lost</option>
+                            <option value="FOUND">Found</option>
+                        </select>
+
+                    </div>
+                    <div className="col-12 col-lg-5 mt-3 mt-lg-0">
+                        <input
+                            onChange={searchLost}
+                            id="searchInput"
+                            className="form-control"
+                            placeholder="🔍 search" />
+                    </div>
+                </div>
                 <Row className="w-100">
-                    <Col className="col-12 col-sm-6 col-lg-3">
-                        <div className="search_main">
-                            <div className="search_hover">
-                                <img
-                                    src={require("../../assets/homeImages/hamyon.jpeg")}
-                                    className="img-fluid"
-                                    alt="images" />
+                    {item.map((item, i) =>
+                        <Col className="col-12 col-sm-6 col-lg-3 mt-4 col-p-remove" key={i}>
+                            <div className="search_main">
+                                <div className="search_hover">
+                                    <img
+                                        src={item.image}
+                                        className="img-fluid"
+                                        alt="images" />
+                                </div>
+                                <h2>{item.name}</h2>
                             </div>
-                            <h2>name</h2>
-                            <Icon icon="teenyicons:arrow-left-solid" className="ms-2" width="50" height="50" rotate={2} vFlip={true} />
-                        </div>
-                    </Col>
+                        </Col>
+                    )}
                 </Row>
             </Container>
+            <hr />
+
+            <FooTer />
         </>
     );
 }
