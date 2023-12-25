@@ -265,3 +265,19 @@
         }
     }
 }
+
+@media (max-width: 450px) {
+    .newsletter_main {
+        .newsletter_width {
+            h2 {
+                font-size: 1.5rem;
+                color: black;
+            }
+
+            p {
+                padding: 0;
+                line-height: 20px;
+            }
+        }
+    }
+}
