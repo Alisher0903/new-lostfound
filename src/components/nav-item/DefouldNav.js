@@ -2,14 +2,35 @@ import React, { useState } from "react";
 import "./defouldNav.scss";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import { byId } from "../api/api";
-import { Input } from "reactstrap";
+import { api, byId } from "../api/api";
+import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import axios from "axios";
 
 export const ItemNavs = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentModal, setCurrentModal] = useState(false);
+  const [getMe, setGetme] = useState(false);
+
+  useState(() => {
+    getme()
+  }, [])
+
+
+  const openCurrentModal = () => setCurrentModal(!currentModal);
 
   const toggleNavbar = () => setIsOpen(!isOpen);
   const goSearch = () => byId("search").click();
+
+  function getme() {
+    axios.get(api + "current-user/", {
+      headers: { Authorization: sessionStorage.getItem("jwtToken") },
+    })
+    .then((res) => {
+      setGetme(res.data)
+      console.log(res.data);
+    })
+    .catch(() => {})
+  }
 
   return (
     <>
@@ -50,7 +71,10 @@ export const ItemNavs = () => {
                   <li>
                     <div>
                       <Icon icon="ri:user-line" width="30" color="#fff" />
-                      <h5>Profile</h5>
+                      <h5 onClick={() => {
+                        openCurrentModal()
+                        getme()
+                      }}>Profile</h5>
                     </div>
                   </li>
                 </ul>
@@ -67,20 +91,57 @@ export const ItemNavs = () => {
                 </Link>
               </div>
               <div className="nav_search">
-                  <div className="">
-                    <button class="btn btn-success" onClick={goSearch}>
-                      Search
-                    </button>
-                  </div>
+                <div className="">
+                  <button class="btn btn-success" onClick={goSearch}>
+                    Search
+                  </button>
+                </div>
                 {/* <div className="ms-5"> */}
-                  <Icon className="ms-4" icon="ri:user-line" width="30" color="#fff" />
-                  <h5>Profile</h5>
+                <Icon
+                  className="ms-4"
+                  icon="ri:user-line"
+                  width="30"
+                  color="#fff"
+                />
+                <h5 onClick={openCurrentModal}>Profile</h5>
                 {/* </div> */}
               </div>
             </div>
           </div>
         </nav>
       </header>
+
+      <Modal isOpen={currentModal} centered size="lg" scrollable>
+        <ModalHeader
+          toggle={openCurrentModal}
+          className="text-light fs-4 fw-bolder"
+        >
+          Delete item
+        </ModalHeader>
+        <ModalBody className="modal-body p-4 text-light modal-css">
+          <div className="bot">
+            <img src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" alt=".."/>
+          </div>
+          <div>
+            <b className="mb-3">Username:</b>
+            <h4>{getMe.username}</h4>
+          </div>
+          <div>
+          <b className="mb-3">Phone number:</b>
+
+            <h2>{getMe.phone_number}</h2>
+          </div>
+        </ModalBody>
+        <ModalFooter className="modalFooter">
+          <Button
+            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+            className="bg-danger"
+            onClick={openCurrentModal}
+          >
+            Close
+          </Button>
+        </ModalFooter>
+      </Modal>
     </>
   );
 };

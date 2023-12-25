@@ -24,7 +24,6 @@ function Itemspage() {
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [infoModal, setInfoModal] = useState(false);
-  const [currentModal, setCurrentModal] = useState(false);
   const [item, setItem] = useState([]);
   const [category, setCategory] = useState([]);
   const [infoID, setInfoId] = useState([]);
@@ -35,7 +34,6 @@ function Itemspage() {
   const openEditModal = () => setEditModal(!editModal);
   const openDeleteModal = () => setDeleteModal(!deleteModal);
   const openInfoModal = () => setInfoModal(!infoModal);
-  const openCurrentModal = () => setCurrentModal(!currentModal);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -875,27 +873,7 @@ function Itemspage() {
 
 
       
-<Modal isOpen={currentModal} centered size="md" scrollable>
-<ModalHeader
-  toggle={openCurrentModal}
-  className="text-light fs-4 fw-bolder"
->
-  Delete item
-</ModalHeader>
-<ModalBody className="modal-body p-4 text-light">
-  Are you sure you want to delete this item?
-</ModalBody>
-<ModalFooter className="modalFooter">
-  <Button
-    boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-    className="bg-danger"
-    onClick={openCurrentModal}
-  >
-    Close
-  </Button>
-  
-</ModalFooter>
-</Modal>
+
     </div>
   );
 }
