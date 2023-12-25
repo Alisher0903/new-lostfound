@@ -10,6 +10,7 @@ import {
   ModalBody,
   ModalFooter,
   ModalHeader,
+  Table,
 } from "reactstrap";
 import axios from "axios";
 import { api, byId } from "../api/api";
@@ -137,7 +138,7 @@ function Itemspage() {
     addData.append("longitude", 0);
     addData.append("category ", byId("category").value);
     addData.append("sub_category  ", byId("subcategory").value);
-    // addData.append("id", foundId.id);
+    // addData.append("id", infoID.id);
 
     axios
       .post(api + "item/", addData, {
@@ -161,6 +162,52 @@ function Itemspage() {
         .then((res) => setItem(res.data.filter((t) => t.type == "FOUND")));
     else getAll();
   };
+
+  const editItem = () => {
+    const editData = new FormData();
+    editData.append("type", byId("type").value);
+    editData.append("name", byId("name").value);
+    editData.append("date", byId("date").value);
+    editData.append("image", byId("file").files[0]);
+    editData.append("brand", byId("brand").value);
+    editData.append("primary_color", byId("color").value);
+    editData.append("secondary_color", byId("secondary").value);
+    editData.append("specific_description", byId("description").value);
+    editData.append("specific_location", byId("location").value);
+    editData.append("country", byId("region").value);
+    editData.append("city", byId("city").value);
+    editData.append("street", byId("street").value);
+    editData.append("contact_info", byId("contact").value);
+    editData.append("latitude", 0);
+    editData.append("longitude", 0);
+    editData.append("category ", byId("category").value);
+    editData.append("sub_category  ", byId("subcategory").value);
+    editData.append("id", infoID.id);
+
+    axios
+      .put(api + "item" + infoID.id + "/", editData, {
+        headers: {
+          Authorization: sessionStorage.getItem("jwtToken"),
+        },
+      })
+      .then(() => {
+        openEditModal();
+        getFound();
+        toast.success("Found item muvaffaqiyatli taxrirlandi✔");
+      })
+      .catch(() => {
+        toast.error("Found item taxrirlashda xatolik yuz berdi!!!");
+      });
+  };
+
+  // const searchFound = () => {
+  //   let searchItem = byId("search").value;
+  //   if (!!searchItem)
+  //     axios
+  //       .get(api + "item/?search=" + searchItem)
+  //       .then((res) => setItem(res.data.filter((t) => t.type == "FOUND")));
+  //   else getAll();
+  // };
 
   //   const getAbout = () => {
   //     let infoId = sessionStorage.getItem("infoId");
@@ -207,12 +254,16 @@ function Itemspage() {
         </div>
         <div className="items-tables">
           <div className="items-top row">
-            <div className="col-3">
-              <button className="category_filter-btn2" onClick={openAddModal}>
-                +Add
+            <div className="col-12 col-lg-4 category_filter-btnn">
+              <button
+                className="btn btn-primary text-center"
+                style={{ padding: "0.7rem 2rem" }}
+                onClick={openAddModal}
+              >
+                Add+
               </button>
             </div>
-            <div className="col-9 category_filter-btn">
+            <div className="col-12 col-lg-8 category_filter-btn">
               <button
                 onClick={() => {
                   getAll();
@@ -223,24 +274,24 @@ function Itemspage() {
               </button>
               <button
                 onClick={() => {
-                  getFound();
-                  // byId("categoryFilter").value = "Category filter";
-                }}
-              >
-                Found items
-              </button>
-              <button
-                onClick={() => {
                   getLost();
                   // byId("categoryFilter").value = "Category filter";
                 }}
               >
                 Lost items
               </button>
+              <button
+                onClick={() => {
+                  getFound();
+                  // byId("categoryFilter").value = "Category filter";
+                }}
+              >
+                Found items
+              </button>
             </div>
           </div>
-          <div className="items-bottom">
-            <table class="table table-striped table-hover item-table">
+          <div className="items-bottom mb-5">
+            <Table responsiveTag striped hover>
               <thead>
                 <tr className="text-center">
                   <th scope="col">#</th>
@@ -257,14 +308,19 @@ function Itemspage() {
               </thead>
               <tbody>
                 {
-                  error ? (
-                    <h4 className="text-center text-light">You have not item</h4>
-                  ) : (
-                    item.length && item.map((item, i) => (
+                  // error ? (
+                  //   <h4 className="text-center text-light">You have not item</h4>
+                  // ) : (
+                  item.length &&
+                    item.map((item, i) => (
                       <tr className="text-center" key={i}>
                         <td scope="row">{i + 1}</td>
                         <td className="table-row">
-                          <img src={item.image} className="table-img" alt="..." />
+                          <img
+                            src={item.image}
+                            className="table-img"
+                            alt="..."
+                          />
                         </td>
                         <td>{item.name}</td>
                         <td>{item.date}</td>
@@ -305,10 +361,10 @@ function Itemspage() {
                         </td>
                       </tr>
                     ))
-                  )
+                  // )
                 }
               </tbody>
-            </table>
+            </Table>
           </div>
         </div>
       </Container>
@@ -324,7 +380,7 @@ function Itemspage() {
         <ModalBody className="modal-body p-4 ">
           <div className="addInfo">Item information</div>
           <div className="items-add">
-            <div className="booot">
+            <div className="booot2">
               <select class="form-control" id="type">
                 <option selected disabled>
                   TYPE
@@ -334,12 +390,12 @@ function Itemspage() {
               </select>
             </div>
 
-            <FormGroup floating className="booot2">
+            <FormGroup floating className="booot6">
               <Input id="date" name="Date" placeholder="Date" type="Date" />
               <Label for="date">Date</Label>
             </FormGroup>
 
-            <FormGroup floating className="">
+            <FormGroup floating className="booot7">
               <Input
                 id="contact"
                 name="number"
@@ -349,7 +405,7 @@ function Itemspage() {
               <Label for="contact">Phone number</Label>
             </FormGroup>
 
-            <div className="booot3">
+            <div className="booot4">
               <select class="form-control" id="category">
                 <option selected disabled>
                   Category
@@ -362,7 +418,7 @@ function Itemspage() {
                   ))}
               </select>
             </div>
-            <div className="booot4">
+            <div className="booot5">
               <select class="form-control " id="subcategory">
                 <option selected disabled>
                   SubCategory
@@ -376,14 +432,14 @@ function Itemspage() {
               </select>
             </div>
 
-            <div className="booot5">
+            <div className="booot3">
               <Input type="file" className="form-control " id="file" />
             </div>
-            <FormGroup floating className="booot6">
+            <FormGroup floating className="booot">
               <Input id="name" name="Name" placeholder="Name" type="text" />
               <Label for="name">Name</Label>
             </FormGroup>
-            <FormGroup floating className="booot7">
+            <FormGroup floating className=" booot1  ">
               <Input id="brand" name="Brand" placeholder="Brand" type="text" />
               <Label for="brand">Brand</Label>
             </FormGroup>
@@ -451,23 +507,24 @@ function Itemspage() {
               <Label for="street">Street</Label>
             </FormGroup>
           </div>
+          <div className="float-end mb-5">
+            <Button
+              boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+              className="bg-danger me-3 mb-4"
+              onClick={openAddModal}
+            >
+              Close
+            </Button>
+            <Button
+              className="bg-success mb-4"
+              boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+              onClick={addItem}
+            >
+              Save
+            </Button>
+          </div>
         </ModalBody>
-        <ModalFooter className="modalFooter">
-          <Button
-            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            className="bg-danger"
-            onClick={openAddModal}
-          >
-            Close
-          </Button>
-          <Button
-            className="bg-success"
-            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={addItem}
-          >
-            Save
-          </Button>
-        </ModalFooter>
+        
       </Modal>
 
       {/* Edit modal */}
@@ -506,7 +563,7 @@ function Itemspage() {
               />
             </div>
 
-            <div>
+            <div className="booot1">
               <Label for="contact" className="text-light">
                 Phone number
               </Label>
@@ -632,7 +689,7 @@ function Itemspage() {
             /> */}
           </div>
           <div className="addInfo">Address information</div>
-          <div className="items-add2">
+          <div className="items-add2 mb-4">
             <div>
               <Label for="region" className="text-light">
                 Region
@@ -671,23 +728,23 @@ function Itemspage() {
               />
             </div>
           </div>
+          <div className="float-end mb-5">
+            <Button
+              boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+              className="bg-danger me-3 mb-4"
+              onClick={openEditModal}
+            >
+              Close
+            </Button>
+            <Button
+              className="bg-success mb-4"
+              boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+              onClick={editItem}
+            >
+              Save
+            </Button>
+          </div>
         </ModalBody>
-        <ModalFooter className="modalFooter">
-          <Button
-            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            className="bg-danger"
-            onClick={openEditModal}
-          >
-            Close
-          </Button>
-          <Button
-            className="bg-success"
-            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={addItem}
-          >
-            Save
-          </Button>
-        </ModalFooter>
       </Modal>
 
       {/* Delete modal */}
@@ -721,13 +778,12 @@ function Itemspage() {
 
       {/* info modal */}
 
-      {/* Delete modal */}
       <Modal isOpen={infoModal} centered size="md" scrollable>
         <ModalHeader
           toggle={openInfoModal}
           className="text-light fs-4 fw-bolder"
         >
-          Delete item
+          Info item
         </ModalHeader>
         <ModalBody className="modal-body p-4 text-light">
           Are you sure you want to delete this item?
@@ -739,13 +795,6 @@ function Itemspage() {
             onClick={openInfoModal}
           >
             Close
-          </Button>
-          <Button
-            className="bg-success"
-            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={deleteItem}
-          >
-            Save
           </Button>
         </ModalFooter>
       </Modal>
