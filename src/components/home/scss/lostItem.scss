@@ -1,6 +1,6 @@
 .lost_items {
     height: 500px;
-    
+
     img {
         width: 100%;
         height: 50%;
@@ -40,6 +40,89 @@
 
         &:active {
             transform: scale(.9);
+        }
+    }
+}
+
+$font-f: 'Inika', serif;
+
+.lost__modal {
+    font-family: $font-f;
+    color: white;
+
+    img {
+        width: 100%;
+        height: 200px;
+        border-radius: 30px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        object-fit: cover;
+        transition: all .3s;
+
+        &:hover {
+            transform: scale(1.01);
+        }
+    }
+
+    h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 1rem;
+        color: black;
+
+        span:nth-child(1) {
+            margin-right: 2rem;
+        }
+
+        span:nth-child(2) {
+            color: #CA1010;
+            margin-left: 2rem;
+        }
+    }
+
+    .lost_main-info1 {
+        font-weight: 500;
+        font-size: 1.1rem;
+        letter-spacing: .5px;
+        margin-top: .8rem;
+    }
+
+    .lost_main-info2 {
+        font-weight: 500;
+        font-size: 1.1rem;
+        letter-spacing: .5px;
+        margin-top: .8rem;
+    }
+
+    .lost_main-info3 {
+        font-weight: 500;
+        font-size: 1.1rem;
+        letter-spacing: .5px;
+        margin-top: .8rem;
+    }
+
+    p {
+        font-size: 1rem;
+        margin-top: .3rem;
+        margin-bottom: 1rem;
+        letter-spacing: .3px;
+    }
+}
+
+.lost_countriy {
+    color: black;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+
+    p {
+        margin-bottom: 0;
+
+        span:nth-child(1) {
+            margin-right: .5rem;
+        }
+
+        span:nth-child(2) {
+            margin-right: .5rem;
         }
     }
 }
