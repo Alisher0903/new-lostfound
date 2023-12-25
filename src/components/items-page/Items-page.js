@@ -163,7 +163,6 @@ function Itemspage() {
     else getAll();
   };
 
-
   const editItem = () => {
     const editData = new FormData();
     editData.append("type", byId("type").value);
@@ -255,8 +254,12 @@ function Itemspage() {
         </div>
         <div className="items-tables">
           <div className="items-top row">
-            <div className="col-12 col-lg-4" style={{ display: "flex", justifyContent: "center"}}>
-              <button className="btn btn-primary text-center" style={{marginTop: "2.3rem", padding: "0.7rem 2rem"}} onClick={openAddModal}>
+            <div className="col-12 col-lg-4 category_filter-btnn">
+              <button
+                className="btn btn-primary text-center"
+                style={{ padding: "0.7rem 2rem" }}
+                onClick={openAddModal}
+              >
                 Add+
               </button>
             </div>
@@ -308,11 +311,16 @@ function Itemspage() {
                   // error ? (
                   //   <h4 className="text-center text-light">You have not item</h4>
                   // ) : (
-                    item.length && item.map((item, i) => (
+                  item.length &&
+                    item.map((item, i) => (
                       <tr className="text-center" key={i}>
                         <td scope="row">{i + 1}</td>
                         <td className="table-row">
-                          <img src={item.image} className="table-img" alt="..." />
+                          <img
+                            src={item.image}
+                            className="table-img"
+                            alt="..."
+                          />
                         </td>
                         <td>{item.name}</td>
                         <td>{item.date}</td>
@@ -431,7 +439,7 @@ function Itemspage() {
               <Input id="name" name="Name" placeholder="Name" type="text" />
               <Label for="name">Name</Label>
             </FormGroup>
-            <FormGroup floating className="   ">
+            <FormGroup floating className=" booot1  ">
               <Input id="brand" name="Brand" placeholder="Brand" type="text" />
               <Label for="brand">Brand</Label>
             </FormGroup>
@@ -499,23 +507,24 @@ function Itemspage() {
               <Label for="street">Street</Label>
             </FormGroup>
           </div>
+          <div className="float-end mb-5">
+            <Button
+              boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+              className="bg-danger me-3 mb-4"
+              onClick={openAddModal}
+            >
+              Close
+            </Button>
+            <Button
+              className="bg-success mb-4"
+              boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+              onClick={addItem}
+            >
+              Save
+            </Button>
+          </div>
         </ModalBody>
-        <ModalFooter className="modalFooter">
-          <Button
-            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            className="bg-danger"
-            onClick={openAddModal}
-          >
-            Close
-          </Button>
-          <Button
-            className="bg-success"
-            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={addItem}
-          >
-            Save
-          </Button>
-        </ModalFooter>
+        
       </Modal>
 
       {/* Edit modal */}
@@ -554,7 +563,7 @@ function Itemspage() {
               />
             </div>
 
-            <div>
+            <div className="booot1">
               <Label for="contact" className="text-light">
                 Phone number
               </Label>
@@ -680,7 +689,7 @@ function Itemspage() {
             /> */}
           </div>
           <div className="addInfo">Address information</div>
-          <div className="items-add2">
+          <div className="items-add2 mb-4">
             <div>
               <Label for="region" className="text-light">
                 Region
@@ -719,23 +728,23 @@ function Itemspage() {
               />
             </div>
           </div>
+          <div className="float-end mb-5">
+            <Button
+              boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+              className="bg-danger me-3 mb-4"
+              onClick={openEditModal}
+            >
+              Close
+            </Button>
+            <Button
+              className="bg-success mb-4"
+              boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+              onClick={editItem}
+            >
+              Save
+            </Button>
+          </div>
         </ModalBody>
-        <ModalFooter className="modalFooter">
-          <Button
-            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            className="bg-danger"
-            onClick={openEditModal}
-          >
-            Close
-          </Button>
-          <Button
-            className="bg-success"
-            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={editItem}
-          >
-            Save
-          </Button>
-        </ModalFooter>
       </Modal>
 
       {/* Delete modal */}
@@ -769,7 +778,6 @@ function Itemspage() {
 
       {/* info modal */}
 
-      
       <Modal isOpen={infoModal} centered size="md" scrollable>
         <ModalHeader
           toggle={openInfoModal}
