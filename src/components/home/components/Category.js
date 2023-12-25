@@ -26,7 +26,6 @@ export const Category = () => {
         991: { items: 4 },
     };
 
-    console.log(categoryItem);
     return (
         <>
             <AliceCarousel
