@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { api, byId } from "../../api/api";
 import FooTer from "../../footer/FooTer";
+import { Link } from "react-router-dom";
 
 function SearchHome() {
 
@@ -57,13 +58,18 @@ function SearchHome() {
     return (
         <>
             <DefouldNav />
-            <Container className="remove_container" style={{ marginTop: "15rem", marginBottom: "5rem" }}>
+            <Container className="remove_container" style={{ marginTop: "11rem", marginBottom: "5rem" }}>
+                <h4>
+                    <Link to="/">Bosh Sahifa </Link>
+                    <span>/ Search</span>
+                </h4>
                 <div className="row search-filters">
                     <div className="col-12 col-lg-7">
                         <button className="rounded-2" onClick={() => {
                             getItem();
                             byId("type").value = "Type Filter"
                             byId("category").value = "Categoty Filter"
+                            byId("searchInput").value = ""
                         }}>All</button>
 
                         <select className="form-select" id="category" onChange={() => {

@@ -1,8 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,300;0,400;1,300;1,400&family=Inika:wght@400;700&family=Lora:ital@0;1&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,700&family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500&family=Space+Mono:wght@700&display=swap');
 $font-f: 'Inika', serif;
 
+.remove_container {
+    font-family: $font-f;
+
+    h4 {
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 4rem;
+        color: black;
+
+        a {
+            text-decoration: none;
+            color: black;
+            transition: all .3s;
+
+            &:hover {
+                color: #FFB517;
+            }
+        }
+    }
+}
+
 .search-filters {
     margin-bottom: 2rem;
+
+    div:nth-child(1) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
     button {
         padding: 7px 25px;
@@ -22,15 +50,13 @@ $font-f: 'Inika', serif;
     }
 
     #category {
-        display: inline-block;
-        width: 25%;
         margin-right: 1rem;
     }
 
-    #type {
-        display: inline-block;
-        width: 25%;
-    }
+    // #type {
+    //     display: inline-block;
+    //     width: 25%;
+    // }
 
     #searchInput {
         font-family: $font-f;
