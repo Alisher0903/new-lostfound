@@ -13,7 +13,7 @@ function FooTer() {
     return (
         <>
             <div className="container footer-container p-5">
-                <hr />
+                {/* <hr /> */}
                 <Row>
                     <Col className="ps-0 ps-lg-4 col-12 col-md-6 col-lg-4">
                         <h5>Quick Links</h5>

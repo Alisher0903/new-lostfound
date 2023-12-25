@@ -38,6 +38,9 @@ export const DefouldNav = () => {
                             <div className={isOpen ? 'nav-links-mobile show_mobile' : 'nav-links-mobile'}>
                                 <ul>
                                     <li>
+                                        <Icon onClick={goSearch} icon="ri:search-line" width="30" style={{margin: "0"}} />
+                                    </li>
+                                    <li>
                                         <h4 onClick={goLoginPage}>Sign in</h4>
                                     </li>
                                     <li>
