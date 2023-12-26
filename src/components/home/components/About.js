@@ -4,14 +4,14 @@ import { byId } from "../../api/api";
 
 export const AboutHome = () => {
 
-    const goAbout = () => byId("goAbout").click();
+    // const goAbout = () => byId("goAbout").click();
     
     return (<>
-        <Link to="/about" id="goAbout"></Link>
+        {/* <Link to="/about" id="goAbout"></Link> */}
         <Container className="aboutMe-container">
             <Row className="w-100 mt-5 pt-5">
                 <Col className="col-12 col-md-7 col-lg-6 aboutMe-box">
-                    <div className="about__img" onClick={goAbout}>
+                    <div className="about__img">
                         <img src={require("../../assets/homeImages/about.png")} alt="img" />
                     </div>
                 </Col>

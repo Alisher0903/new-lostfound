@@ -75,6 +75,7 @@ function SearchHome() {
                         <select className="form-select" id="category" onChange={() => {
                             categoryFIlter();
                             byId("type").value = "Type Filter"
+                            byId("searchInput").value = ""
                         }}>
                             <option selected disabled>Categoty Filter</option>
                             {category.map((item, i) =>
@@ -85,6 +86,7 @@ function SearchHome() {
                         <select className="form-select" id="type" onChange={() => {
                             getType();
                             byId("category").value = "Categoty Filter"
+                            byId("searchInput").value = ""
                         }}>
                             <option selected disabled>Type Filter</option>
                             <option value="LOST">Lost</option>
@@ -94,7 +96,11 @@ function SearchHome() {
                     </div>
                     <div className="col-12 col-lg-5 mt-3 mt-lg-0">
                         <input
-                            onChange={searchLost}
+                            onChange={() => {
+                                searchLost();
+                                byId("category").value = "Categoty Filter"
+                                byId("type").value = "Type Filter"
+                            }}
                             id="searchInput"
                             className="form-control"
                             placeholder="🔍 search" />
