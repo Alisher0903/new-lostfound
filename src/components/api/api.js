@@ -1,4 +1,4 @@
-export const api = "https://lostfound.pythonanywhere.com/";
+export const api = "https://lostfoundapis.pythonanywhere.com/";
 
 // admin user:
 // +998908632230
