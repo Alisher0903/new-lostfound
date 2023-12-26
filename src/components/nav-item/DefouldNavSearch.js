@@ -86,6 +86,10 @@ export const ItemNavs = () => {
   function editProfile() {
     const addData = new FormData();
     addData.append("username", byId("username").value);
+    addData.append("phone_number", byId("phoneNumber").value);
+    addData.append("password ", byId("password ").value);
+    addData.append("password_confirm", byId("rePassword").value);
+    addData.append("gender", byId("gender").value);
     addData.append("image", byId("avatar").files[0]);
 
     axios
@@ -325,6 +329,7 @@ export const ItemNavs = () => {
                 borderRadius: "10rem",
                 height: "300px",
                 objectFit: "cover",
+                
               }}
               src={
                 getMe.image !== null
@@ -335,7 +340,7 @@ export const ItemNavs = () => {
             />
           </div>
           <div className="col-12 col-md-6">
-            <div className="">
+            <div>
               <b className="mb-3">Username:</b>
               <Input
                 type="text"
@@ -344,38 +349,42 @@ export const ItemNavs = () => {
                 defaultValue={getMe.username}
               />
             </div>
-            <div>
+            <div className="mt-3">
               <b className="mb-3">Avatar:</b>
 
               <Input type="file" id="avatar" className="bg-secondary mt-3" />
             </div>
-            <div className="">
-              <b className="mb-3">Username:</b>
+            <div className="mt-3">
+              <b className="mb-3">Phone number:</b>
               <Input
                 type="text"
-                id="username"
+                id="phoneNumber"
                 className="bg-secondary mt-3"
-                defaultValue={getMe.username}
+                defaultValue={getMe.phone_number}
               />
             </div>
-            <div className="">
-              <b className="mb-3">Username:</b>
+            <div className="mt-3">
+              <b className="mb-3">Password:</b>
               <Input
-                type="text"
-                id="username"
+                type="password"
+                id="password "
+
                 className="bg-secondary mt-3"
-                defaultValue={getMe.username}
               />
             </div>
-            <div className="">
-              <b className="mb-3">Username:</b>
+            <div className="mt-3">
+              <b className="mb-3">Confirm password:</b>
               <Input
-                type="text"
-                id="username"
+                type="password"
+                id="rePassword"
                 className="bg-secondary mt-3"
-                defaultValue={getMe.username}
               />
             </div>
+              <select id="gender" className="form-control mt-3">
+                <option selected disabled>Gender</option>
+                <option value="MALE">MALE</option>
+                <option value="FEMALE">FEMALE</option>
+              </select>
           </div>
         </ModalBody>
         <ModalFooter className="modalFooter">

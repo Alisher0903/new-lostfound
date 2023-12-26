@@ -81,18 +81,23 @@ export const ItemNavSearch = () => {
   function editProfile() {
     const addData = new FormData();
     addData.append("username", byId("username").value);
+    addData.append("phone_number", byId("phoneNumber").value);
+    addData.append("password ", byId("password ").value);
+    addData.append("password_confirm", byId("rePassword").value);
+    addData.append("gender", byId("gender").value);
     addData.append("image", byId("avatar").files[0]);
 
-    axios.put(api + "profile/edit/", addData, {
-      headers: { Authorization: sessionStorage.getItem("jwtToken") }
-    })
-    .then(() => {
-      openCurrentModal();
-      toast.success("Profile successfully edit");
-      getme()
-    })
-    .catch(() => toast.error("Something is error"));
-   }
+    axios
+      .put(api + "profile/edit/", addData, {
+        headers: { Authorization: sessionStorage.getItem("jwtToken") },
+      })
+      .then(() => {
+        openCurrentModal();
+        toast.success("Profile successfully edit");
+        getme();
+      })
+      .catch(() => toast.error("Something is error"));
+  }
 
   function getme() {
     axios
@@ -320,15 +325,15 @@ export const ItemNavSearch = () => {
         >
           Profile
         </ModalHeader>
-        <ModalBody className="modal-body p-4 text-light modal-css">
-          <div className="bot d-flex justify-content-center">
+        <ModalBody className="modal-body p-4 text-light modal-css row">
+          <div className="bot col-12 col-md-6">
             <img
               style={{
                 width: "300px",
                 borderRadius: "10rem",
                 height: "300px",
-                objectFit: "cover"
-
+                objectFit: "cover",
+                
               }}
               src={
                 getMe.image !== null
@@ -338,15 +343,52 @@ export const ItemNavSearch = () => {
               alt=".."
             />
           </div>
-          <div>
-            <b className="mb-3">Username:</b>
-            <Input type="text" id="username" className="bg-secondary mt-3" defaultValue={getMe.username}/>
+          <div className="col-12 col-md-6">
+            <div>
+              <b className="mb-3">Username:</b>
+              <Input
+                type="text"
+                id="username"
+                className="bg-secondary mt-3"
+                defaultValue={getMe.username}
+              />
+            </div>
+            <div className="mt-3">
+              <b className="mb-3">Avatar:</b>
 
-          </div>
-          <div>
-            <b className="mb-3">Avatar:</b>
+              <Input type="file" id="avatar" className="bg-secondary mt-3" />
+            </div>
+            <div className="mt-3">
+              <b className="mb-3">Phone number:</b>
+              <Input
+                type="text"
+                id="phoneNumber"
+                className="bg-secondary mt-3"
+                defaultValue={getMe.phone_number}
+              />
+            </div>
+            <div className="mt-3">
+              <b className="mb-3">Password:</b>
+              <Input
+                type="password"
+                id="password "
 
-            <Input type="file" id="avatar" className="bg-secondary mt-3"/>
+                className="bg-secondary mt-3"
+              />
+            </div>
+            <div className="mt-3">
+              <b className="mb-3">Confirm password:</b>
+              <Input
+                type="password"
+                id="rePassword"
+                className="bg-secondary mt-3"
+              />
+            </div>
+              <select id="gender" className="form-control mt-3">
+                <option selected disabled>Gender</option>
+                <option value="MALE">MALE</option>
+                <option value="FEMALE">FEMALE</option>
+              </select>
           </div>
         </ModalBody>
         <ModalFooter className="modalFooter">
