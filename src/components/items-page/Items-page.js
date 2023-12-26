@@ -298,7 +298,7 @@ function Itemspage() {
           <div className="items-bottom mb-5">
             <Table striped hover responsive>
               <thead>
-                <tr className="text-center">
+                <tr className="text-center align-middle top-tr">
                   <th scope="col">#</th>
                   <th scope="col">Image</th>
                   <th scope="col">Name</th>
@@ -318,7 +318,7 @@ function Itemspage() {
                   // ) : (
                   item.length &&
                     item.map((item, i) => (
-                      <tr className="text-center" key={i}>
+                      <tr className="text-center align-middle" key={i}>
                         <td scope="row">{i + 1}</td>
                         <td className="table-row img-row">
                           <img

@@ -12,9 +12,8 @@ export const ItemNavSearch = () => {
   const [getMe, setGetme] = useState(false);
 
   useState(() => {
-    getme()
-  }, [])
-
+    getme();
+  }, []);
 
   const openCurrentModal = () => setCurrentModal(!currentModal);
 
@@ -22,14 +21,15 @@ export const ItemNavSearch = () => {
   const goSearch = () => byId("search2").click();
 
   function getme() {
-    axios.get(api + "current-user/", {
-      headers: { Authorization: sessionStorage.getItem("jwtToken") },
-    })
-    .then((res) => {
-      setGetme(res.data)
-      console.log(res.data);
-    })
-    .catch(() => {})
+    axios
+      .get(api + "current-user/", {
+        headers: { Authorization: sessionStorage.getItem("jwtToken") },
+      })
+      .then((res) => {
+        setGetme(res.data);
+        console.log(res.data);
+      })
+      .catch(() => {});
   }
 
   return (
@@ -71,10 +71,14 @@ export const ItemNavSearch = () => {
                   <li>
                     <div>
                       <Icon icon="ri:user-line" width="30" color="#fff" />
-                      <h5 onClick={() => {
-                        openCurrentModal()
-                        getme()
-                      }}>Profile</h5>
+                      <h5
+                        onClick={() => {
+                          openCurrentModal();
+                          getme();
+                        }}
+                      >
+                        Profile
+                      </h5>
                     </div>
                   </li>
                 </ul>
@@ -97,6 +101,19 @@ export const ItemNavSearch = () => {
                   </button>
                 </div>
                 {/* <div className="ms-5"> */}
+                <img
+                  src= "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
+                  alt=".."
+                />
+                {/* <img
+                  src={
+                    getMe.image !== null
+                      ? getMe.image
+                      : "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
+                  }
+                  alt=".."
+                /> */}
+
                 <Icon
                   className="ms-4"
                   icon="ri:user-line"
@@ -120,14 +137,21 @@ export const ItemNavSearch = () => {
         </ModalHeader>
         <ModalBody className="modal-body p-4 text-light modal-css">
           <div className="bot">
-            <img src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" alt=".."/>
+            <img
+              src={
+                getMe.image !== null
+                  ? getMe.image
+                  : "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
+              }
+              alt=".."
+            />
           </div>
           <div>
             <b className="mb-3">Username:</b>
             <h4>{getMe.username}</h4>
           </div>
           <div>
-          <b className="mb-3">Phone number:</b>
+            <b className="mb-3">Phone number:</b>
 
             <h2>{getMe.phone_number}</h2>
           </div>

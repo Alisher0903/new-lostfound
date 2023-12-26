@@ -120,7 +120,7 @@ export const ItemNavs = () => {
         </ModalHeader>
         <ModalBody className="modal-body p-4 text-light modal-css">
           <div className="bot">
-            <img src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" alt=".."/>
+          <img src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" alt=".."/>
           </div>
           <div>
             <b className="mb-3">Username:</b>

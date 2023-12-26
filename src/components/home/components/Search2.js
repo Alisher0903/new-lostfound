@@ -14,42 +14,29 @@ function Search2() {
 
     useEffect(() => {
         getItem();
-        getCategory();
     }, []);
 
     // get item
     const getItem = () => {
-        axios.get(`${api}item/`)
+        axios.get(`${api}itemss/`, {
+            headers: {
+              Authorization: sessionStorage.getItem("jwtToken"),
+            },
+          })
             .then(res => setItem(res.data.reverse()))
             .catch(() => console.log("item kelmadi!!!"))
     }
 
-    // getCategory
-    function getCategory() {
-        axios.get(`${api}category/`)
-            .then(res => setCategory(res.data.reverse()))
-    }
-
-    // getTypeFilter
-    function getType() {
-        let types = byId("type").value
-        axios.get(`${api}item/category/${types}/`)
-            .then(res => setItem(res.data.reverse()))
-            .catch(() => console.log("type yuq!!!"))
-    }
-
-    // categoryFilter
-    const categoryFIlter = () => {
-        let categoryId = byId("category").value
-        axios.get(`${api}item/category/${categoryId}/`)
-            .then(res => setItem(res.data.reverse()))
-            .catch(() => console.log("category filter ishlamadi!!!"))
-    }
+   
 
     const searchLost = () => {
         let searchItem = byId("searchInput").value
         if (!!searchItem)
-            axios.get(`${api}item/?search=${searchItem}`)
+            axios.get(`${api}itemss/?search=${searchItem}`, {
+                headers: {
+                  Authorization: sessionStorage.getItem("jwtToken"),
+                },
+              })
                 .then(res => setItem(res.data.reverse()))
         else getItem();
     }
@@ -63,39 +50,12 @@ function Search2() {
                     <span>/ Search</span>
                 </h4>
                 <div className="row search-filters">
-                    <div className="col-12 col-lg-7">
-                        <button className="rounded-2" onClick={() => {
-                            getItem();
-                            byId("type").value = "Type Filter"
-                            byId("category").value = "Categoty Filter"
-                            byId("searchInput").value = ""
-                        }}>All</button>
-
-                        <select className="form-select" id="category" onChange={() => {
-                            categoryFIlter();
-                            byId("type").value = "Type Filter"
-                        }}>
-                            <option selected disabled>Categoty Filter</option>
-                            {category.map((item, i) =>
-                                <option value={item.id} key={i}>{item.name}</option>
-                            )}
-                        </select>
-
-                        <select className="form-select" id="type" onChange={() => {
-                            getType();
-                            byId("category").value = "Categoty Filter"
-                        }}>
-                            <option selected disabled>Type Filter</option>
-                            <option value="LOST">Lost</option>
-                            <option value="FOUND">Found</option>
-                        </select>
-
-                    </div>
-                    <div className="col-12 col-lg-5 mt-3 mt-lg-0">
+                  
+                    <div className="col-12 mt-3 mt-lg-0 d-flex justify-content-center">
                         <input
                             onChange={searchLost}
                             id="searchInput"
-                            className="form-control"
+                            className="form-control w-50"
                             placeholder="🔍 search" />
                     </div>
                 </div>
