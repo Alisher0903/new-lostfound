@@ -28,8 +28,8 @@ header {
     align-items: center;
   }
 
-  .nav_brand {
-    font-size: 2rem;
+  .nav_brand2 {
+    font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 0.5px;
 
@@ -38,18 +38,7 @@ header {
 
       span {
         margin-left: 0.5rem;
-      }
-
-      span:nth-child(1) {
-        color: #cf1010;
-      }
-
-      span:nth-child(2) {
-        color: #000000;
-      }
-
-      span:nth-child(3) {
-        color: #04d300;
+      
       }
     }
   }

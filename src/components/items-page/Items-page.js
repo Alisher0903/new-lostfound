@@ -17,7 +17,7 @@ import {
 import axios from "axios";
 import { api, byId } from "../api/api";
 import { toast } from "react-toastify";
-import { ItemNavs } from "../nav-item/DefouldNav";
+import { ItemNavs } from "../nav-item/DefouldNavSearch";
 
 function Itemspage() {
   const [addModal, setAddModal] = useState(false);
@@ -27,7 +27,7 @@ function Itemspage() {
   const [item, setItem] = useState([]);
   const [category, setCategory] = useState([]);
   const [infoID, setInfoId] = useState([]);
-  const [error, setError] = useState([]);
+  const [ setError] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
 
   const openAddModal = () => setAddModal(!addModal);
@@ -239,7 +239,7 @@ function Itemspage() {
   return (
     <div className="items-main">
       <Container>
-        <ItemNavs id="searchid"/>
+        <ItemNavs/>
         <div className="items-body">
           <h1>
             <b>
@@ -775,7 +775,7 @@ function Itemspage() {
             boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
             onClick={deleteItem}
           >
-            Save
+            Delete
           </Button>
         </ModalFooter>
       </Modal>

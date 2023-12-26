@@ -5,6 +5,7 @@ import { Login } from "./components/registerAndLogin/Login";
 import { Register } from "./components/registerAndLogin/Regestir";
 import AboutLostFound from "./components/about/About";
 import SearchHome from "./components/home/components/Search";
+import Search2 from "./components/home/components/Search2";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<AboutLostFound />} />
         <Route path="/search" element={<SearchHome />} />
+        <Route path="/search my profile" element={<Search2 />} />
       </Routes>
     </>
   );
