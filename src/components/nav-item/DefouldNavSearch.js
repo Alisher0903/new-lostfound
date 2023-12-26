@@ -3,7 +3,14 @@ import "./defouldNav.scss";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { api, byId } from "../api/api";
-import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import {
+  Button,
+  Input,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+} from "reactstrap";
 import axios from "axios";
 
 import { createPopper } from "@popperjs/core";
@@ -78,16 +85,17 @@ export const ItemNavs = () => {
     addData.append("username", byId("username").value);
     addData.append("image", byId("avatar").files[0]);
 
-    axios.put(api + "profile/edit/", addData, {
-      headers: { Authorization: sessionStorage.getItem("jwtToken") },
-    })
-    .then(() => {
-      openCurrentModal();
-      toast.success("Profile successfully edit");
-      getme();
-    })
-    .catch(() => toast.error("Something is error"));
-   }
+    axios
+      .put(api + "profile/edit/", addData, {
+        headers: { Authorization: sessionStorage.getItem("jwtToken") },
+      })
+      .then(() => {
+        openCurrentModal();
+        toast.success("Profile successfully edit");
+        getme();
+      })
+      .catch(() => toast.error("Something is error"));
+  }
 
   return (
     <>
@@ -189,28 +197,26 @@ export const ItemNavs = () => {
                         width: "20rem",
                         left: "-13rem",
                         background: "rgb(255,255,255)",
-                        background: "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(34,129,195,1) 85%)",
+                        background:
+                          "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(34,129,195,1) 85%)",
                         padding: "20px",
                         boxShadow: "0px 0px 10px 2px rgba(0,0,0,0.3)",
                         borderRadius: "3rem",
                       }}
                     >
-                      <div className="col-7"></div>
-                      <button
-                        className="col-3 float-end"
-                        onClick={closeModal}
-                        style={{
-                          padding: "8px 16px",
-                          fontSize: "14px",
-                          backgroundColor: "lightcoral",
-                          border: "none",
-                          borderRadius: "5px",
-                          cursor: "pointer",
-                          color: "white",
-                        }}
-                      >
-                        X
-                      </button>
+                      <div className="col-12 d-flex justify-content-end">
+                        <svg
+                          onClick={closeModal}
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="26"
+                          height="26"
+                          fill="white"
+                          className="bi bi-x-lg"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z" />
+                        </svg>
+                      </div>
 
                       <div className="search-avatar-pr col-12">
                         <img
@@ -225,16 +231,28 @@ export const ItemNavs = () => {
                         />
                       </div>
 
-                      <div className="col-12 d-flex" style={{flexDirection: "column", justifyContent: "center"}}>
-                          <h4 className="mt-3 text-center">{getMe.username}</h4>
-                          <h4 className="mt-3 text-center">{getMe.phone_number}</h4>
+                      <div
+                        className="col-12 d-flex"
+                        style={{
+                          flexDirection: "column",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <h4 className="mt-3 text-center">{getMe.username}</h4>
+                        <h4 className="mt-3 text-center">
+                          {getMe.phone_number}
+                        </h4>
                       </div>
                       <div className="col-12 mt-3 d-flex justify-content-center">
-
-                          <button className="edit-button" onClick={() => {
-                              openCurrentModal()
-                              closeModal()
-                          }} >Edit</button>
+                        <button
+                          className="edit-button"
+                          onClick={() => {
+                            openCurrentModal();
+                            closeModal();
+                          }}
+                        >
+                          Edit
+                        </button>
                       </div>
                     </div>
                   )}
@@ -260,8 +278,7 @@ export const ItemNavs = () => {
                 width: "300px",
                 borderRadius: "10rem",
                 height: "300px",
-                objectFit: "cover"
-
+                objectFit: "cover",
               }}
               src={
                 getMe.image !== null
@@ -273,13 +290,17 @@ export const ItemNavs = () => {
           </div>
           <div>
             <b className="mb-3">Username:</b>
-            <Input type="text" id="username" className="bg-secondary mt-3" defaultValue={getMe.username}/>
-
+            <Input
+              type="text"
+              id="username"
+              className="bg-secondary mt-3"
+              defaultValue={getMe.username}
+            />
           </div>
           <div>
             <b className="mb-3">Avatar:</b>
 
-            <Input type="file" id="avatar" className="bg-secondary mt-3"/>
+            <Input type="file" id="avatar" className="bg-secondary mt-3" />
           </div>
         </ModalBody>
         <ModalFooter className="modalFooter">
