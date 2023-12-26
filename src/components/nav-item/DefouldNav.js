@@ -12,6 +12,7 @@ import FooTer from "../footer/FooTer";
 export const ItemNavSearch = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentModal, setCurrentModal] = useState(false);
+  const [profileModal, setProfileModal] = useState(false);
   const [getMe, setGetme] = useState(false);
 
   useState(() => {
@@ -19,6 +20,8 @@ export const ItemNavSearch = () => {
   }, []);
 
   const openCurrentModal = () => setCurrentModal(!currentModal);
+  const openProfileModal = () => setProfileModal(!profileModal);
+
 
   const toggleNavbar = () => setIsOpen(!isOpen);
   const goSearch = () => byId("search2").click();
@@ -133,31 +136,58 @@ export const ItemNavSearch = () => {
                   isOpen ? "nav-links-mobile show_mobile" : "nav-links-mobile"
                 }
               >
-                <ul>
-                  <li>
-                    <form class="d-flex justify-content-center" role="search">
-                      <div className="w-75 d-flex justify-content-center">
-                        {/* {(a=b) ? "uechdh" : "wutfdu"} */}
-                        <button class="btn btn-success" type="submit">
-                          Search
-                        </button>
-                      </div>
-                    </form>
-                  </li>
-                  <li>
-                    <div>
-                      <Icon icon="ri:user-line" width="30" color="#fff" />
-                      <h5
+                <div className="d-flex mt-3 justify-content-center">
+                  <div className="search-avatar-mobil сol-6 ">
+                    <img
+                      className="img-fluid "
+                      style={{
+                        borderRadius: "10rem",
+                        width: "90px",
+                        height: "90px",
+                        objectFit: "cover",
+                      }}
+                      src={
+                        getMe.image !== null
+                          ? "https://lostfound.pythonanywhere.com/" +
+                            getMe.image
+                          : "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
+                      }
+                      alt=".."
+                    />
+                  </div>
+
+                  <form class="d-flex justify-content-center row col-6" role="search">
+                    <div className="w-75 d-flex justify-content-center col-12">
+                      {/* {(a=b) ? "uechdh" : "wutfdu"} */}
+                      <button class="btn btn-success" onClick={goSearch}>
+                    Search
+                  </button>
+                    </div>
+                    <div className="mt-3 text-center ">
+                      <Button
+                      color="primary"
                         onClick={() => {
-                          openCurrentModal();
+                          openProfileModal();
                           getme();
                         }}
+                        className="text-light"
                       >
-                        Profile
-                      </h5>
+                        <b>Profile</b>
+                      </Button>
                     </div>
-                  </li>
-                </ul>
+                    <div className="mt-3 text-center ">
+                      <Button
+                      color="danger"
+                        onClick={() => {
+                          logout();
+                        }}
+                        className="text-light"
+                      >
+                        <b>Log out</b>
+                      </Button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -333,6 +363,61 @@ export const ItemNavSearch = () => {
             onClick={editProfile}
           >
             Save
+          </Button>
+        </ModalFooter>
+      </Modal>
+
+
+      <Modal isOpen={profileModal} size="lg" scrollable>
+        <ModalHeader
+          toggle={openProfileModal}
+          className="text-light fs-4 fw-bolder"
+        >
+          Profile
+        </ModalHeader>
+        <ModalBody className="modal-body p-4 text-light modal-css row">
+          <div className="bot col-12 col-md-6">
+            <img
+              style={{
+                width: "300px",
+                borderRadius: "10rem",
+                height: "300px",
+                objectFit: "cover",
+              }}
+              src={
+                getMe.image !== null
+                  ? "https://lostfound.pythonanywhere.com/" + getMe.image
+                  : "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
+              }
+              alt=".."
+            />
+          </div>
+          <div className="col-12 col-md-6">
+            <div className="">
+              <b className="mb-3">Username:</b>
+              <h4>{getMe.username}</h4>
+            </div>
+            <div>
+              <b className="mb-3">Phone number:</b>
+
+              <h4>{getMe.phone_number}</h4>
+            </div>
+          </div>
+        </ModalBody>
+        <ModalFooter className="modalFooter">
+          <Button
+            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+            className="bg-danger"
+            onClick={openProfileModal}
+          >
+            Close
+          </Button>
+          <Button
+            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+            className="bg-success"
+            onClick={openCurrentModal}
+          >
+            Edit profile
           </Button>
         </ModalFooter>
       </Modal>
