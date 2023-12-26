@@ -22,13 +22,17 @@ const Customers = () => {
 
     // addMessage
     const addMessage = () => {
-        let addData = {message: byId("newsletterInfo").value}
-        axios.post(`${api}news-letter/`, addData)
+        let addData = {message: byId("newsletterInfo").value, user: 0}
+        axios.post(`${api}news-letter/`, addData, {
+            headers: {
+                Authorization: sessionStorage.getItem("jwtToken"),
+            }
+        })
             .then(() => {
                 toast.success("Fikr bildirganingiz uchun rahmat. Fikringiz albatta inobatga olinadi!")
                 byId("newsletterInfo").value = "";
             }).catch(() => {
-                toast.warning("Serverda muammo kuzatilmoqda, buning uchun sizdan uzr suraymiz!!!")
+                toast.warning("Siz hali ruyxatdan utmagansiz. Ruyxatdan utishingizni tavsiya qilamiz")
             })
     }
 
