@@ -53,6 +53,18 @@ header {
         object-fit: cover;
       }
     }
+    .search-avatar-pr {
+      display: flex;
+      margin-top: 1rem;
+      justify-content: center;
+      img {
+        width: 100px;
+        height: 100px;
+
+        border-radius: 5rem;
+        object-fit: cover;
+      }
+    }
   }
 
   .nav_search {
@@ -153,6 +165,32 @@ header {
     }
   }
 }
+
+
+.edit-button {
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: rgb(255, 223, 157);
+    background: linear-gradient(0deg, rgba(255, 223, 157, 1) 0%, rgba(255, 174, 0, 1) 50%, rgba(255, 223, 157, 1) 100%);
+    padding: .5rem 1rem;
+    border-radius: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: all .2s;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    &:active {
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      transform: scale(.9);
+    }
+
+    &:focus {
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+  }
 
 .burger-menu {
   font-size: 1.5em;
