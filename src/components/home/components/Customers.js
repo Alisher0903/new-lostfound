@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { Icon } from "@iconify/react";
@@ -8,6 +8,17 @@ import { api, byId } from '../../api/api';
 import { toast } from 'react-toastify';
 
 const Customers = () => {
+
+    const [newsletter, setNewsLetter] = useState([]);
+
+    useEffect(() => {
+
+    }, []);
+
+    // getNewsLetter
+    // function getNewsLetter() {
+    //     axios.get(`${api}`)
+    // }
 
     // addMessage
     const addMessage = () => {
