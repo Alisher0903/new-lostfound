@@ -452,7 +452,7 @@ function Itemspage() {
             <div floating className="booot10">
               <select class="form-control " id="color">
                 <option selected disabled>
-                  SubCategory
+                  Color
                 </option>
                 <option value="Black">
                   "Black"
@@ -501,7 +501,7 @@ function Itemspage() {
             <div floating className="booot11">
               <select class="form-control " id="secondary">
                 <option selected disabled>
-                  SubCategory
+                  Secondary color
                 </option>
                 <option value="Black">
                   "Black"
@@ -733,7 +733,7 @@ function Itemspage() {
               </Label>
               <select class="form-control " id="color">
                 <option selected disabled>
-                  SubCategory
+                  Color
                 </option>
                 <option value="Black">
                   "Black"
@@ -785,7 +785,7 @@ function Itemspage() {
               </Label>
               <select class="form-control " id="secondary">
                 <option selected disabled>
-                  SubCategory
+                  Secondary color
                 </option>
                 <option value="Black">
                   "Black"
