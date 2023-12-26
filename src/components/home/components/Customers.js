@@ -127,9 +127,9 @@ const Customers = () => {
                 <div className="newsletter_width">
                     <h2>Subscribe Newsletter</h2>
                     <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                        printer took a galley of type
+                        Stay connected with the latest stories of lost items being found, heartwarming
+                        reunions, and valuable tips on protecting your belongings. Join our community
+                        newsletter to get updates straight to your inbox.
                     </p>
                     <textarea
                         id="newsletterInfo"

@@ -37,9 +37,9 @@ function FooTer() {
                         </ul>
                     </Col>
                     <Col className="col-12 col-md-6 col-lg-4 ps-0 mt-5 mt-lg-0">
-                        <h5>Products</h5>
+                        <h5>Address</h5>
                         <ul>
-                            <li>Mustaqillik ko'chasi 50 uy , 2023</li>
+                            <li>Independence Street 50</li>
                             <li>+998-99-961-51-20</li>
                             <li>lostAndFound@support.com</li>
                         </ul>
@@ -47,7 +47,16 @@ function FooTer() {
                 </Row>
             </div>
             <hr />
-            <p className='text-center footer-bot'>{`${kun}.${oy}.${yil}`} by Javokhir Koziboyev</p>
+            <p className='text-center footer-bot'>
+                {/* <span>{`${kun}.${oy}.${yil}`} by</span> */}
+                 <img 
+                 src={require("../assets/logofooter.jpg")}
+                 style={{borderRadius: "50%"}}
+                  alt="img"
+                  width="50" 
+                  height="50" />
+                 <span className='ms-3'>IT City Academy</span>
+                </p>
         </>
     );
 

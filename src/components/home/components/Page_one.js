@@ -18,10 +18,8 @@ function PageOne() {
                         <span>and</span>
                         <span>Found</span>
                     </h2>
-                    <h3>Buyumlaringizni topishingiz yanada oson</h3>
-                    <p>
-                        Topgan buyumlarizni joylashtiring va yo’qotgan buyumlarizni biz bilan birga toping
-                    </p>
+                    <h3>It's easier to find your items</h3>
+                    <p>Don't lose hope. Go to the "Lost" section and create a post or search for found items. Detailed descriptions and timely messages increase the chances of a happy meeting.</p>
                 </Col>
                 <Col className="text-end pe-1 order-3 col-6 col-lg-4">
                     <div className="two__img">
@@ -43,9 +41,9 @@ function PageOne() {
                         <span>and</span>
                         <span>Found</span>
                     </h2>
-                    <h3>Buyumlaringizni topishingiz yanada oson</h3>
+                    <h3>It's easier to find your items</h3>
                     <p>
-                        Topgan buyumlarizni joylashtiring va yo’qotgan buyumlarizni biz bilan birga toping
+                        Don't lose hope. Go to the "Lost" section and create a post or search for found items. Detailed descriptions and timely messages increase the chances of a happy meeting.
                     </p>
                 </Col>
                 <Col className="text-end pe-1 order-3 col-6 col-lg-4">
@@ -68,9 +66,9 @@ function PageOne() {
                         <span>and</span>
                         <span>Found</span>
                     </h2>
-                    <h3>Buyumlaringizni topishingiz yanada oson</h3>
+                    <h3>It's easier to find your items</h3>
                     <p>
-                        Topgan buyumlarizni joylashtiring va yo’qotgan buyumlarizni biz bilan birga toping
+                        Don't lose hope. Go to the "Lost" section and create a post or search for found items. Detailed descriptions and timely messages increase the chances of a happy meeting.
                     </p>
                 </Col>
                 <Col className="text-end pe-1 order-3 col-6 col-lg-4">
@@ -93,9 +91,9 @@ function PageOne() {
                         <span>and</span>
                         <span>Found</span>
                     </h2>
-                    <h3>Buyumlaringizni topishingiz yanada oson</h3>
+                    <h3>It's easier to find your items</h3>
                     <p>
-                        Topgan buyumlarizni joylashtiring va yo’qotgan buyumlarizni biz bilan birga toping
+                        Don't lose hope. Go to the "Lost" section and create a post or search for found items. Detailed descriptions and timely messages increase the chances of a happy meeting.
                     </p>
                 </Col>
                 <Col className="text-end pe-1 order-3 col-6 col-lg-4">
