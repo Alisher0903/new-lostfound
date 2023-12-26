@@ -3,10 +3,11 @@ import "./defouldNav.scss";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { api, byId } from "../api/api";
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import axios from "axios";
 
 import { createPopper } from "@popperjs/core";
+import { toast } from "react-toastify";
 export const ItemNavs = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentModal, setCurrentModal] = useState(false);
@@ -71,6 +72,22 @@ export const ItemNavs = () => {
       })
       .catch(() => {});
   }
+
+  function editProfile() {
+    const addData = new FormData();
+    addData.append("username", byId("username").value);
+    addData.append("image", byId("avatar").files[0]);
+
+    axios.put(api + "profile/edit/", addData, {
+      headers: { Authorization: sessionStorage.getItem("jwtToken") },
+    })
+    .then(() => {
+      openCurrentModal();
+      toast.success("Profile successfully edit");
+      getme();
+    })
+    .catch(() => toast.error("Something is error"));
+   }
 
   return (
     <>
@@ -168,14 +185,14 @@ export const ItemNavs = () => {
                       ref={modalRef}
                       style={{
                         position: "absolute",
-                        top: "5rem",
+                        top: "4rem",
                         width: "20rem",
-                        right: "0rem",
+                        left: "-13rem",
                         background: "rgb(255,255,255)",
                         background: "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(34,129,195,1) 85%)",
                         padding: "20px",
                         boxShadow: "0px 0px 10px 2px rgba(0,0,0,0.3)",
-                        borderRadius: "5px",
+                        borderRadius: "3rem",
                       }}
                     >
                       <div className="col-7"></div>
@@ -249,12 +266,13 @@ export const ItemNavs = () => {
           </div>
           <div>
             <b className="mb-3">Username:</b>
-            <h4>{getMe.username}</h4>
+            <Input type="text" id="username" className="bg-secondary mt-3" defaultValue={getMe.username}/>
+
           </div>
           <div>
-            <b className="mb-3">Phone number:</b>
+            <b className="mb-3">Avatar:</b>
 
-            <h2>{getMe.phone_number}</h2>
+            <Input type="file" id="avatar" className="bg-secondary mt-3"/>
           </div>
         </ModalBody>
         <ModalFooter className="modalFooter">
@@ -264,6 +282,13 @@ export const ItemNavs = () => {
             onClick={openCurrentModal}
           >
             Close
+          </Button>
+          <Button
+            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+            className="bg-success"
+            onClick={editProfile}
+          >
+            Save
           </Button>
         </ModalFooter>
       </Modal>
