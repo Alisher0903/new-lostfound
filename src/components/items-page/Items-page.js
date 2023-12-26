@@ -248,12 +248,7 @@ function Itemspage() {
             </b>
           </h1>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in
+          Join our community today! Report a lost item or post a found one, and let's make reuniting as easy as possible. Together, we create a network of eyes and hands, ready to help each other in moments of need. Every post you make, every item you report, brings someone one step closer to relief and happiness. Don't let distance or time discourage you; our platform is here around the clock, bridging gaps and building bonds. Start your journey back to what you've lost or be the hero who brings joy with a simple click.
           </p>
         </div>
         <div className="items-tables">
