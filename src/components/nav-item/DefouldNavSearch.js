@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./defouldNav.scss";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
@@ -6,12 +6,12 @@ import { api, byId } from "../api/api";
 import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import axios from "axios";
 
-export const ItemNavSearch = () => {
+export const ItemNavs = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentModal, setCurrentModal] = useState(false);
   const [getMe, setGetme] = useState(false);
 
-  useState(() => {
+  useEffect(() => {
     getme()
   }, [])
 
@@ -41,10 +41,10 @@ export const ItemNavSearch = () => {
           <div className="mobile_nav p-3 d-md-none">
             <div className="mobilenav_box">
               <div className="nav_brand">
-                <Link to="/Lost and Found">
-                  <span className="text-light">Back</span>
+                <Link to="/">
+                  <span>Back</span>
                   <span className="text-light">to</span>
-                  <span className="text-light">profile</span>
+                  <span>profile</span>
                 </Link>
               </div>
               <div className="burger-menu" onClick={toggleNavbar}>
@@ -84,10 +84,10 @@ export const ItemNavSearch = () => {
           <div className="destop_nav d-none d-md-inline">
             <div className="container py-4">
               <div className="nav_brand2">
-                <Link to="/Lost and Found">
-                  <span className="text-light">Back</span>
+                <Link to="/">
+                  <span>Back</span>
                   <span className="text-light">to</span>
-                  <span className="text-light">profile</span>
+                  <span>home</span>
                 </Link>
               </div>
               <div className="nav_search">

@@ -51,11 +51,11 @@ $font-f: 'Inika', serif;
     color: white;
 
     img {
-        width: 100%;
+        width: 50%;
         height: 250px;
-        border-radius: 25px;
+        border-radius: 4rem;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        object-fit: contain;
+        object-fit: cover;
         object-position: center;
         transition: all .3s;
 
