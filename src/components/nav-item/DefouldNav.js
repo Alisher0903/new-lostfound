@@ -277,8 +277,15 @@ export const ItemNavSearch = () => {
           Profile
         </ModalHeader>
         <ModalBody className="modal-body p-4 text-light modal-css">
-          <div className="bot">
+          <div className="bot d-flex justify-content-center">
             <img
+              style={{
+                width: "300px",
+                borderRadius: "10rem",
+                height: "300px",
+                objectFit: "cover"
+
+              }}
               src={
                 getMe.image !== null
                   ? "https://lostfound.pythonanywhere.com/" + getMe.image

@@ -225,9 +225,9 @@ export const ItemNavs = () => {
                         />
                       </div>
 
-                      <div className="col-12 d-flex ms-3" style={{flexDirection: "column", justifyContent: "center"}}>
-                          <h4 className="mt-3 ms-5">{getMe.username}</h4>
-                          <h4 className="mt-3">{getMe.phone_number}</h4>
+                      <div className="col-12 d-flex" style={{flexDirection: "column", justifyContent: "center"}}>
+                          <h4 className="mt-3 text-center">{getMe.username}</h4>
+                          <h4 className="mt-3 text-center">{getMe.phone_number}</h4>
                       </div>
                       <div className="col-12 mt-3 d-flex justify-content-center">
 
@@ -256,6 +256,13 @@ export const ItemNavs = () => {
         <ModalBody className="modal-body p-4 text-light modal-css">
           <div className="bot">
             <img
+              style={{
+                width: "300px",
+                borderRadius: "10rem",
+                height: "300px",
+                objectFit: "cover"
+
+              }}
               src={
                 getMe.image !== null
                   ? "https://lostfound.pythonanywhere.com/" + getMe.image

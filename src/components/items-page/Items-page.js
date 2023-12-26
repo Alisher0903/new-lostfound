@@ -27,7 +27,7 @@ function Itemspage() {
   const [item, setItem] = useState([]);
   const [category, setCategory] = useState([]);
   const [infoID, setInfoId] = useState([]);
-  const [ setError] = useState([]);
+  const [setError] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
 
   const openAddModal = () => setAddModal(!addModal);
@@ -157,7 +157,6 @@ function Itemspage() {
       .catch(() => toast.error("Item qo'shishda xatolik yuz berdi!!!"));
   };
 
-
   const searchFound = () => {
     let searchItem = byId("searchid").value;
     if (!!searchItem)
@@ -204,42 +203,10 @@ function Itemspage() {
       });
   };
 
-  // const searchFound = () => {
-  //   let searchItem = byId("search").value;
-  //   if (!!searchItem)
-  //     axios
-  //       .get(api + "item/?search=" + searchItem)
-  //       .then((res) => setItem(res.data.filter((t) => t.type == "FOUND")));
-  //   else getAll();
-  // };
-
-  //   const getAbout = () => {
-  //     let infoId = sessionStorage.getItem("infoId");
-  //     axios.get(api + "item/", {
-  //         headers: { Authorization: sessionStorage.getItem('jwtToken') }
-  //     })
-  //         .then(res => {
-  //             setInfoId(res.data.find(i => i.id == infoId))
-  //         })
-  //         .catch(() => {
-
-  //         })
-  // }
-
-  const categoryFIlter = () => {
-    let categoryId = byId("categoryFilter").value;
-    axios
-      .get(api + "item/category/" + categoryId + "/", {
-        headers: { Authorization: sessionStorage.getItem("jwtToken") },
-      })
-      .then((res) => setItem(res.data.filter((c) => c.type == "FOUND")))
-      .catch(() => console.log("category filter ishlamadi!!!"));
-  };
-
   return (
     <div className="items-main">
       <Container>
-        <ItemNavs/>
+        <ItemNavs />
         <div className="items-body">
           <h1>
             <b>
@@ -660,13 +627,18 @@ function Itemspage() {
               <Label for="secondary" className="me-4 text-light">
                 Secondary color
               </Label>
-              <Input
-                id="secondary"
-                name="Secondarycolor"
-                placeholder="Secondary color"
-                type="text"
-                defaultValue={infoID.secondary_color}
-              />
+              <select class="form-control " id="secondary">
+                <option selected disabled>
+                  SubCategory
+                </option>
+
+                <option value="Black">
+                  "Black"
+                </option>
+                <option value="Blue">
+                  "Blue"
+                </option>
+              </select>
             </div>
 
             <textarea
@@ -807,7 +779,11 @@ function Itemspage() {
             <img src={infoID.image} alt="img" />
             <h2>
               <span>{infoID.name}</span>
-              <span style={{color: (infoID.type == "FOUND") ? "#0EF647" : "red"}}>{infoID.type}</span>
+              <span
+                style={{ color: infoID.type == "FOUND" ? "#0EF647" : "red" }}
+              >
+                {infoID.type}
+              </span>
             </h2>
             <Row className="lost_main-info1">
               <Col className="col-12 col-sm-6 col-md-4">category</Col>
@@ -834,10 +810,9 @@ function Itemspage() {
                 {infoID.date}
               </Col>
             </Row>
-            <p className="text-start " >
+            <p className="text-start ">
               <span className="me-3">Description:</span>
               <span className="w-50">{infoID.specific_description}</span>
-              
             </p>
           </div>
 
@@ -870,14 +845,8 @@ function Itemspage() {
         </ModalBody>
         <ModalFooter className="modalFooter"></ModalFooter>
       </Modal>
-
-
-      
-
     </div>
   );
 }
 
 export default Itemspage;
-
-
