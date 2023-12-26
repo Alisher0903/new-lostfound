@@ -22,8 +22,6 @@ export const Login = () => {
             })
             .catch((error) => {
                 toast.error("Xatolik yuz berdi ma'lumotlarni tekshirib qaytadan urinib ko'ring❓")
-                console.log(error);
-                console.log(addData);
             })
     }
 

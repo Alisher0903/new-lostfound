@@ -78,7 +78,6 @@ export const ItemNavs = () => {
       })
       .then((res) => {
         setGetme(res.data);
-        console.log(res.data);
       })
       .catch(() => {});
   }

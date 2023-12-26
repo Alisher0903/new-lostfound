@@ -67,7 +67,6 @@ function Itemspage() {
       })
       .then((res) => {
         setItem(res.data.filter((t) => t.type == "FOUND"));
-        // console.log(res.data.filter((t) => t.type == "Lost"));
       })
       .catch(() => console.log("Found kelmadi!!!"));
   };
@@ -81,7 +80,6 @@ function Itemspage() {
       })
       .then((res) => {
         setItem(res.data.filter((t) => t.type == "LOST"));
-        // console.log(res.data.filter((t) => t.type == "Lost"));
       })
       .catch(() => console.log("lost kelmadi!!!"));
   };

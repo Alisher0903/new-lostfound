@@ -33,7 +33,6 @@ export const ItemNavSearch = () => {
       })
       .then((res) => {
         setGetme(res.data);
-        console.log(res.data);
       })
       .catch(() => {});
   }
@@ -106,7 +105,6 @@ export const ItemNavSearch = () => {
       })
       .then((res) => {
         setGetme(res.data);
-        console.log(res.data);
       })
       .catch(() => {});
   }
