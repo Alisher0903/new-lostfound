@@ -10,12 +10,19 @@ export const DefouldNav = () => {
 
     const toggleNavbar = () => setIsOpen(!isOpen);
 
-    const goLoginPage = () => byId("login").click();
+    // const goLoginPage = () => ;
     const goRegisterPage = () => byId("register").click();
     const goSearch = () => byId("search").click();
 
+    const sharliLogin = () => {
+        let jwtToken = sessionStorage.getItem("jwtToken");
+        if (!!jwtToken) byId("goHomePage").click()
+        else byId("login").click()
+    }
+
     return (
         <>
+            <Link id="goHomePage" to="/Lost and Found"></Link>
             <Link id='login' to="/login"></Link>
             <Link id='register' to="/register"></Link>
             <Link id='search' to="/search"></Link>
@@ -38,10 +45,10 @@ export const DefouldNav = () => {
                             <div className={isOpen ? 'nav-links-mobile show_mobile' : 'nav-links-mobile'}>
                                 <ul>
                                     <li>
-                                        <Icon onClick={goSearch} icon="ri:search-line" width="30" style={{margin: "0"}} />
+                                        <Icon onClick={goSearch} icon="ri:search-line" width="30" style={{ margin: "0" }} />
                                     </li>
                                     <li>
-                                        <h4 onClick={goLoginPage}>Sign in</h4>
+                                        <h4 onClick={sharliLogin}>Sign in</h4>
                                     </li>
                                     <li>
                                         <h4 onClick={goRegisterPage}>Sign up</h4>
@@ -61,7 +68,7 @@ export const DefouldNav = () => {
                             </div>
                             <div className='nav_search'>
                                 <Icon onClick={goSearch} icon="ri:search-line" width="30" />
-                                <h4 onClick={goLoginPage}>Sign in</h4>
+                                <h4 onClick={sharliLogin}>Sign in</h4>
                                 <h4 onClick={goRegisterPage}>Sign up</h4>
                             </div>
                         </div>
