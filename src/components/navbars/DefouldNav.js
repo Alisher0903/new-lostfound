@@ -45,13 +45,19 @@ export const DefouldNav = () => {
                             <div className={isOpen ? 'nav-links-mobile show_mobile' : 'nav-links-mobile'}>
                                 <ul>
                                     <li>
-                                        <Icon onClick={goSearch} icon="ri:search-line" width="30" style={{ margin: "0" }} />
+                                        <button className='mt-4'>
+                                            <h4 onClick={sharliLogin}>Sign in</h4>
+                                        </button>
                                     </li>
                                     <li>
-                                        <h4 onClick={sharliLogin}>Sign in</h4>
+                                        <button>
+                                            <h4 onClick={goRegisterPage}>Sign up</h4>
+                                        </button>
                                     </li>
                                     <li>
-                                        <h4 onClick={goRegisterPage}>Sign up</h4>
+                                        <button className='p-0 px-4 mt-2'>
+                                            <Icon onClick={goSearch} icon="ri:search-line" width="30" />
+                                        </button>
                                     </li>
                                 </ul>
                             </div>

@@ -133,6 +133,32 @@ header {
             line-height: 70px;
         }
 
+        button {
+            border: none;
+            padding: .5rem 1.5rem .35rem 1.5rem;
+            border-radius: 20px;
+            transition: all 0.2s;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            background: rgb(104, 255, 124);
+            background: linear-gradient(0deg,
+                    rgba(104, 255, 124, 0.6027661064425771) 0%,
+                    rgba(0, 255, 59, 1) 50%,
+                    rgba(104, 255, 124, 0.5999649859943977) 100%);
+
+            &:hover {
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            }
+
+            &:active {
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                transform: scale(0.9);
+            }
+
+            &:focus {
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            }
+        }
+
         h4 {
             color: #000000;
             font-weight: 700;
@@ -141,7 +167,6 @@ header {
             transition: all .3s;
 
             &:hover {
-                cursor: pointer;
                 color: #8a8c21;
             }
         }

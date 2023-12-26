@@ -19,6 +19,7 @@ import { api, byId } from "../api/api";
 import { toast } from "react-toastify";
 import { ItemNavs } from "../nav-item/DefouldNavSearch";
 import FooTer from "../footer/FooTer";
+import { Icon } from "@iconify/react";
 
 function Itemspage() {
   const [addModal, setAddModal] = useState(false);
@@ -28,7 +29,7 @@ function Itemspage() {
   const [item, setItem] = useState([]);
   const [category, setCategory] = useState([]);
   const [infoID, setInfoId] = useState([]);
-  const [ setError] = useState([]);
+  const [setError] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
 
   const openAddModal = () => setAddModal(!addModal);
@@ -238,7 +239,7 @@ function Itemspage() {
   return (
     <div className="items-main">
       <Container>
-        <ItemNavs/>
+        <ItemNavs />
         <div className="items-body">
           <h1>
             <b>
@@ -248,21 +249,18 @@ function Itemspage() {
             </b>
           </h1>
           <p>
-          Join our community today! Report a lost item or post a found one, and let's make reuniting as easy as possible. Together, we create a network of eyes and hands, ready to help each other in moments of need. Every post you make, every item you report, brings someone one step closer to relief and happiness. Don't let distance or time discourage you; our platform is here around the clock, bridging gaps and building bonds. Start your journey back to what you've lost or be the hero who brings joy with a simple click.
+            Join our community today! Report a lost item or post a found one, and let's make reuniting as easy as possible. Together, we create a network of eyes and hands, ready to help each other in moments of need. Every post you make, every item you report, brings someone one step closer to relief and happiness. Don't let distance or time discourage you; our platform is here around the clock, bridging gaps and building bonds. Start your journey back to what you've lost or be the hero who brings joy with a simple click.
           </p>
         </div>
         <div className="items-tables">
-          <div className="items-top row">
-            <div className="col-12 col-lg-4 category_filter-btnn">
-              <button
-                className="btn btn-primary text-center"
-                style={{ padding: "0.7rem 2rem" }}
-                onClick={openAddModal}
-              >
-                Add+
+          <div className="items-top">
+            <div className="category_filter-btnn">
+              <button onClick={openAddModal}>
+                <Icon icon="lets-icons:add-duotone" className="me-2" width="30" height="30" />
+                Add
               </button>
-            </div>
-            <div className="col-12 col-lg-8 category_filter-btn">
+            {/* </div>
+            <div className="category_filter-btn"> */}
               <button
                 onClick={() => {
                   getAll();
@@ -279,7 +277,8 @@ function Itemspage() {
               >
                 Lost items
               </button>
-              <button
+              <button 
+              className="mt-4 mt-md-0"
                 onClick={() => {
                   getFound();
                   // byId("categoryFilter").value = "Category filter";
@@ -311,55 +310,55 @@ function Itemspage() {
                   //   <h4 className="text-center text-light">You have not item</h4>
                   // ) : (
                   item.length &&
-                    item.map((item, i) => (
-                      <tr className="text-center align-middle" key={i}>
-                        <td scope="row">{i + 1}</td>
-                        <td className="table-row img-row">
-                          <img
-                            src={item.image}
-                            className="table-img"
-                            alt="..."
-                          />
-                        </td>
-                        <td>{item.name}</td>
-                        <td>{item.date}</td>
-                        <td>{item.contact_info}</td>
-                        <td>{item.type}</td>
-                        <td>
-                          <button
-                            className="btn btn-primary w-100"
-                            onClick={() => {
-                              openInfoModal();
-                              setInfoId(item);
-                            }}
-                          >
-                            Info
-                          </button>
-                        </td>
-                        <td>
-                          <button
-                            className="btn btn-warning w-100"
-                            onClick={() => {
-                              openEditModal();
-                              setInfoId(item);
-                            }}
-                          >
-                            Edit
-                          </button>
-                        </td>
-                        <td>
-                          <button
-                            className="btn btn-danger w-100"
-                            onClick={() => {
-                              openDeleteModal();
-                              setInfoId(item);
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    ))
+                  item.map((item, i) => (
+                    <tr className="text-center align-middle" key={i}>
+                      <td scope="row">{i + 1}</td>
+                      <td className="table-row img-row">
+                        <img
+                          src={item.image}
+                          className="table-img"
+                          alt="..."
+                        />
+                      </td>
+                      <td>{item.name}</td>
+                      <td>{item.date}</td>
+                      <td>{item.contact_info}</td>
+                      <td>{item.type}</td>
+                      <td>
+                        <button
+                          className="btn btn-primary w-100"
+                          onClick={() => {
+                            openInfoModal();
+                            setInfoId(item);
+                          }}
+                        >
+                          Info
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className="btn btn-warning w-100"
+                          onClick={() => {
+                            openEditModal();
+                            setInfoId(item);
+                          }}
+                        >
+                          Edit
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className="btn btn-danger w-100"
+                          onClick={() => {
+                            openDeleteModal();
+                            setInfoId(item);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))
                   // )
                 }
               </tbody>
@@ -964,7 +963,7 @@ function Itemspage() {
             <img src={infoID.image} alt="img" />
             <h2>
               <span>{infoID.name}</span>
-              <span style={{color: (infoID.type == "FOUND") ? "#0EF647" : "red"}}>{infoID.type}</span>
+              <span style={{ color: (infoID.type == "FOUND") ? "#0EF647" : "red" }}>{infoID.type}</span>
             </h2>
             <Row className="lost_main-info1">
               <Col className="col-12 col-sm-6 col-md-4">category</Col>
@@ -994,7 +993,7 @@ function Itemspage() {
             <p className="text-start " >
               <span className="me-3">Description:</span>
               <span className="w-50">{infoID.specific_description}</span>
-              
+
             </p>
           </div>
 
@@ -1029,8 +1028,8 @@ function Itemspage() {
       </Modal>
 
 
-      <hr/>
-      <FooTer/>
+      <hr />
+      <FooTer />
 
     </div>
   );
