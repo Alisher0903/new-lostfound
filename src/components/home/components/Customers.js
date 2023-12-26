@@ -6,23 +6,33 @@ import { Col, Row } from 'reactstrap';
 import axios from 'axios';
 import { api, byId } from '../../api/api';
 import { toast } from 'react-toastify';
+import defImg from "../../assets/newsletter.jpg";
 
 const Customers = () => {
 
     const [newsletter, setNewsLetter] = useState([]);
 
     useEffect(() => {
-
+        getNewsLetter();
     }, []);
 
     // getNewsLetter
-    // function getNewsLetter() {
-    //     axios.get(`${api}`)
-    // }
+    function getNewsLetter() {
+        axios.get(`${api}news-letter/`, {
+            headers: {
+                Authorization: sessionStorage.getItem("jwtToken"),
+            }
+        })
+            .then(res => setNewsLetter(res.data))
+            .catch(() => console.log("newsletter kelmadi!!!"))
+    }
 
     // addMessage
     const addMessage = () => {
-        let addData = {message: byId("newsletterInfo").value, user: 0}
+        let addData = {
+            comment: byId("newsletterInfo").value,
+            user: 1
+        }
         axios.post(`${api}news-letter/`, addData, {
             headers: {
                 Authorization: sessionStorage.getItem("jwtToken"),
@@ -31,8 +41,9 @@ const Customers = () => {
             .then(() => {
                 toast.success("Fikr bildirganingiz uchun rahmat. Fikringiz albatta inobatga olinadi!")
                 byId("newsletterInfo").value = "";
+                getNewsLetter();
             }).catch(() => {
-                toast.warning("Siz hali ruyxatdan utmagansiz. Ruyxatdan utishingizni tavsiya qilamiz")
+                toast.warning("Ruyxatdan utishingizni tavsiya qilamiz!!!")
             })
     }
 
@@ -53,165 +64,6 @@ const Customers = () => {
         900: { items: 2 },
     };
 
-    const data = [
-        <div key={1}>
-            <Row className="w-100 customers__row">
-                <Col className="col-12 col-sm-6 col-lg-4 customer__img">
-                    <div>
-                        <img src={require("../../assets/homeImages/customers.png")} alt="img" />
-                    </div>
-                </Col>
-                <Col className="col-12 col-lg-8 customer__info">
-                    <h2>Javokhir Koziboyev</h2>
-                    <p>
-                        <span>Customers</span>
-                        <span>
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                        </span>
-                    </p>
-                </Col>
-            </Row>
-            <p className='customers__par'>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the
-            </p>
-        </div>,
-        <div key={2}>
-            <Row className="w-100 customers__row">
-                <Col className="col-12 col-sm-6 col-lg-4 customer__img">
-                    <div>
-                        <img src={require("../../assets/homeImages/customers.png")} alt="img" />
-                    </div>
-                </Col>
-                <Col className="col-12 col-lg-8 customer__info">
-                    <h2>Javokhir Koziboyev</h2>
-                    <p>
-                        <span>Customers</span>
-                        <span>
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                        </span>
-                    </p>
-                </Col>
-            </Row>
-            <p className='customers__par'>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the
-            </p>
-        </div>,
-        <div key={3}>
-            <Row className="w-100 customers__row">
-                <Col className="col-12 col-sm-6 col-lg-4 customer__img">
-                    <div>
-                        <img src={require("../../assets/homeImages/customers.png")} alt="img" />
-                    </div>
-                </Col>
-                <Col className="col-12 col-lg-8 customer__info">
-                    <h2>Javokhir Koziboyev</h2>
-                    <p>
-                        <span>Customers</span>
-                        <span>
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-line" color="black" />
-                            <Icon icon="ri:star-line" color="black" />
-                        </span>
-                    </p>
-                </Col>
-            </Row>
-            <p className='customers__par'>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the
-            </p>
-        </div>,
-        <div key={4}>
-            <Row className="w-100 customers__row">
-                <Col className="col-12 col-sm-6 col-lg-4 customer__img">
-                    <div>
-                        <img src={require("../../assets/homeImages/customers.png")} alt="img" />
-                    </div>
-                </Col>
-                <Col className="col-12 col-lg-8 customer__info">
-                    <h2>Javokhir Koziboyev</h2>
-                    <p>
-                        <span>Customers</span>
-                        <span>
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                        </span>
-                    </p>
-                </Col>
-            </Row>
-            <p className='customers__par'>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the
-            </p>
-        </div>,
-        <div key={5}>
-            <Row className="w-100 customers__row">
-                <Col className="col-12 col-sm-6 col-lg-4 customer__img">
-                    <div>
-                        <img src={require("../../assets/homeImages/customers.png")} alt="img" />
-                    </div>
-                </Col>
-                <Col className="col-12 col-lg-8 customer__info">
-                    <h2>Javokhir Koziboyev</h2>
-                    <p>
-                        <span>Customers</span>
-                        <span>
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-line" color="black" />
-                        </span>
-                    </p>
-                </Col>
-            </Row>
-            <p className='customers__par'>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the
-            </p>
-        </div>,
-        <div key={6}>
-            <Row className="w-100 customers__row">
-                <Col className="col-12 col-sm-6 col-lg-4 customer__img">
-                    <div>
-                        <img src={require("../../assets/homeImages/customers.png")} alt="img" />
-                    </div>
-                </Col>
-                <Col className="col-12 col-lg-8 customer__info">
-                    <h2>Javokhir Koziboyev</h2>
-                    <p>
-                        <span>Customers</span>
-                        <span>
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                            <Icon icon="ri:star-fill" color="yellow" />
-                        </span>
-                    </p>
-                </Col>
-            </Row>
-            <p className='customers__par'>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the
-            </p>
-        </div>,
-    ];
-
     return (
         <>
             <h1 className='customer-heading'>What Our Customers Say</h1>
@@ -221,11 +73,38 @@ const Customers = () => {
                 </button>
                 <div className='alice-carousel'>
                     <AliceCarousel
-                        items={data.map((item, i) => (
+                        items={newsletter.map((item, i) =>
                             <div key={i} className="p-4 customers_items">
-                                {item}
+                                <div key={1}>
+                                    <Row className="w-100 customers__row">
+                                        <Col className="col-12 col-sm-6 col-lg-4 customer__img">
+                                            <div>
+                                                <img
+                                                    src={item.user_image !== "/media/1"
+                                                        ? api + item.user_image
+                                                        : defImg
+                                                    }
+                                                    alt="img" />
+                                            </div>
+                                        </Col>
+                                        <Col className="col-12 col-lg-8 customer__info">
+                                            <h2>{item.user_username}</h2>
+                                            <p>
+                                                <span>Customers</span>
+                                                <span>
+                                                    <Icon icon="ri:star-fill" color="yellow" />
+                                                    <Icon icon="ri:star-fill" color="yellow" />
+                                                    <Icon icon="ri:star-fill" color="yellow" />
+                                                    <Icon icon="ri:star-fill" color="yellow" />
+                                                    <Icon icon="ri:star-fill" color="yellow" />
+                                                </span>
+                                            </p>
+                                        </Col>
+                                    </Row>
+                                    <p className='customers__par'>{item.comment}</p>
+                                </div>
                             </div>
-                        ))}
+                        )}
                         responsive={responsive}
                         autoPlay
                         autoPlayInterval={5000}
