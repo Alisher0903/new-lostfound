@@ -416,21 +416,104 @@ function Itemspage() {
               <Label for="brand">Brand</Label>
             </FormGroup>
 
-            <FormGroup floating className="booot10">
-              <Input id="color" name="Color" placeholder="Color" type="text" />
-              <Label for="color">Color</Label>
-            </FormGroup>
-            <FormGroup floating className="booot11">
-              <Input
-                id="secondary"
-                name="Secondarycolor"
-                placeholder="Secondary color"
-                type="text"
-              />
-              <Label for="secondary" className="me-4">
-                Secondary color
-              </Label>
-            </FormGroup>
+            <div floating className="booot10">
+            <select class="form-control " id="color">
+                <option selected disabled>
+                  Color
+                </option>
+                <option value="Black">
+                  "Black"
+                </option>
+                <option value="Blue">
+                  "Blue"
+                </option>
+                <option value="Brown - Tan">
+                  "Brown - Tan"
+                </option>
+                <option value="Gold">
+                  "Gold"
+                </option>
+                <option value="Gray">
+                  "Gray"
+                </option>
+                <option value="Maroon  ">
+                  "Maroon"
+                </option>
+                <option value="Orange">
+                  "Orange"
+                </option>
+                <option value="Peach">
+                  "Peach"
+                </option>
+                <option value="Pink">
+                  "Pink"
+                </option>
+                <option value="Platinum">
+                  "Platinum"
+                </option>
+                <option value="Red">
+                  "Red"
+                </option>
+                <option value="Silver">
+                  "Silver"
+                </option>
+                <option value="White">
+                  "White"
+                </option>
+                <option value="Yellow">
+                  "Yellow"
+                </option>
+              </select>
+            </div>
+            <div floating className="booot11">
+            <select class="form-control " id="secondary">
+                <option selected disabled>
+                  Secondary color 
+                </option>
+                <option value="Black">
+                  "Black"
+                </option>
+                <option value="Blue">
+                  "Blue"
+                </option>
+                <option value="Brown - Tan">
+                  "Brown - Tan"
+                </option>
+                <option value="Gold">
+                  "Gold"
+                </option>
+                <option value="Gray">
+                  "Gray"
+                </option>
+                <option value="Maroon  ">
+                  "Maroon"
+                </option>
+                <option value="Orange">
+                  "Orange"
+                </option>
+                <option value="Peach">
+                  "Peach"
+                </option>
+                <option value="Pink">
+                  "Pink"
+                </option>
+                <option value="Platinum">
+                  "Platinum"
+                </option>
+                <option value="Red">
+                  "Red"
+                </option>
+                <option value="Silver">
+                  "Silver"
+                </option>
+                <option value="White">
+                  "White"
+                </option>
+                <option value="Yellow">
+                  "Yellow"
+                </option>
+              </select>
+            </div>
 
             <textarea
               id="description"
@@ -615,13 +698,53 @@ function Itemspage() {
               <Label for="color" className="text-light">
                 Color
               </Label>
-              <Input
-                id="color"
-                name="Color"
-                placeholder="Color"
-                type="text"
-                defaultValue={infoID.primary_color}
-              />
+              <select class="form-control " id="color">
+                <option selected disabled>
+                  SubCategory
+                </option>
+                <option value="Black">
+                  "Black"
+                </option>
+                <option value="Blue">
+                  "Blue"
+                </option>
+                <option value="Brown - Tan">
+                  "Brown - Tan"
+                </option>
+                <option value="Gold">
+                  "Gold"
+                </option>
+                <option value="Gray">
+                  "Gray"
+                </option>
+                <option value="Maroon  ">
+                  "Maroon"
+                </option>
+                <option value="Orange">
+                  "Orange"
+                </option>
+                <option value="Peach">
+                  "Peach"
+                </option>
+                <option value="Pink">
+                  "Pink"
+                </option>
+                <option value="Platinum">
+                  "Platinum"
+                </option>
+                <option value="Red">
+                  "Red"
+                </option>
+                <option value="Silver">
+                  "Silver"
+                </option>
+                <option value="White">
+                  "White"
+                </option>
+                <option value="Yellow">
+                  "Yellow"
+                </option>
+              </select>
             </div>
             <div className="booot11 mb-4">
               <Label for="secondary" className="me-4 text-light">
@@ -631,12 +754,47 @@ function Itemspage() {
                 <option selected disabled>
                   SubCategory
                 </option>
-
                 <option value="Black">
                   "Black"
                 </option>
                 <option value="Blue">
                   "Blue"
+                </option>
+                <option value="Brown - Tan">
+                  "Brown - Tan"
+                </option>
+                <option value="Gold">
+                  "Gold"
+                </option>
+                <option value="Gray">
+                  "Gray"
+                </option>
+                <option value="Maroon  ">
+                  "Maroon"
+                </option>
+                <option value="Orange">
+                  "Orange"
+                </option>
+                <option value="Peach">
+                  "Peach"
+                </option>
+                <option value="Pink">
+                  "Pink"
+                </option>
+                <option value="Platinum">
+                  "Platinum"
+                </option>
+                <option value="Red">
+                  "Red"
+                </option>
+                <option value="Silver">
+                  "Silver"
+                </option>
+                <option value="White">
+                  "White"
+                </option>
+                <option value="Yellow">
+                  "Yellow"
                 </option>
               </select>
             </div>

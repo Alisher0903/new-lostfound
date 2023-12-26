@@ -102,10 +102,15 @@ export const ItemNavSearch = () => {
       .catch(() => {});
   }
 
+  const logout = () => {
+    document.getElementById("log").click()
+    sessionStorage.clear()
+  }
   return (
     <>
       <header>
         <Link id="search2" to="/search my profile"></Link>
+        <Link id="log" to="/"></Link>
 
         <nav className="fixed-top">
           <div className="mobile_nav p-3 d-md-none">
@@ -246,7 +251,7 @@ export const ItemNavSearch = () => {
                         <h4 className="mt-3 ms-5">{getMe.username}</h4>
                         <h4 className="mt-3">{getMe.phone_number}</h4>
                       </div>
-                      <div className="col-12 mt-3 d-flex justify-content-center">
+                      <div className="col-6 mt-3 d-flex justify-content-center">
                         <button
                           className="edit-button"
                           onClick={() => {
@@ -255,6 +260,16 @@ export const ItemNavSearch = () => {
                           }}
                         >
                           Edit
+                        </button>
+                      </div>
+                      <div className="col-6 mt-3 d-flex justify-content-center">
+                        <button
+                          className="log-button "
+                          onClick={() => {
+                            logout();
+                          }}
+                        >
+                          Log out
                         </button>
                       </div>
                     </div>

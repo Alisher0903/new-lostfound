@@ -192,6 +192,31 @@ header {
     }
   }
 
+  .log-button {
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: rgb(255, 157, 157);
+    background: linear-gradient(0deg, rgb(255, 157, 157) 0%, rgb(255, 0, 0) 50%, rgb(255, 157, 157) 100%);
+    padding: .5rem 1rem;
+    border-radius: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: all .2s;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    &:active {
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      transform: scale(.9);
+    }
+
+    &:focus {
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+  }
+
 .burger-menu {
   font-size: 1.5em;
   cursor: pointer;
