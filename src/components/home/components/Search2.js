@@ -11,7 +11,6 @@ function Search2() {
 
     const [item, setItem] = useState([]);
     const [category, setCategory] = useState([]);
-    const [search, setSearch] = useState([]);
 
     useEffect(() => {
         getItem();

@@ -27,7 +27,7 @@ function Itemspage() {
   const [item, setItem] = useState([]);
   const [category, setCategory] = useState([]);
   const [infoID, setInfoId] = useState([]);
-  const [error, setError] = useState([]);
+  const [ setError] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
 
   const openAddModal = () => setAddModal(!addModal);

@@ -3,7 +3,7 @@ import "./defouldNav.scss";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { api, byId } from "../api/api";
-import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import axios from "axios";
 
 export const ItemNavs = () => {
