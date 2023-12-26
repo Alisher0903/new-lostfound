@@ -18,6 +18,7 @@ import axios from "axios";
 import { api, byId } from "../api/api";
 import { toast } from "react-toastify";
 import { ItemNavs } from "../nav-item/DefouldNavSearch";
+import FooTer from "../footer/FooTer";
 
 function Itemspage() {
   const [addModal, setAddModal] = useState(false);
@@ -204,86 +205,87 @@ function Itemspage() {
   };
 
   return (
-    <div className="items-main">
-      <Container>
-        <ItemNavs />
-        <div className="items-body">
-          <h1>
-            <b>
-              <span>Lost </span>
-              <span>and </span>
-              <span>Found</span>
-            </b>
-          </h1>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in
-          </p>
-        </div>
-        <div className="items-tables">
-          <div className="items-top row">
-            <div className="col-12 col-lg-4 category_filter-btnn">
-              <button
-                className="btn btn-primary text-center"
-                style={{ padding: "0.7rem 2rem" }}
-                onClick={openAddModal}
-              >
-                Add+
-              </button>
-            </div>
-            <div className="col-12 col-lg-8 category_filter-btn">
-              <button
-                onClick={() => {
-                  getAll();
-                  // byId("categoryFilter").value = "Category filter";
-                }}
-              >
-                All items
-              </button>
-              <button
-                onClick={() => {
-                  getLost();
-                  // byId("categoryFilter").value = "Category filter";
-                }}
-              >
-                Lost items
-              </button>
-              <button
-                onClick={() => {
-                  getFound();
-                  // byId("categoryFilter").value = "Category filter";
-                }}
-              >
-                Found items
-              </button>
-            </div>
+    <>
+      <div className="items-main pb-5">
+        <Container>
+          <ItemNavs />
+          <div className="items-body">
+            <h1>
+              <b>
+                <span>Lost </span>
+                <span>and </span>
+                <span>Found</span>
+              </b>
+            </h1>
+            <p>
+              Join our community today! Report a lost item or post a found one, and let's make reuniting
+              as easy as possible. Together, we create a network of eyes and hands, ready to help each
+              other in moments of need. Every post you make, every item you report, brings someone one
+              step closer to relief and happiness. Don't let distance or time discourage you; our platform
+              is here around the clock, bridging gaps and building bonds. Start your journey back to what
+              you've lost or be the hero who brings joy with a simple click.
+            </p>
           </div>
-          <div className="items-bottom mb-5">
-            <Table striped hover responsive>
-              <thead>
-                <tr className="text-center align-middle top-tr">
-                  <th scope="col">#</th>
-                  <th scope="col">Image</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Phone number</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Info</th>
-                  <th scope="col" colSpan="2">
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  // error ? (
-                  //   <h4 className="text-center text-light">You have not item</h4>
-                  // ) : (
-                  item.length &&
+          <div className="items-tables">
+            <div className="items-top row">
+              <div className="col-12 col-lg-4 category_filter-btnn">
+                <button
+                  className="btn btn-primary text-center"
+                  style={{ padding: "0.7rem 2rem" }}
+                  onClick={openAddModal}
+                >
+                  Add+
+                </button>
+              </div>
+              <div className="col-12 col-lg-8 category_filter-btn">
+                <button
+                  onClick={() => {
+                    getAll();
+                    // byId("categoryFilter").value = "Category filter";
+                  }}
+                >
+                  All items
+                </button>
+                <button
+                  onClick={() => {
+                    getLost();
+                    // byId("categoryFilter").value = "Category filter";
+                  }}
+                >
+                  Lost items
+                </button>
+                <button
+                  onClick={() => {
+                    getFound();
+                    // byId("categoryFilter").value = "Category filter";
+                  }}
+                >
+                  Found items
+                </button>
+              </div>
+            </div>
+            <div className="items-bottom mb-5">
+              <Table striped hover responsive>
+                <thead>
+                  <tr className="text-center align-middle top-tr">
+                    <th scope="col">#</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Phone number</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Info</th>
+                    <th scope="col" colSpan="2">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    // error ? (
+                    //   <h4 className="text-center text-light">You have not item</h4>
+                    // ) : (
+                    item.length &&
                     item.map((item, i) => (
                       <tr className="text-center align-middle" key={i}>
                         <td scope="row">{i + 1}</td>
@@ -333,519 +335,522 @@ function Itemspage() {
                         </td>
                       </tr>
                     ))
-                  // )
-                }
-              </tbody>
-            </Table>
+                    // )
+                  }
+                </tbody>
+              </Table>
+            </div>
           </div>
-        </div>
-      </Container>
+        </Container>
 
-      {/* add modal */}
-      <Modal isOpen={addModal} centered fullscreen scrollable>
-        <ModalHeader
-          toggle={openAddModal}
-          className="text-light fs-4 fw-bolder"
-        >
-          Add Item
-        </ModalHeader>
-        <ModalBody className="modal-body p-4 ">
-          <div className="addInfo">Item information</div>
-          <div className="items-add">
-            <div className="booot2">
-              <select class="form-control" id="type">
-                <option selected disabled>
-                  TYPE
-                </option>
-                <option value="LOST">LOST</option>
-                <option value="FOUND">FOUND</option>
-              </select>
-            </div>
+        {/* add modal */}
+        <Modal isOpen={addModal} centered fullscreen scrollable>
+          <ModalHeader
+            toggle={openAddModal}
+            className="text-light fs-4 fw-bolder"
+          >
+            Add Item
+          </ModalHeader>
+          <ModalBody className="modal-body p-4 ">
+            <div className="addInfo">Item information</div>
+            <div className="items-add">
+              <div className="booot2">
+                <select class="form-control" id="type">
+                  <option selected disabled>
+                    TYPE
+                  </option>
+                  <option value="LOST">LOST</option>
+                  <option value="FOUND">FOUND</option>
+                </select>
+              </div>
 
-            <FormGroup floating className="booot6">
-              <Input id="date" name="Date" placeholder="Date" type="Date" />
-              <Label for="date">Date</Label>
-            </FormGroup>
+              <FormGroup floating className="booot6">
+                <Input id="date" name="Date" placeholder="Date" type="Date" />
+                <Label for="date">Date</Label>
+              </FormGroup>
 
-            <FormGroup floating className="booot7">
-              <Input
-                id="contact"
-                name="number"
-                placeholder="PhoneNumber"
+              <FormGroup floating className="booot7">
+                <Input
+                  id="contact"
+                  name="number"
+                  placeholder="PhoneNumber"
+                  type="text"
+                />
+                <Label for="contact">Phone number</Label>
+              </FormGroup>
+
+              <div className="booot4">
+                <select class="form-control" id="category">
+                  <option selected disabled>
+                    Category
+                  </option>
+                  {category &&
+                    category.map((item, i) => (
+                      <option key={i} id={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <div className="booot5">
+                <select class="form-control " id="subcategory">
+                  <option selected disabled>
+                    SubCategory
+                  </option>
+                  {subCategory &&
+                    subCategory.map((item, i) => (
+                      <option key={i} id={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                </select>
+              </div>
+
+              <div className="booot3">
+                <Input type="file" className="form-control " id="file" />
+              </div>
+              <FormGroup floating className="booot">
+                <Input id="name" name="Name" placeholder="Name" type="text" />
+                <Label for="name">Name</Label>
+              </FormGroup>
+              <FormGroup floating className=" booot1  ">
+                <Input id="brand" name="Brand" placeholder="Brand" type="text" />
+                <Label for="brand">Brand</Label>
+              </FormGroup>
+
+              <FormGroup floating className="booot10">
+                <Input id="color" name="Color" placeholder="Color" type="text" />
+                <Label for="color">Color</Label>
+              </FormGroup>
+              <FormGroup floating className="booot11">
+                <Input
+                  id="secondary"
+                  name="Secondarycolor"
+                  placeholder="Secondary color"
+                  type="text"
+                />
+                <Label for="secondary" className="me-4">
+                  Secondary color
+                </Label>
+              </FormGroup>
+
+              <textarea
+                id="description"
+                className="form-control booot8"
+                name="des"
+                placeholder="Specific description "
                 type="text"
               />
-              <Label for="contact">Phone number</Label>
-            </FormGroup>
-
-            <div className="booot4">
-              <select class="form-control" id="category">
-                <option selected disabled>
-                  Category
-                </option>
-                {category &&
-                  category.map((item, i) => (
-                    <option key={i} id={item.id} value={item.id}>
-                      {item.name}
-                    </option>
-                  ))}
-              </select>
-            </div>
-            <div className="booot5">
-              <select class="form-control " id="subcategory">
-                <option selected disabled>
-                  SubCategory
-                </option>
-                {subCategory &&
-                  subCategory.map((item, i) => (
-                    <option key={i} id={item.id} value={item.id}>
-                      {item.name}
-                    </option>
-                  ))}
-              </select>
-            </div>
-
-            <div className="booot3">
-              <Input type="file" className="form-control " id="file" />
-            </div>
-            <FormGroup floating className="booot">
-              <Input id="name" name="Name" placeholder="Name" type="text" />
-              <Label for="name">Name</Label>
-            </FormGroup>
-            <FormGroup floating className=" booot1  ">
-              <Input id="brand" name="Brand" placeholder="Brand" type="text" />
-              <Label for="brand">Brand</Label>
-            </FormGroup>
-
-            <FormGroup floating className="booot10">
-              <Input id="color" name="Color" placeholder="Color" type="text" />
-              <Label for="color">Color</Label>
-            </FormGroup>
-            <FormGroup floating className="booot11">
-              <Input
-                id="secondary"
-                name="Secondarycolor"
-                placeholder="Secondary color"
+              <textarea
+                className="form-control booot9"
+                id="location"
+                name="des2"
+                placeholder="Specific location"
                 type="text"
               />
-              <Label for="secondary" className="me-4">
-                Secondary color
-              </Label>
-            </FormGroup>
 
-            <textarea
-              id="description"
-              className="form-control booot8"
-              name="des"
-              placeholder="Specific description "
-              type="text"
-            />
-            <textarea
-              className="form-control booot9"
-              id="location"
-              name="des2"
-              placeholder="Specific location"
-              type="text"
-            />
-
-            {/* <textarea
+              {/* <textarea
               id="description"
               className="form-control booot"
               placeholder="Description"
             /> */}
-          </div>
-          <div className="addInfo">Address information</div>
-          <div className="items-add2">
-            <FormGroup floating>
-              <Input
-                id="region"
-                name="Region"
-                placeholder="Region"
-                type="text"
-              />
-              <Label for="region">Region</Label>
-            </FormGroup>
-            <FormGroup floating>
-              <Input id="city" name="City" placeholder="City" type="text" />
-              <Label for="city">City</Label>
-            </FormGroup>
-
-            <FormGroup floating className="buuut">
-              <Input
-                id="street"
-                name="street"
-                placeholder="Street"
-                type="text"
-              />
-              <Label for="street">Street</Label>
-            </FormGroup>
-          </div>
-          <div className="float-end mb-5">
-            <Button
-              boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-              className="bg-danger me-3 mb-4"
-              onClick={openAddModal}
-            >
-              Close
-            </Button>
-            <Button
-              className="bg-success mb-4"
-              boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-              onClick={addItem}
-            >
-              Save
-            </Button>
-          </div>
-        </ModalBody>
-      </Modal>
-
-      {/* Edit modal */}
-      <Modal isOpen={editModal} centered fullscreen scrollable>
-        <ModalHeader
-          toggle={openEditModal}
-          className="text-light fs-4 fw-bolder"
-        >
-          Edit item
-        </ModalHeader>
-        <ModalBody className="modal-body p-4 ">
-          <div className="addInfo">Item information</div>
-          <div className="items-add">
-            <div className="booot">
-              <Label for="type" className="text-light">
-                Type
-              </Label>
-              <select class="form-control" id="type">
-                <option selected disabled>
-                  {infoID.type}
-                </option>
-                <option value="LOST">LOST</option>
-                <option value="FOUND">FOUND</option>
-              </select>
             </div>
+            <div className="addInfo">Address information</div>
+            <div className="items-add2">
+              <FormGroup floating>
+                <Input
+                  id="region"
+                  name="Region"
+                  placeholder="Region"
+                  type="text"
+                />
+                <Label for="region">Region</Label>
+              </FormGroup>
+              <FormGroup floating>
+                <Input id="city" name="City" placeholder="City" type="text" />
+                <Label for="city">City</Label>
+              </FormGroup>
 
-            <div className="booot2">
-              <Label for="date" className="text-light">
-                Date
-              </Label>
-              <Input
-                id="date"
-                name="Date"
-                defaultValue={infoID.date}
-                type="Date"
-              />
+              <FormGroup floating className="buuut">
+                <Input
+                  id="street"
+                  name="street"
+                  placeholder="Street"
+                  type="text"
+                />
+                <Label for="street">Street</Label>
+              </FormGroup>
             </div>
-
-            <div className="booot1">
-              <Label for="contact" className="text-light">
-                Phone number
-              </Label>
-              <Input
-                id="contact"
-                name="number"
-                placeholder="PhoneNumber"
-                defaultValue={infoID.contact_info}
-                type="text"
-              />
-            </div>
-
-            <div className="booot3">
-              <Label for="category" className="text-light">
-                Category
-              </Label>
-              <select class="form-control" id="category">
-                <option selected disabled>
-                  Category
-                </option>
-                {category &&
-                  category.map((item, i) => (
-                    <option key={i} id={item.id} value={item.id}>
-                      {item.name}
-                    </option>
-                  ))}
-              </select>
-            </div>
-            <div className="booot4">
-              <Label for="category" className="text-light">
-                Sub Category
-              </Label>
-              <select class="form-control " id="subcategory">
-                <option selected disabled>
-                  SubCategory
-                </option>
-                {subCategory &&
-                  subCategory.map((item, i) => (
-                    <option key={i} id={item.id} value={item.id}>
-                      {item.name}
-                    </option>
-                  ))}
-              </select>
-            </div>
-
-            <div className="booot5">
-              <Label for="file" className="text-light">
-                Image
-              </Label>
-              <Input type="file" className="form-control " id="file" />
-            </div>
-            <div className="booot6">
-              <Label for="name" className="text-light">
-                Name
-              </Label>
-              <Input
-                id="name"
-                name="Name"
-                placeholder="Name"
-                type="text"
-                defaultValue={infoID.name}
-              />
-            </div>
-            <div className="booot7">
-              <Label for="brand" className="text-light">
-                Brand
-              </Label>
-              <Input
-                id="brand"
-                name="Brand"
-                placeholder="Brand"
-                type="text"
-                defaultValue={infoID.brand}
-              />
-            </div>
-
-            <div className="booot10 mb-4">
-              <Label for="color" className="text-light">
-                Color
-              </Label>
-              <Input
-                id="color"
-                name="Color"
-                placeholder="Color"
-                type="text"
-                defaultValue={infoID.primary_color}
-              />
-            </div>
-            <div className="booot11 mb-4">
-              <Label for="secondary" className="me-4 text-light">
-                Secondary color
-              </Label>
-              <select class="form-control " id="secondary">
-                <option selected disabled>
-                  SubCategory
-                </option>
-
-                <option value="Black">
-                  "Black"
-                </option>
-                <option value="Blue">
-                  "Blue"
-                </option>
-              </select>
-            </div>
-
-            <textarea
-              id="description"
-              className="form-control booot8"
-              name="des"
-              placeholder="Specific description "
-              type="text"
-              defaultValue={infoID.specific_description}
-            />
-            <textarea
-              className="form-control booot9"
-              id="location"
-              name="des2"
-              placeholder="Specific location"
-              type="text"
-              defaultValue={infoID.specific_location}
-            />
-
-            {/* <textarea
-              id="description"
-              className="form-control booot"
-              placeholder="Description"
-            /> */}
-          </div>
-          <div className="addInfo">Address information</div>
-          <div className="items-add2 mb-4">
-            <div>
-              <Label for="region" className="text-light">
-                Region
-              </Label>
-              <Input
-                id="region"
-                name="Region"
-                placeholder="Region"
-                type="text"
-                defaultValue={infoID.country}
-              />
-            </div>
-            <div>
-              <Label for="city" className="text-light">
-                City
-              </Label>
-              <Input
-                id="city"
-                name="City"
-                placeholder="City"
-                type="text"
-                defaultValue={infoID.city}
-              />
-            </div>
-
-            <div className="buuut">
-              <Label for="street" className="text-light">
-                Street
-              </Label>
-              <Input
-                id="street"
-                name="street"
-                placeholder="Street"
-                type="text"
-                defaultValue={infoID.street}
-              />
-            </div>
-          </div>
-          <div className="float-end mb-5">
-            <Button
-              boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-              className="bg-danger me-3 mb-4"
-              onClick={openEditModal}
-            >
-              Close
-            </Button>
-            <Button
-              className="bg-success mb-4"
-              boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-              onClick={editItem}
-            >
-              Save
-            </Button>
-          </div>
-        </ModalBody>
-      </Modal>
-
-      {/* Delete modal */}
-      <Modal isOpen={deleteModal} centered size="md" scrollable>
-        <ModalHeader
-          toggle={openDeleteModal}
-          className="text-light fs-4 fw-bolder"
-        >
-          Delete item
-        </ModalHeader>
-        <ModalBody className="modal-body p-4 text-light">
-          Are you sure you want to delete this item?
-        </ModalBody>
-        <ModalFooter className="modalFooter">
-          <Button
-            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            className="bg-danger"
-            onClick={openDeleteModal}
-          >
-            Close
-          </Button>
-          <Button
-            className="bg-success"
-            boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-            onClick={deleteItem}
-          >
-            Delete
-          </Button>
-        </ModalFooter>
-      </Modal>
-
-      {/* info modal */}
-
-      <Modal isOpen={infoModal} centered size="lg" scrollable>
-        <ModalHeader></ModalHeader>
-        <ModalBody
-          className="modal-body p-4 text-light"
-          style={{
-            boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-          }}
-        >
-          <div className="text-end">
-            <Button
-              onClick={openInfoModal}
-              color="danger"
-              className="fw-bold fs-6 rounded-5"
-              style={{
-                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-              }}
-            >
-              ✕
-            </Button>
-          </div>
-
-          <div className="text-center pe-5 ps-5 lost__modal">
-            <img src={infoID.image} alt="img" />
-            <h2>
-              <span>{infoID.name}</span>
-              <span
-                style={{ color: infoID.type == "FOUND" ? "#0EF647" : "red" }}
+            <div className="float-end mb-5">
+              <Button
+                boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+                className="bg-danger me-3 mb-4"
+                onClick={openAddModal}
               >
-                {infoID.type}
-              </span>
-            </h2>
-            <Row className="lost_main-info1">
-              <Col className="col-12 col-sm-6 col-md-4">category</Col>
-              <Col className="col-12 col-sm-6 col-md-4">sub category</Col>
-              <Col className="col-12 col-sm-6 col-md-4">{infoID.brand}</Col>
-            </Row>
-            <Row className="text-start lost_main-info2">
-              <Col className="col-12 col-sm-6">
-                <span className="me-3">Color_1:</span>
-                {infoID.primary_color}
-              </Col>
-              <Col className="col-12 col-sm-6">
-                <span className="me-3">Color_2:</span>
-                {infoID.secondary_color}
-              </Col>
-            </Row>
-            <Row className="text-start lost_main-info3">
-              <Col className="col-12 col-md-6">
-                <span className="me-3">PhoneNumber:</span>
-                {infoID.contact_info}
-              </Col>
-              <Col className="col-12 col-md-6">
-                <span className="me-3">Date:</span>
-                {infoID.date}
-              </Col>
-            </Row>
-            <p className="text-start ">
-              <span className="me-3">Description:</span>
-              <span className="w-50">{infoID.specific_description}</span>
-            </p>
-          </div>
+                Close
+              </Button>
+              <Button
+                className="bg-success mb-4"
+                boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+                onClick={addItem}
+              >
+                Save
+              </Button>
+            </div>
+          </ModalBody>
+        </Modal>
 
-          <div
-            className="ps-5 lost_countriy"
+        {/* Edit modal */}
+        <Modal isOpen={editModal} centered fullscreen scrollable>
+          <ModalHeader
+            toggle={openEditModal}
+            className="text-light fs-4 fw-bolder"
+          >
+            Edit item
+          </ModalHeader>
+          <ModalBody className="modal-body p-4 ">
+            <div className="addInfo">Item information</div>
+            <div className="items-add">
+              <div className="booot">
+                <Label for="type" className="text-light">
+                  Type
+                </Label>
+                <select class="form-control" id="type">
+                  <option selected disabled>
+                    {infoID.type}
+                  </option>
+                  <option value="LOST">LOST</option>
+                  <option value="FOUND">FOUND</option>
+                </select>
+              </div>
+
+              <div className="booot2">
+                <Label for="date" className="text-light">
+                  Date
+                </Label>
+                <Input
+                  id="date"
+                  name="Date"
+                  defaultValue={infoID.date}
+                  type="Date"
+                />
+              </div>
+
+              <div className="booot1">
+                <Label for="contact" className="text-light">
+                  Phone number
+                </Label>
+                <Input
+                  id="contact"
+                  name="number"
+                  placeholder="PhoneNumber"
+                  defaultValue={infoID.contact_info}
+                  type="text"
+                />
+              </div>
+
+              <div className="booot3">
+                <Label for="category" className="text-light">
+                  Category
+                </Label>
+                <select class="form-control" id="category">
+                  <option selected disabled>
+                    Category
+                  </option>
+                  {category &&
+                    category.map((item, i) => (
+                      <option key={i} id={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <div className="booot4">
+                <Label for="category" className="text-light">
+                  Sub Category
+                </Label>
+                <select class="form-control " id="subcategory">
+                  <option selected disabled>
+                    SubCategory
+                  </option>
+                  {subCategory &&
+                    subCategory.map((item, i) => (
+                      <option key={i} id={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                </select>
+              </div>
+
+              <div className="booot5">
+                <Label for="file" className="text-light">
+                  Image
+                </Label>
+                <Input type="file" className="form-control " id="file" />
+              </div>
+              <div className="booot6">
+                <Label for="name" className="text-light">
+                  Name
+                </Label>
+                <Input
+                  id="name"
+                  name="Name"
+                  placeholder="Name"
+                  type="text"
+                  defaultValue={infoID.name}
+                />
+              </div>
+              <div className="booot7">
+                <Label for="brand" className="text-light">
+                  Brand
+                </Label>
+                <Input
+                  id="brand"
+                  name="Brand"
+                  placeholder="Brand"
+                  type="text"
+                  defaultValue={infoID.brand}
+                />
+              </div>
+
+              <div className="booot10 mb-4">
+                <Label for="color" className="text-light">
+                  Color
+                </Label>
+                <Input
+                  id="color"
+                  name="Color"
+                  placeholder="Color"
+                  type="text"
+                  defaultValue={infoID.primary_color}
+                />
+              </div>
+              <div className="booot11 mb-4">
+                <Label for="secondary" className="me-4 text-light">
+                  Secondary color
+                </Label>
+                <select class="form-control " id="secondary">
+                  <option selected disabled>
+                    SubCategory
+                  </option>
+
+                  <option value="Black">
+                    "Black"
+                  </option>
+                  <option value="Blue">
+                    "Blue"
+                  </option>
+                </select>
+              </div>
+
+              <textarea
+                id="description"
+                className="form-control booot8"
+                name="des"
+                placeholder="Specific description "
+                type="text"
+                defaultValue={infoID.specific_description}
+              />
+              <textarea
+                className="form-control booot9"
+                id="location"
+                name="des2"
+                placeholder="Specific location"
+                type="text"
+                defaultValue={infoID.specific_location}
+              />
+
+              {/* <textarea
+              id="description"
+              className="form-control booot"
+              placeholder="Description"
+            /> */}
+            </div>
+            <div className="addInfo">Address information</div>
+            <div className="items-add2 mb-4">
+              <div>
+                <Label for="region" className="text-light">
+                  Region
+                </Label>
+                <Input
+                  id="region"
+                  name="Region"
+                  placeholder="Region"
+                  type="text"
+                  defaultValue={infoID.country}
+                />
+              </div>
+              <div>
+                <Label for="city" className="text-light">
+                  City
+                </Label>
+                <Input
+                  id="city"
+                  name="City"
+                  placeholder="City"
+                  type="text"
+                  defaultValue={infoID.city}
+                />
+              </div>
+
+              <div className="buuut">
+                <Label for="street" className="text-light">
+                  Street
+                </Label>
+                <Input
+                  id="street"
+                  name="street"
+                  placeholder="Street"
+                  type="text"
+                  defaultValue={infoID.street}
+                />
+              </div>
+            </div>
+            <div className="float-end mb-5">
+              <Button
+                boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+                className="bg-danger me-3 mb-4"
+                onClick={openEditModal}
+              >
+                Close
+              </Button>
+              <Button
+                className="bg-success mb-4"
+                boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+                onClick={editItem}
+              >
+                Save
+              </Button>
+            </div>
+          </ModalBody>
+        </Modal>
+
+        {/* Delete modal */}
+        <Modal isOpen={deleteModal} centered size="md" scrollable>
+          <ModalHeader
+            toggle={openDeleteModal}
+            className="text-light fs-4 fw-bolder"
+          >
+            Delete item
+          </ModalHeader>
+          <ModalBody className="modal-body p-4 text-light">
+            Are you sure you want to delete this item?
+          </ModalBody>
+          <ModalFooter className="modalFooter">
+            <Button
+              boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+              className="bg-danger"
+              onClick={openDeleteModal}
+            >
+              Close
+            </Button>
+            <Button
+              className="bg-success"
+              boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+              onClick={deleteItem}
+            >
+              Delete
+            </Button>
+          </ModalFooter>
+        </Modal>
+
+        {/* info modal */}
+
+        <Modal isOpen={infoModal} centered size="lg" scrollable>
+          <ModalHeader></ModalHeader>
+          <ModalBody
+            className="modal-body p-4 text-light"
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginTop: "2rem",
-              marginBottom: ".5rem",
+              boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
             }}
           >
-            <p>
-              <span>{infoID.country}</span>
-              <span>{infoID.city}</span>
-              <span>{infoID.street}</span>
-            </p>
-            <Button
-              onClick={openInfoModal}
-              color="danger"
-              className="fw-bold fs-6 rounded-4"
+            <div className="text-end">
+              <Button
+                onClick={openInfoModal}
+                color="danger"
+                className="fw-bold fs-6 rounded-5"
+                style={{
+                  boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                }}
+              >
+                ✕
+              </Button>
+            </div>
+
+            <div className="text-center pe-5 ps-5 lost__modal">
+              <img src={infoID.image} alt="img" />
+              <h2>
+                <span>{infoID.name}</span>
+                <span
+                  style={{ color: infoID.type == "FOUND" ? "#0EF647" : "red" }}
+                >
+                  {infoID.type}
+                </span>
+              </h2>
+              <Row className="lost_main-info1">
+                <Col className="col-12 col-sm-6 col-md-4">category</Col>
+                <Col className="col-12 col-sm-6 col-md-4">sub category</Col>
+                <Col className="col-12 col-sm-6 col-md-4">{infoID.brand}</Col>
+              </Row>
+              <Row className="text-start lost_main-info2">
+                <Col className="col-12 col-sm-6">
+                  <span className="me-3">Color_1:</span>
+                  {infoID.primary_color}
+                </Col>
+                <Col className="col-12 col-sm-6">
+                  <span className="me-3">Color_2:</span>
+                  {infoID.secondary_color}
+                </Col>
+              </Row>
+              <Row className="text-start lost_main-info3">
+                <Col className="col-12 col-md-6">
+                  <span className="me-3">PhoneNumber:</span>
+                  {infoID.contact_info}
+                </Col>
+                <Col className="col-12 col-md-6">
+                  <span className="me-3">Date:</span>
+                  {infoID.date}
+                </Col>
+              </Row>
+              <p className="text-start ">
+                <span className="me-3">Description:</span>
+                <span className="w-50">{infoID.specific_description}</span>
+              </p>
+            </div>
+
+            <div
+              className="ps-5 lost_countriy"
               style={{
-                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginTop: "2rem",
+                marginBottom: ".5rem",
               }}
             >
-              Close
-            </Button>
-          </div>
-        </ModalBody>
-        <ModalFooter className="modalFooter"></ModalFooter>
-      </Modal>
-    </div>
+              <p>
+                <span>{infoID.country}</span>
+                <span>{infoID.city}</span>
+                <span>{infoID.street}</span>
+              </p>
+              <Button
+                onClick={openInfoModal}
+                color="danger"
+                className="fw-bold fs-6 rounded-4"
+                style={{
+                  boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                }}
+              >
+                Close
+              </Button>
+            </div>
+          </ModalBody>
+          <ModalFooter className="modalFooter"></ModalFooter>
+        </Modal>
+      </div>
+      <hr />
+      <FooTer />
+    </>
   );
 }
 

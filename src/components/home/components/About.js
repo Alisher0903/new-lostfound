@@ -5,7 +5,7 @@ import { byId } from "../../api/api";
 export const AboutHome = () => {
 
     // const goAbout = () => byId("goAbout").click();
-    
+
     return (<>
         {/* <Link to="/about" id="goAbout"></Link> */}
         <Container className="aboutMe-container">
@@ -16,10 +16,14 @@ export const AboutHome = () => {
                     </div>
                 </Col>
                 <Col className="col-12 col-md-5 col-lg-6 about__text">
-                    <h2>What is Lorem Ipsum?</h2>
+                    <h2>
+                        <span className="me-3" style={{ color: "#CF1010" }}>Lost</span>
+                        <span className="me-3" style={{ color: "#0E0D15" }}>and</span>
+                        <span style={{ color: "#04D300" }}>Found</span>
+                    </h2>
                     <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
-                        to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in
+                        With quick and easy searching, secure communication, and team support, Lost&Found can help you recover your lost or found items. Just a few steps to get started.
+                        Your honesty is valuable to our team. Contribute to our community by helping return items to their owners in the Foundry section. With every post you make, you fill someone with gratitude.
                     </p>
                 </Col>
             </Row>
