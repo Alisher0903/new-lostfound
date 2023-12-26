@@ -320,7 +320,7 @@ function Itemspage() {
                     item.map((item, i) => (
                       <tr className="text-center" key={i}>
                         <td scope="row">{i + 1}</td>
-                        <td className="table-row">
+                        <td className="table-row img-row">
                           <img
                             src={item.image}
                             className="table-img"
@@ -807,7 +807,7 @@ function Itemspage() {
             <img src={infoID.image} alt="img" />
             <h2>
               <span>{infoID.name}</span>
-              <span>{infoID.type}</span>
+              <span style={{color: (infoID.type == "FOUND") ? "#0EF647" : "red"}}>{infoID.type}</span>
             </h2>
             <Row className="lost_main-info1">
               <Col className="col-12 col-sm-6 col-md-4">category</Col>

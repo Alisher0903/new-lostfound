@@ -111,12 +111,12 @@ export const ItemNavs = () => {
         </nav>
       </header>
 
-      <Modal isOpen={currentModal} centered size="lg" scrollable>
+      <Modal isOpen={currentModal} size="lg" scrollable>
         <ModalHeader
           toggle={openCurrentModal}
           className="text-light fs-4 fw-bolder"
         >
-          Delete item
+          Profile
         </ModalHeader>
         <ModalBody className="modal-body p-4 text-light modal-css">
           <div className="bot">
