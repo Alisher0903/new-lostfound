@@ -349,6 +349,33 @@ export const ItemNavs = () => {
 
               <Input type="file" id="avatar" className="bg-secondary mt-3" />
             </div>
+            <div className="">
+              <b className="mb-3">Username:</b>
+              <Input
+                type="text"
+                id="username"
+                className="bg-secondary mt-3"
+                defaultValue={getMe.username}
+              />
+            </div>
+            <div className="">
+              <b className="mb-3">Username:</b>
+              <Input
+                type="text"
+                id="username"
+                className="bg-secondary mt-3"
+                defaultValue={getMe.username}
+              />
+            </div>
+            <div className="">
+              <b className="mb-3">Username:</b>
+              <Input
+                type="text"
+                id="username"
+                className="bg-secondary mt-3"
+                defaultValue={getMe.username}
+              />
+            </div>
           </div>
         </ModalBody>
         <ModalFooter className="modalFooter">
