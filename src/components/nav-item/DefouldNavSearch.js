@@ -15,6 +15,7 @@ import axios from "axios";
 
 import { createPopper } from "@popperjs/core";
 import { toast } from "react-toastify";
+import FooTer from "../footer/FooTer";
 export const ItemNavs = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentModal, setCurrentModal] = useState(false);
@@ -35,7 +36,7 @@ export const ItemNavs = () => {
   let popperInstance = null;
 
   const openModal = () => {
-    setShowModal(true);
+    setShowModal(!showModal);
     popperInstance = createPopper(buttonRef.current, modalRef.current, {
       placement: "bottom",
       modifiers: [
@@ -279,6 +280,7 @@ export const ItemNavs = () => {
           </div>
         </nav>
       </header>
+      
 
       <Modal isOpen={currentModal} size="lg" scrollable>
         <ModalHeader
@@ -287,8 +289,8 @@ export const ItemNavs = () => {
         >
           Profile
         </ModalHeader>
-        <ModalBody className="modal-body p-4 text-light modal-css">
-          <div className="bot">
+        <ModalBody className="modal-body p-4 text-light modal-css row">
+          <div className="bot col-12 col-md-6">
             <img
               style={{
                 width: "300px",
@@ -304,7 +306,9 @@ export const ItemNavs = () => {
               alt=".."
             />
           </div>
-          <div>
+          <div className="col-12 col-md-6">
+
+          <div className="">
             <b className="mb-3">Username:</b>
             <Input
               type="text"
@@ -317,6 +321,7 @@ export const ItemNavs = () => {
             <b className="mb-3">Avatar:</b>
 
             <Input type="file" id="avatar" className="bg-secondary mt-3" />
+          </div>
           </div>
         </ModalBody>
         <ModalFooter className="modalFooter">

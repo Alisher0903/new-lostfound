@@ -7,6 +7,7 @@ import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader } from "react
 import axios from "axios";
 import { createPopper } from "@popperjs/core";
 import { toast } from "react-toastify";
+import FooTer from "../footer/FooTer";
 
 export const ItemNavSearch = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +41,7 @@ export const ItemNavSearch = () => {
   let popperInstance = null;
 
   const openModal = () => {
-    setShowModal(true);
+    setShowModal(!showModal);
     popperInstance = createPopper(buttonRef.current, modalRef.current, {
       placement: "bottom",
       modifiers: [

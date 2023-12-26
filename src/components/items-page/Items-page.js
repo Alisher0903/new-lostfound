@@ -18,6 +18,7 @@ import axios from "axios";
 import { api, byId } from "../api/api";
 import { toast } from "react-toastify";
 import { ItemNavs } from "../nav-item/DefouldNavSearch";
+import FooTer from "../footer/FooTer";
 
 function Itemspage() {
   const [addModal, setAddModal] = useState(false);
@@ -1035,7 +1036,8 @@ function Itemspage() {
       </Modal>
 
 
-      
+      <hr/>
+      <FooTer/>
 
     </div>
   );
