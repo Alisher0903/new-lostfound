@@ -94,33 +94,28 @@ export const ItemNavSearch = () => {
                   <span className="text-light">profile</span>
                 </Link>
               </div>
-              <div className="nav_search">
+              <div className="nav_search align-middle">
                 <div className="">
                   <button class="btn btn-success" onClick={goSearch}>
                     Search
                   </button>
                 </div>
                 {/* <div className="ms-5"> */}
-                <img
-                  src= "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
-                  alt=".."
-                />
-                {/* <img
+                <div className="search-avatar">
+                  <img
+                  className="img-fluid"
                   src={
                     getMe.image !== null
-                      ? getMe.image
+                      ? "https://lostfound.pythonanywhere.com/" + getMe.image
                       : "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
-                  }
-                  alt=".."
-                /> */}
-
-                <Icon
-                  className="ms-4"
-                  icon="ri:user-line"
-                  width="30"
-                  color="#fff"
-                />
-                <h5 onClick={openCurrentModal}>Profile</h5>
+                  }                 
+                   alt=".."
+                  />
+                </div>
+                
+                <h5 className="mt-2" onClick={openCurrentModal}>
+                  Profile
+                </h5>
                 {/* </div> */}
               </div>
             </div>
@@ -140,7 +135,7 @@ export const ItemNavSearch = () => {
             <img
               src={
                 getMe.image !== null
-                  ? getMe.image
+                  ? "https://lostfound.pythonanywhere.com/" + getMe.image
                   : "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
               }
               alt=".."

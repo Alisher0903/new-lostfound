@@ -44,7 +44,7 @@ export const ItemNavs = () => {
                 <Link to="/">
                   <span>Back</span>
                   <span className="text-light">to</span>
-                  <span>profile</span>
+                  <span>home</span>
                 </Link>
               </div>
               <div className="burger-menu" onClick={toggleNavbar}>
@@ -97,13 +97,21 @@ export const ItemNavs = () => {
                   </button>
                 </div>
                 {/* <div className="ms-5"> */}
-                <Icon
-                  className="ms-4"
-                  icon="ri:user-line"
-                  width="30"
-                  color="#fff"
-                />
-                <h5 onClick={openCurrentModal}>Profile</h5>
+                <div className="search-avatar">
+                  <img
+                  className="img-fluid"
+                  src={
+                    getMe.image !== null
+                      ? "https://lostfound.pythonanywhere.com/" + getMe.image
+                      : "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
+                  }                 
+                   alt=".."
+                  />
+                </div>
+                
+                <h5 className="mt-2" onClick={openCurrentModal}>
+                  Profile
+                </h5>
                 {/* </div> */}
               </div>
             </div>
@@ -120,7 +128,14 @@ export const ItemNavs = () => {
         </ModalHeader>
         <ModalBody className="modal-body p-4 text-light modal-css">
           <div className="bot">
-          <img src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png" alt=".."/>
+          <img
+              src={
+                getMe.image !== null
+                  ? "https://lostfound.pythonanywhere.com/" + getMe.image
+                  : "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
+              }
+              alt=".."
+            />
           </div>
           <div>
             <b className="mb-3">Username:</b>
