@@ -6,6 +6,7 @@ import axios from "axios";
 import { api, byId } from "../api/api";
 import { Accordion, AccordionBody, AccordionHeader, AccordionItem, Container } from "reactstrap";
 import "./about.scss";
+import { Link } from "react-router-dom";
 
 function AboutLostFound() {
 
@@ -56,7 +57,11 @@ function AboutLostFound() {
             <DefouldNav />
             {/* <PageOne /> */}
 
-            <Container style={{marginTop: "10rem"}}>
+            <Container style={{ marginTop: "10rem", marginBottom: "4rem" }}>
+                <h4 className="about__heading-back">
+                    <Link to="/">Bosh Sahifa </Link>
+                    <span>/ Search</span>
+                </h4>
                 <div className="category-btn text-center">
                     {aboutCategory.map((item, i) =>
                         <button onClick={() => {

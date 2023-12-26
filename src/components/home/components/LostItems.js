@@ -85,10 +85,19 @@ function LostItems() {
                             <span>{lostInfo.name}</span>
                             <span>{lostInfo.type}</span>
                         </h2>
-                        <Row className="lost_main-info1">
-                            <Col className="col-12 col-sm-6 col-md-4">category</Col>
-                            <Col className="col-12 col-sm-6 col-md-4">sub category</Col>
-                            <Col className="col-12 col-sm-6 col-md-4">{lostInfo.brand}</Col>
+                        <Row className="text-start lost_main-info1">
+                            <Col className="col-12 col-sm-6 col-lg-4">
+                                <span className="me-3 d-sm-none">Category:</span>
+                                category
+                            </Col>
+                            <Col className="col-12 col-sm-6 col-lg-4">
+                                <span className="me-3 d-sm-none">Sub category:</span>
+                                sub category
+                            </Col>
+                            <Col className="col-12 col-sm-6 col-lg-4">
+                                <span className="me-3 d-lg-none">Brand:</span>
+                                {lostInfo.brand}
+                            </Col>
                         </Row>
                         <Row className="text-start lost_main-info2">
                             <Col className="col-12 col-sm-6">
@@ -99,11 +108,11 @@ function LostItems() {
                                 {lostInfo.secondary_color}</Col>
                         </Row>
                         <Row className="text-start lost_main-info3">
-                            <Col className="col-12 col-md-6">
+                            <Col className="col-12 col-lg-6">
                                 <span className="me-3">PhoneNumber:</span>
                                 {lostInfo.contact_info}
                             </Col>
-                            <Col className="col-12 col-md-6">
+                            <Col className="col-12 col-lg-6">
                                 <span className="me-3">Date:</span>
                                 {lostInfo.date}
                             </Col>
@@ -112,17 +121,6 @@ function LostItems() {
                             <span className="me-3">Description:</span>
                             {lostInfo.specific_description}
                         </p>
-                        {/* <div>
-                            <iframe
-                                src={`https://www.google.com/maps/dir///@${lostInfo.latitude},${lostInfo.longitude},12z?hl=UZ&entry=ttu`}
-                                style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
-                                className="rounded-5"
-                                width="100%"
-                                height="200"
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade">
-                            </iframe>
-                        </div> */}
                     </div>
 
                     <div

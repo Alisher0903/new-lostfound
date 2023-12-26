@@ -82,12 +82,21 @@ function FoundItems() {
                         <img src={foundInfo.image} alt="img" />
                         <h2>
                             <span>{foundInfo.name}</span>
-                            <span style={{color:"#21C11E"}}>{foundInfo.type}</span>
+                            <span style={{ color: "#21C11E" }}>{foundInfo.type}</span>
                         </h2>
-                        <Row className="lost_main-info1">
-                            <Col className="col-12 col-sm-6 col-md-4">category</Col>
-                            <Col className="col-12 col-sm-6 col-md-4">sub category</Col>
-                            <Col className="col-12 col-sm-6 col-md-4">{foundInfo.brand}</Col>
+                        <Row className="text-start lost_main-info1">
+                            <Col className="col-12 col-sm-6 col-lg-4">
+                                <span className="me-3 d-sm-none">Category:</span>
+                                category
+                            </Col>
+                            <Col className="col-12 col-sm-6 col-lg-4">
+                                <span className="me-3 d-sm-none">Sub category:</span>
+                                sub category
+                            </Col>
+                            <Col className="col-12 col-sm-6 col-lg-4">
+                                <span className="me-3 d-lg-none">Brand:</span>
+                                {foundInfo.brand}
+                            </Col>
                         </Row>
                         <Row className="text-start lost_main-info2">
                             <Col className="col-12 col-sm-6">
@@ -111,17 +120,6 @@ function FoundItems() {
                             <span className="me-3">Description:</span>
                             {foundInfo.specific_description}
                         </p>
-                        {/* <div>
-                            <iframe
-                                src={`https://www.google.com/maps/dir///@${foundInfo.latitude},${foundInfo.longitude},12z?hl=UZ&entry=ttu`}
-                                style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
-                                className="rounded-5"
-                                width="100%"
-                                height="200"
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade">
-                            </iframe>
-                        </div> */}
                     </div>
 
                     <div
