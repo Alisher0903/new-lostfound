@@ -333,7 +333,7 @@ function Itemspage() {
                         <td>{item.type}</td>
                         <td>
                           <button
-                            className="btn btn-primary w-75"
+                            className="btn btn-primary w-100"
                             onClick={() => {
                               openInfoModal();
                               setInfoId(item);
@@ -344,7 +344,7 @@ function Itemspage() {
                         </td>
                         <td>
                           <button
-                            className="btn btn-warning w-75"
+                            className="btn btn-warning w-100"
                             onClick={() => {
                               openEditModal();
                               setInfoId(item);
@@ -355,7 +355,7 @@ function Itemspage() {
                         </td>
                         <td>
                           <button
-                            className="btn btn-danger w-75"
+                            className="btn btn-danger w-100"
                             onClick={() => {
                               openDeleteModal();
                               setInfoId(item);
