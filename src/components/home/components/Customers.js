@@ -80,7 +80,7 @@ const Customers = () => {
                                         <Col className="col-12 col-sm-6 col-lg-4 customer__img">
                                             <div>
                                                 <img
-                                                    src={item.user_image !== "/media/1"
+                                                    src={item.user_image !== "/media/"
                                                         ? api + item.user_image
                                                         : defImg
                                                     }

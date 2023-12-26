@@ -43,9 +43,10 @@ function AboutLostFound() {
     };
 
     const goPageSection = (aboutId) => {
-        if (aboutId == "Ma'lumot kiritish") byId("malumot").click();
-        else if (aboutId == "Qidirilmoqda") byId("poisk").click();
-        else if (aboutId == "Parol savollari") byId("parol").click();
+        if (aboutId == "Entering Information") byId("malumot").click();
+        else if (aboutId == "Searching") byId("poisk").click();
+        else if (aboutId == "Password Questions") byId("parol").click();
+        else if (aboutId == "Picture Questions") byId("picture").click();
     }
 
     return (
@@ -53,6 +54,7 @@ function AboutLostFound() {
             <a href="#goMalumot" id="malumot"></a>
             <a href="#goPoisk" id="poisk"></a>
             <a href="#goParol" id="parol"></a>
+            <a href="#goPicture" id="picture"></a>
 
             <DefouldNav />
             {/* <PageOne /> */}
@@ -71,7 +73,7 @@ function AboutLostFound() {
                 </div>
 
                 <div>
-                    <h2 id="goMalumot" className="about-accardions">Ma'lumot kiritish</h2>
+                    <h2 id="goMalumot" className="about-accardions">Entering Information</h2>
                     {aboutInfo.map((item, i) =>
                         item.name === aboutCategory[0].id ?
                             <Accordion flush open={open} toggle={toggle}>
@@ -86,7 +88,7 @@ function AboutLostFound() {
                             </Accordion>
                             : ""
                     )}
-                    <h2 id="goPoisk" className="about-accardions">Qidirilmoqda</h2>
+                    <h2 id="goPoisk" className="about-accardions">Searching</h2>
                     {aboutInfo.map((item, i) =>
                         item.name === aboutCategory[1].id ?
                             <Accordion flush open={open} toggle={toggle}>
@@ -101,9 +103,24 @@ function AboutLostFound() {
                             </Accordion>
                             : ""
                     )}
-                    <h2 id="goParol" className="about-accardions">Parol savollari</h2>
+                    <h2 id="goParol" className="about-accardions">Password Questions</h2>
                     {aboutInfo.map((item, i) =>
                         item.name === aboutCategory[2].id ?
+                            <Accordion flush open={open} toggle={toggle}>
+                                <AccordionItem className="accardion-style">
+                                    <AccordionHeader className="accardion-header" targetId={i}>
+                                        {item.question}
+                                    </AccordionHeader>
+                                    <AccordionBody accordionId={i}>
+                                        {item.title}
+                                    </AccordionBody>
+                                </AccordionItem>
+                            </Accordion>
+                            : ""
+                    )}
+                    <h2 id="goPicture" className="about-accardions">Picture Questions</h2>
+                    {aboutInfo.map((item, i) =>
+                        item.name === aboutCategory[3].id ?
                             <Accordion flush open={open} toggle={toggle}>
                                 <AccordionItem className="accardion-style">
                                     <AccordionHeader className="accardion-header" targetId={i}>
