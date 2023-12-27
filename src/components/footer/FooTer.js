@@ -47,16 +47,15 @@ function FooTer() {
                 </Row>
             </div>
             <hr />
-            <p className='text-center footer-bot'>
+            <p className='text-center footer-bot p-0 m-0'>
                 {/* <span>{`${kun}.${oy}.${yil}`} by</span> */}
-                 <img 
-                 src={require("../assets/logofooter.jpg")}
-                 style={{borderRadius: "50%"}}
-                  alt="img"
-                  width="50" 
-                  height="50" />
-                 <span className='ms-3'>IT City Academy</span>
-                </p>
+                <img
+                    src={require("../assets/logofooter.jpg")}
+                    alt="img"
+                    width="100"
+                    height="100" />
+                <span className='ms-2 fw-bold'>IT City Academy</span>
+            </p>
         </>
     );
 
