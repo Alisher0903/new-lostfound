@@ -1,4 +1,5 @@
 export const api = "https://lostfoundapis.pythonanywhere.com/";
+export const apiImg = "https://lostfoundapis.pythonanywhere.com";
 
 // admin user:
 // +998908632230

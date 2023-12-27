@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import "./defouldNav.scss";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import { api, byId } from "../api/api";
+import { api, apiImg, byId } from "../api/api";
 import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import axios from "axios";
 import { createPopper } from "@popperjs/core";
@@ -148,7 +148,7 @@ export const ItemNavSearch = () => {
                       }}
                       src={
                         getMe.image !== null
-                          ? "https://lostfound.pythonanywhere.com/" +
+                          ? apiImg +
                             getMe.image
                           : "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
                       }
@@ -212,7 +212,7 @@ export const ItemNavSearch = () => {
                     className="img-fluid"
                     src={
                       getMe.image !== null
-                        ? "https://lostfound.pythonanywhere.com/" + getMe.image
+                        ? apiImg + getMe.image
                         : "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
                     }
                     alt=".."
@@ -264,7 +264,7 @@ export const ItemNavSearch = () => {
                           className="img-fluid"
                           src={
                             getMe.image !== null
-                              ? "https://lostfound.pythonanywhere.com/" +
+                              ? apiImg +
                                 getMe.image
                               : "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
                           }
@@ -332,7 +332,7 @@ export const ItemNavSearch = () => {
               }}
               src={
                 getMe.image !== null
-                  ? "https://lostfound.pythonanywhere.com/" + getMe.image
+                  ? apiImg + getMe.image
                   : "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
               }
               alt=".."
@@ -398,7 +398,7 @@ export const ItemNavSearch = () => {
               }}
               src={
                 getMe.image !== null
-                  ? "https://lostfound.pythonanywhere.com/" + getMe.image
+                  ? apiImg + getMe.image
                   : "https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
               }
               alt=".."
