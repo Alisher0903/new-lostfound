@@ -85,9 +85,6 @@ export const ItemNavs = () => {
   function editProfile() {
     const addData = new FormData();
     addData.append("username", byId("username").value);
-    addData.append("phone_number", byId("phoneNumber").value);
-    addData.append("password ", byId("password ").value);
-    addData.append("password_confirm", byId("rePassword").value);
     addData.append("gender", byId("gender").value);
     addData.append("image", byId("avatar").files[0]);
 
@@ -353,32 +350,7 @@ export const ItemNavs = () => {
 
               <Input type="file" id="avatar" className="bg-secondary mt-3" />
             </div>
-            <div className="mt-3">
-              <b className="mb-3">Phone number:</b>
-              <Input
-                type="text"
-                id="phoneNumber"
-                className="bg-secondary mt-3"
-                defaultValue={getMe.phone_number}
-              />
-            </div>
-            <div className="mt-3">
-              <b className="mb-3">Password:</b>
-              <Input
-                type="password"
-                id="password "
-
-                className="bg-secondary mt-3"
-              />
-            </div>
-            <div className="mt-3">
-              <b className="mb-3">Confirm password:</b>
-              <Input
-                type="password"
-                id="rePassword"
-                className="bg-secondary mt-3"
-              />
-            </div>
+           
               <select id="gender" className="form-control mt-3">
                 <option selected disabled>Gender</option>
                 <option value="MALE">MALE</option>
