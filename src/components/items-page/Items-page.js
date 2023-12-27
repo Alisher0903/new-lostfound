@@ -448,46 +448,46 @@ function Itemspage() {
                   Color
                 </option>
                 <option value="Black">
-                  "Black"
+                  Black
                 </option>
                 <option value="Blue">
-                  "Blue"
+                  Blue
                 </option>
                 <option value="Brown - Tan">
-                  "Brown - Tan"
+                  Brown - Tan
                 </option>
                 <option value="Gold">
-                  "Gold"
+                  Gold
                 </option>
                 <option value="Gray">
-                  "Gray"
+                  Gray
                 </option>
                 <option value="Maroon  ">
-                  "Maroon"
+                  Maroon
                 </option>
                 <option value="Orange">
-                  "Orange"
+                  Orange
                 </option>
                 <option value="Peach">
-                  "Peach"
+                  Peach
                 </option>
                 <option value="Pink">
-                  "Pink"
+                  Pink
                 </option>
                 <option value="Platinum">
-                  "Platinum"
+                  Platinum
                 </option>
                 <option value="Red">
-                  "Red"
+                  Red
                 </option>
                 <option value="Silver">
-                  "Silver"
+                  Silver
                 </option>
                 <option value="White">
-                  "White"
+                  White
                 </option>
                 <option value="Yellow">
-                  "Yellow"
+                  Yellow
                 </option>
               </select>
             </div>
@@ -497,46 +497,46 @@ function Itemspage() {
                   Secondary color
                 </option>
                 <option value="Black">
-                  "Black"
+                  Black
                 </option>
                 <option value="Blue">
-                  "Blue"
+                  Blue
                 </option>
                 <option value="Brown - Tan">
-                  "Brown - Tan"
+                  Brown - Tan
                 </option>
                 <option value="Gold">
-                  "Gold"
+                  Gold
                 </option>
                 <option value="Gray">
-                  "Gray"
+                  Gray
                 </option>
                 <option value="Maroon  ">
-                  "Maroon"
+                  Maroon
                 </option>
                 <option value="Orange">
-                  "Orange"
+                  Orange
                 </option>
                 <option value="Peach">
-                  "Peach"
+                  Peach
                 </option>
                 <option value="Pink">
-                  "Pink"
+                  Pink
                 </option>
                 <option value="Platinum">
-                  "Platinum"
+                  Platinum
                 </option>
                 <option value="Red">
-                  "Red"
+                  Red
                 </option>
                 <option value="Silver">
-                  "Silver"
+                  Silver
                 </option>
                 <option value="White">
-                  "White"
+                  White
                 </option>
                 <option value="Yellow">
-                  "Yellow"
+                  Yellow
                 </option>
               </select>
             </div>
@@ -729,46 +729,46 @@ function Itemspage() {
                   Color
                 </option>
                 <option value="Black">
-                  "Black"
+                  Black
                 </option>
                 <option value="Blue">
-                  "Blue"
+                  Blue
                 </option>
                 <option value="Brown - Tan">
-                  "Brown - Tan"
+                  Brown - Tan
                 </option>
                 <option value="Gold">
-                  "Gold"
+                  Gold
                 </option>
                 <option value="Gray">
-                  "Gray"
+                  Gray
                 </option>
                 <option value="Maroon  ">
-                  "Maroon"
+                  Maroon
                 </option>
                 <option value="Orange">
-                  "Orange"
+                  Orange
                 </option>
                 <option value="Peach">
-                  "Peach"
+                  Peach
                 </option>
                 <option value="Pink">
-                  "Pink"
+                  Pink
                 </option>
                 <option value="Platinum">
-                  "Platinum"
+                  Platinum
                 </option>
                 <option value="Red">
-                  "Red"
+                  Red
                 </option>
                 <option value="Silver">
-                  "Silver"
+                  Silver
                 </option>
                 <option value="White">
-                  "White"
+                  White
                 </option>
                 <option value="Yellow">
-                  "Yellow"
+                  Yellow
                 </option>
               </select>
             </div>
@@ -781,46 +781,46 @@ function Itemspage() {
                   Secondary color
                 </option>
                 <option value="Black">
-                  "Black"
+                  Black
                 </option>
                 <option value="Blue">
-                  "Blue"
+                  Blue
                 </option>
                 <option value="Brown - Tan">
-                  "Brown - Tan"
+                  Brown - Tan
                 </option>
                 <option value="Gold">
-                  "Gold"
+                  Gold
                 </option>
                 <option value="Gray">
-                  "Gray"
+                  Gray
                 </option>
                 <option value="Maroon  ">
-                  "Maroon"
+                  Maroon
                 </option>
                 <option value="Orange">
-                  "Orange"
+                  Orange
                 </option>
                 <option value="Peach">
-                  "Peach"
+                  Peach
                 </option>
                 <option value="Pink">
-                  "Pink"
+                  Pink
                 </option>
                 <option value="Platinum">
-                  "Platinum"
+                  Platinum
                 </option>
                 <option value="Red">
-                  "Red"
+                  Red
                 </option>
                 <option value="Silver">
-                  "Silver"
+                  Silver
                 </option>
                 <option value="White">
-                  "White"
+                  White
                 </option>
                 <option value="Yellow">
-                  "Yellow"
+                  Yellow
                 </option>
               </select>
             </div>
