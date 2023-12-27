@@ -21,7 +21,6 @@ function FooTer() {
                             <li><Link to="/about">About</Link></li>
                             <li><Link>Contacat</Link></li>
                             <li><Link>Device</Link></li>
-                            <li><Link>Dress</Link></li>
                             <li><a href='#foundProduct'>Found</a></li>
                             <li><a href='#lostProduct'>Lost</a></li>
                         </ul>
