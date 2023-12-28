@@ -246,16 +246,16 @@ export const ItemNavSearch = () => {
                     >
                        
                       <div className="col-12 d-flex justify-content-end">
-                        <svg
+                      <svg
                           onClick={closeModal}
                           xmlns="http://www.w3.org/2000/svg"
                           width="26"
                           height="26"
                           fill="white"
-                          className=" bi bi-x-lg"
+                          className="bi bi-x-lg"
                           viewBox="0 0 16 16"
                         >
-                          <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z" />
+                          <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
                         </svg>
                       </div>
 
