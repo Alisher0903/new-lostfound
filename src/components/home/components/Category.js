@@ -24,15 +24,21 @@ export const Category = () => {
         500: { items: 2 },
         700: { items: 3 },
         991: { items: 4 },
+        1500: { items: 5 },
     };
 
     return (
         <>
             <AliceCarousel
                 items={categoryItem.map((item, i) =>
-                    <div key={i} className="category__style">
+                    <div className="category__style">
                         <div>
-                            <img src={item.image} alt="img" />
+                            <img
+                                src={item.image === null
+                                    ? img
+                                    : item.image
+                                }
+                                alt="img" />
                         </div>
                         <p className="text-center">{item.name}</p>
                     </div>

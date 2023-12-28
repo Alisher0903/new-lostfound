@@ -27,8 +27,9 @@ function FoundItems() {
     const responsive = {
         0: { items: 1 },
         500: { items: 2 },
-        700: { items: 3 },
-        1000: { items: 4 },
+        800: { items: 3 },
+        1100: { items: 4 },
+        1700: { items: 5 },
     }
 
     return (
@@ -43,8 +44,10 @@ function FoundItems() {
             <div className="text-center">
                 <AliceCarousel
                     items={found.map((item, i) =>
-                        <div key={i} className="p-4 lost_items">
-                            <img src={item.image} alt="img" />
+                        <div key={i} className="m-4 pb-5 lost_items">
+                            <div>
+                                <img src={item.image} alt="img" />
+                            </div>
                             <h4>{item.name}</h4>
                             <p>Location: {item.city}</p>
                             <button onClick={() => {

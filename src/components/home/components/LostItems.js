@@ -27,10 +27,10 @@ function LostItems() {
     const responsive = {
         0: { items: 1 },
         500: { items: 2 },
-        700: { items: 3 },
-        1000: { items: 4 },
+        800: { items: 3 },
+        1100: { items: 4 },
+        1700: { items: 5 },
     }
-    console.log(lostInfo);
 
     return (
         <div style={{
@@ -44,8 +44,12 @@ function LostItems() {
             <div className="text-center">
                 <AliceCarousel
                     items={lost.map((item, i) =>
-                        <div key={i} className="p-4 lost_items">
-                            <img src={item.image} alt="img" />
+                        < div className="m-4 pb-5 lost_items" key={1}>
+                            <div>
+                                <img
+                                    src={item.image}
+                                    alt="img" />
+                            </div>
                             <h4>{item.name}</h4>
                             <p>Location: {item.city}</p>
                             <button onClick={() => {

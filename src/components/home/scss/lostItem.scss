@@ -1,16 +1,27 @@
 .lost_items {
-    height: 500px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    transition: all .4s;
+    max-width: 380px;
 
-    img {
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    div {
         width: 100%;
-        height: 50%;
-        object-fit: cover;
-        transition: all .3s;
+        height: 280px;
+        overflow: hidden;
 
-        &:hover {
-            cursor: pointer;
-            filter: brightness(.7);
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        img {
+            width: 100%;
+            height: 100%;
+            transition: all .3s;
+            object-fit: cover;
+
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.1);
+            }
         }
     }
 
@@ -128,15 +139,45 @@ $font-f: 'Inika', serif;
     }
 }
 
+@media (max-width: 1350px) {
+    .lost_items {
+        div {
+            height: 250px;
+        }
+    }
+}
+
 @media (max-width: 1140px) {
     .lost_items {
-        height: 400px;
+        div {
+            height: 200px;
+        }
+    }
+}
+
+@media (max-width: 779px) {
+    .lost_items {
+        div {
+            height: 250px;
+        }
+    }
+}
+
+@media (max-width: 580px) {
+    .lost_items {
+        div {
+            height: 200px;
+        }
     }
 }
 
 @media (max-width: 500px) {
     .lost_items {
-        height: 500px;
+        max-width: 100%;
+
+        div {
+            height: 300px;
+        }
     }
 
     .lost__modal {
@@ -162,6 +203,14 @@ $font-f: 'Inika', serif;
             span {
                 display: block;
             }
+        }
+    }
+}
+
+@media (max-width: 350px) {
+    .lost_items {
+        div {
+            height: 250px;
         }
     }
 }
