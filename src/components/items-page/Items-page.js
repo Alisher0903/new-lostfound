@@ -313,7 +313,8 @@ function Itemspage() {
                   item.map((item, i) => (
                     <tr className="text-center align-middle" key={i}>
                       <td scope="row">{i + 1}</td>
-                      <td className="table-row img-row">
+                      <td className="
+                       img-row">
                         <img
                           src={item.image}
                           className="table-img"
