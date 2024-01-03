@@ -31,6 +31,7 @@ function Itemspage() {
   const [infoID, setInfoId] = useState([]);
   const [setError] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
+  const [categoryId, setCategoryId] = useState("");
 
   const openAddModal = () => setAddModal(!addModal);
   const openEditModal = () => setEditModal(!editModal);
@@ -43,7 +44,7 @@ function Itemspage() {
 
     getAll();
     getCategory();
-    getSubCategory();
+    // getSubCategory();
     // getAbout()
   }, []);
 
@@ -54,7 +55,6 @@ function Itemspage() {
       })
       .then((res) => {
         setItem(res.data);
-        console.log(res.data);
       })
       .catch((err) => setError(err));
   };
@@ -92,17 +92,22 @@ function Itemspage() {
       })
       .then((res) => {
         setCategory(res.data);
+        getSubCategory()
       })
       .catch(() => console.log("category kelmadi!!!"));
   };
 
   const getSubCategory = () => {
+    let categoryIdin = document.getElementById("category").value
+    console.log("category id" + categoryIdin);
+
     axios
       .get(api + "sub_category/", {
         headers: { Authorization: sessionStorage.getItem("jwtToken") },
       })
       .then((res) => {
-        setSubCategory(res.data);
+        setSubCategory(res.data.filter(i => i.category == categoryIdin));
+        console.log(res.data);
       })
       .catch(() => console.log("Subcategory kelmadi!!!"));
   };
@@ -224,17 +229,17 @@ function Itemspage() {
   //         .catch(() => {
 
   //         })
-  // }
+  // // }
 
-  const categoryFIlter = () => {
-    let categoryId = byId("categoryFilter").value;
-    axios
-      .get(api + "item/category/" + categoryId + "/", {
-        headers: { Authorization: sessionStorage.getItem("jwtToken") },
-      })
-      .then((res) => setItem(res.data.filter((c) => c.type == "FOUND")))
-      .catch(() => console.log("category filter ishlamadi!!!"));
-  };
+  // const categoryFIlter = () => {
+  //   let categoryId = byId("categoryFilter").value;
+  //   axios
+  //     .get(api + "item/category/" + categoryId + "/", {
+  //       headers: { Authorization: sessionStorage.getItem("jwtToken") },
+  //     })
+  //     .then((res) => setItem(res.data.filter((c) => c.type == "FOUND")))
+  //     .catch(() => console.log("category filter ishlamadi!!!"));
+  // };
 
   return (
     <div className="items-main">
@@ -405,7 +410,7 @@ function Itemspage() {
             </FormGroup>
 
             <div className="booot4">
-              <select class="form-control" id="category">
+              <select class="form-control" id="category" onChange={getSubCategory}>
                 <option selected disabled>
                   Category
                 </option>
@@ -661,13 +666,13 @@ function Itemspage() {
               <Label for="category" className="text-light">
                 Category
               </Label>
-              <select class="form-control" id="category">
+              <select class="form-control" id="category" onChange={getSubCategory}>
                 <option selected disabled>
                   Category
                 </option>
                 {category &&
                   category.map((item, i) => (
-                    <option key={i} id={item.id} value={item.id}>
+                    <option key={i} id={item.id} value={item.id} >
                       {item.name}
                     </option>
                   ))}
