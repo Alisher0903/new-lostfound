@@ -46,7 +46,7 @@ function Search2() {
             <ItemNavSearch/>
             <Container className="remove_container" style={{ marginTop: "11rem", marginBottom: "5rem" }}>
                 <h4>
-                    <Link to="/">Bosh Sahifa </Link>
+                    <Link to="/">Home </Link>
                     <span>/ Search</span>
                 </h4>
                 <div className="row search-filters">

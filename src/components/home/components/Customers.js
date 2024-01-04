@@ -23,7 +23,7 @@ const Customers = () => {
                 Authorization: sessionStorage.getItem("jwtToken"),
             }
         })
-            .then(res => setNewsLetter(res.data))
+            .then(res => setNewsLetter(res.data.reverse()))
             .catch(() => console.log("newsletter kelmadi!!!"))
     }
 

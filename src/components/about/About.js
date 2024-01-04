@@ -61,7 +61,7 @@ function AboutLostFound() {
 
             <Container style={{ marginTop: "10rem", marginBottom: "4rem" }}>
                 <h4 className="about__heading-back">
-                    <Link to="/">Bosh Sahifa </Link>
+                    <Link to="/">Home </Link>
                     <span>/ Search</span>
                 </h4>
                 <div className="category-btn text-center">
